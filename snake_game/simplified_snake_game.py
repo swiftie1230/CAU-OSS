@@ -38,6 +38,11 @@ def drawGrid(surface):
                 rr =pygame.Rect((x*GRID_SIZE, y*GRID_SIZE), (GRID_SIZE, GRID_SIZE))
                 pygame.draw.rect(surface, (20, 20, 20), rr)
 
+class Snake(object):
+    def __init__(self):
+        self.length = 1
+        
+
 def main():
     # library initalize
     pygame.init()
@@ -58,11 +63,13 @@ def main():
     # Surface to the same pixel format as the one you use for final display
     surface = surface.convert()
     drawGrid(surface)
-
+    
+    score = 0
+    snake = Snake()
     food = Food()
 
     myfont = pygame.font.SysFont("arial", 16, True, True)
-    score = 0
+
 
     # Boolean value for End clause 
     running = True

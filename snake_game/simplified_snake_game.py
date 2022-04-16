@@ -26,19 +26,43 @@ class Food(object):
         pygame.draw.rect(surface, self.color, r)
         pygame.draw.rect(surface, (93,216,228), r, 1) 
 
+# move
+UP = (0, -1)
+DOWN = (0, 1)
+LEFT = (-1, 0)
+RIGHT = (1, 0)
+
 class Snake(object):
     def __init__(self):
         self.length = 1
         # set start point to center
         self.positions = [((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))]
-        self.color = (1,1,1)
-        
+        self.color = (40,50,90)
+        self.direction = random.choice([UP, DOWN, LEFT, RIGHT])
+        pass
+    
     def draw(self, surface):
         for p in self.positions:
             r = pygame.Rect((p[0], p[1]), (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(surface, self.color, r)
             pygame.draw.rect(surface, (93,216, 228), r, 1)
-
+    
+    # head for interact food
+    def get_head(self):
+        return self.positions[0]
+    
+    def move(self):
+        now = self.get_head()
+        x, y = self.direction
+        new = (((now[0] + (x*GRID_SIZE)) % SCREEN_WIDTH), (now[1] + (y*GRID_SIZE)) % SCREEN_HEIGHT)
+        if len(self.positions) > 2 and new in self.positions[2:]:
+            # it means end of game
+            self.reset()
+        else:
+            self.positions.insert(0,new)
+            if len(self.positions) > self.length:
+                self.positions.pop()
+            
 # draw Grid
 def drawGrid(surface):
     for y in range(0, int(GRID_HEIGHT)):
@@ -87,7 +111,9 @@ def main():
     while(running):
         clock.tick(10)
         drawGrid(surface)
-
+        
+        snake.move()
+        
         food.draw(surface)
         snake.draw(surface)
         

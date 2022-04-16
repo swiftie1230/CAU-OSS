@@ -1,6 +1,8 @@
-# CAU_OSS
+# CAU_OSS for TEAM 3
 
-## 1. import & background commit : Hwang seo jin
+## I. Simple Version(MVP) of Snake Game 🐍
+
+### 1. import & background commit : Hwang seo jin
 
 - Set up for game font, background
 

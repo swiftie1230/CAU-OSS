@@ -14,7 +14,7 @@
 
   - The exit button and logic not implemented yet. So for now, once the X button is pressed, it is closed.
 
-
+* * *
 
 ### 👩🏻‍💻 [Second Commit] *created Food Class and updated file name : Hwang seo jin*
 
@@ -26,7 +26,7 @@
 
 - Created the same new file and named it `simplifed_snake_game.py`
 
-
+* * *
 
 ### 👩🏻‍💻 [Third Commit] *deleted before file - test.py : Hwang seo jin*
 

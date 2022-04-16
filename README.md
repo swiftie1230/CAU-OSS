@@ -22,7 +22,7 @@
   
   - Food for snake is shown in game screen      
 
-    <img width="592" alt="Screen Shot 2022-04-16 at 1 47 22 PM" src="https://user-images.githubusercontent.com/63195670/163661859-8978489b-5bfc-4e10-94fa-3a6f12350da4.png">    
+  <img width="592" alt="Screen Shot 2022-04-16 at 1 47 22 PM" src="https://user-images.githubusercontent.com/63195670/163661859-8978489b-5bfc-4e10-94fa-3a6f12350da4.png">    
 
 - Created the same new file and named it `simplifed_snake_game.py`
 

@@ -50,6 +50,20 @@ class Snake(object):
     # head for interact food
     def get_head(self):
         return self.positions[0]
+
+    def reset(self):
+        pass
+    
+    def turn(self, UDLR):
+        #set direction
+        self.direction = UDLR
+    
+    def key_handling(self):
+        #if UP
+        #elif DOWN
+        #elif LEFT
+        #elif RIGHT
+        pass
     
     def move(self):
         now = self.get_head()
@@ -57,12 +71,12 @@ class Snake(object):
         new = (((now[0] + (x*GRID_SIZE)) % SCREEN_WIDTH), (now[1] + (y*GRID_SIZE)) % SCREEN_HEIGHT)
         if len(self.positions) > 2 and new in self.positions[2:]:
             # it means end of game
-            self.reset()
+            pass
         else:
             self.positions.insert(0,new)
             if len(self.positions) > self.length:
                 self.positions.pop()
-            
+      
 # draw Grid
 def drawGrid(surface):
     for y in range(0, int(GRID_HEIGHT)):
@@ -113,6 +127,7 @@ def main():
         drawGrid(surface)
         
         snake.move()
+        snake.key_handling()
         
         food.draw(surface)
         snake.draw(surface)

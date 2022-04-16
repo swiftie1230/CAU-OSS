@@ -26,6 +26,18 @@ class Food(object):
         pygame.draw.rect(surface, self.color, r)
         pygame.draw.rect(surface, (93,216,228), r, 1) 
 
+class Snake(object):
+    def __init__(self):
+        self.length = 1
+        # set start point to center
+        self.positions = [((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))]
+        
+    def draw(self, surface):
+        for p in self.positions:
+            r = pygame.Rect((p[0], p[1]), (GRID_SIZE, GRID_SIZE))
+            pygame.draw.rect(surface, self.color, r)
+            pygame.draw.rect(surface, (93,216, 228), r, 1)
+
 # draw Grid
 def drawGrid(surface):
     for y in range(0, int(GRID_HEIGHT)):
@@ -38,9 +50,7 @@ def drawGrid(surface):
                 rr =pygame.Rect((x*GRID_SIZE, y*GRID_SIZE), (GRID_SIZE, GRID_SIZE))
                 pygame.draw.rect(surface, (20, 20, 20), rr)
 
-class Snake(object):
-    def __init__(self):
-        self.length = 1
+
         
 
 def main():
@@ -70,7 +80,6 @@ def main():
 
     myfont = pygame.font.SysFont("arial", 16, True, True)
 
-
     # Boolean value for End clause 
     running = True
 
@@ -79,6 +88,7 @@ def main():
         drawGrid(surface)
 
         food.draw(surface)
+        snake.draw(surface)
         
         screen.blit(surface, (0,0))
         text = myfont.render("Score {0}".format(score), 1, (255,255,255))

@@ -31,6 +31,7 @@ class Snake(object):
         self.length = 1
         # set start point to center
         self.positions = [((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))]
+        self.color = (1,1,1)
         
     def draw(self, surface):
         for p in self.positions:

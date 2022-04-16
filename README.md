@@ -2,7 +2,7 @@
 
 ## I. Simple Version(MVP) of Snake Game 🐍
 
-### 1. import & background commit : Hwang seo jin
+### 👩🏻‍💻 [First Commit] import & background commit : Hwang seo jin
 
 - Set up for game font, background
   

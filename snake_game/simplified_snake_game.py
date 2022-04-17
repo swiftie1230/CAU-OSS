@@ -62,6 +62,9 @@ class Snake(object):
     
     def key_handling(self):
         for event in pygame.event.get():
+            # If you click X button (quit button), then you exit the game
+            # The exit button and logic not implemented yet
+            # So once the X button is pressed, it is closed.
             if event.type == pygame.QUIT: # game exit
                 pygame.quit()
                 sys.exit()
@@ -99,8 +102,6 @@ def drawGrid(surface):
                 rr =pygame.Rect((x*GRID_SIZE, y*GRID_SIZE), (GRID_SIZE, GRID_SIZE))
                 pygame.draw.rect(surface, (20, 20, 20), rr)
 
-
-        
 
 def main():
     # library initalize
@@ -145,13 +146,6 @@ def main():
         screen.blit(surface, (0,0))
         text = myfont.render("Score {0}".format(score), 1, (255,255,255))
         screen.blit(text, (15,10))
-
-        # If you click X button (quit button), then you exit the game
-        # The exit button and logic not implemented yet
-        # So once the X button is pressed, it is closed.
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
 
         pygame.display.update()
 

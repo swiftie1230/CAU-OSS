@@ -59,11 +59,19 @@ class Snake(object):
         self.direction = UDLR
     
     def key_handling(self):
-        #if UP
-        #elif DOWN
-        #elif LEFT
-        #elif RIGHT
-        pass
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: # game exit
+                pygame.quit()
+                sys.exit()
+            elif event.type ==pygame.KEYDOWN: # key input
+                if event.key== pygame.K_UP:
+                    self.turn(UP)
+                elif event.key == pygame.K_DOWN:
+                    self.turn(DOWN)
+                elif event.key == pygame.K_LEFT:
+                    self.turn(LEFT)
+                elif event.key == pygame.K_RIGHT:
+                    self.turn(RIGHT)
     
     def move(self):
         now = self.get_head()

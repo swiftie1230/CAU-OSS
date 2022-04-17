@@ -61,7 +61,10 @@ class Snake(object):
 
     def turn(self, UDLR):
         #set direction
-        self.direction = UDLR
+        if self.length > 1 and (UDLR[0]*-1, UDLR[1]*-1) == self.direction:
+            return
+        else:
+            self.direction = UDLR
     
     def key_handling(self):
         for event in pygame.event.get():

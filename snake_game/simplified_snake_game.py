@@ -55,7 +55,9 @@ class Snake(object):
         self.length = 1
         self.positions = [((SCREEN_WIDTH / 2) , (SCREEN_HEIGHT / 2))]
         self.direction = random.choice([UP, DOWN, LEFT, RIGHT])
-    
+        global score
+        score = 0
+
     def turn(self, UDLR):
         #set direction
         self.direction = UDLR
@@ -124,6 +126,7 @@ def main():
     surface = surface.convert()
     drawGrid(surface)
     
+    global score
     score = 0
     snake = Snake()
     food = Food()

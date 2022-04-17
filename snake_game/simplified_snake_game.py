@@ -143,6 +143,11 @@ def main():
         food.draw(surface)
         snake.draw(surface)
         
+        if snake.get_head() == food.position:
+            snake.length += 1
+            score += 1
+            food.randomize_position()
+        
         screen.blit(surface, (0,0))
         text = myfont.render("Score {0}".format(score), 1, (255,255,255))
         screen.blit(text, (15,10))

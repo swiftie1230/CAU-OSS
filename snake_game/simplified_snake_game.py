@@ -52,7 +52,9 @@ class Snake(object):
         return self.positions[0]
 
     def reset(self):
-        pass
+        self.length = 1
+        self.positions = [((SCREEN_WIDTH / 2) , (SCREEN_HEIGHT / 2))]
+        self.direction = random.choice([UP, DOWN, LEFT, RIGHT])
     
     def turn(self, UDLR):
         #set direction
@@ -79,7 +81,7 @@ class Snake(object):
         new = (((now[0] + (x*GRID_SIZE)) % SCREEN_WIDTH), (now[1] + (y*GRID_SIZE)) % SCREEN_HEIGHT)
         if len(self.positions) > 2 and new in self.positions[2:]:
             # it means end of game
-            pass
+            self.reset()
         else:
             self.positions.insert(0,new)
             if len(self.positions) > self.length:

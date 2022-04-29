@@ -4,12 +4,10 @@ import time
 import sys
 
 # screen size
-SCREEN_WIDTH = 480
-SCREEN_HEIGHT = 480
+SCREEN_SIZE = 800
 
 GRID_SIZE = 20
-GRID_WIDTH = SCREEN_WIDTH / GRID_SIZE
-GRID_HEIGHT = SCREEN_HEIGHT / GRID_SIZE
+GRID_NUM = SCREEN_SIZE / GRID_SIZE
 
 pygame.init()
 
@@ -21,9 +19,8 @@ quitImg = pygame.image.load("snake_game/imgs/quiticon.png")
 clickStartImg = pygame.image.load("snake_game/imgs/clickedStartIcon.png")
 clickQuitImg = pygame.image.load("snake_game/imgs/clickedQuitIcon.png")
 
-display_width = 480
-display_height = 480
-gameDisplay = pygame.display.set_mode((display_width, display_height))
+display_size = 800
+gameDisplay = pygame.display.set_mode((display_size, display_size))
 pygame.display.set_caption("Hello CAU_OSS Snake Game!")
 
 clock = pygame.time.Clock()
@@ -57,9 +54,9 @@ def mainmenu():
 
         gameDisplay.fill(white)
         
-        titletext = gameDisplay.blit(titleImg, (70,150))
-        startButton = Button(startImg,130,260,60,20,clickStartImg,130,258,main)
-        quitButton = Button(quitImg,280,260,60,20,clickQuitImg,280,258,quitgame)
+        titletext = gameDisplay.blit(titleImg, (210,310))
+        startButton = Button(startImg,290,420,60,20,clickStartImg,250,418,main)
+        quitButton = Button(quitImg,440,420,60,20,clickQuitImg,440,418,quitgame)
         pygame.display.update()
         clock.tick(15)
 
@@ -71,7 +68,7 @@ class Food(object):
         self.randomize_position()
     
     def randomize_position(self):
-        self.position = (random.randint(0, GRID_WIDTH-1) * GRID_SIZE, random.randint(0,GRID_HEIGHT-1) * GRID_SIZE)
+        self.position = (random.randint(0, GRID_NUM-1) * GRID_SIZE, random.randint(0,GRID_NUM-1) * GRID_SIZE)
 
     def draw(self, surface):
         food_image = pygame.image.load("snake_game/imgs/apple.png")
@@ -89,7 +86,7 @@ class Snake(object):
     def __init__(self):
         self.length = 1
         # set start point to center
-        self.positions = [((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))]
+        self.positions = [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))]
         self.color = (40,50,90)
         self.directions = [random.choice([UP, DOWN, LEFT, RIGHT])]
         pass
@@ -136,7 +133,7 @@ class Snake(object):
 
     def reset(self):
         self.length = 1
-        self.positions = [((SCREEN_WIDTH / 2) , (SCREEN_HEIGHT / 2))]
+        self.positions = [((SCREEN_SIZE / 2) , (SCREEN_SIZE / 2))]
         self.directions = [random.choice([UP, DOWN, LEFT, RIGHT])]
         global score
         score = 0
@@ -170,7 +167,7 @@ class Snake(object):
     def move(self):
         now = self.get_head()
         x, y = self.directions[0]
-        new = (((now[0] + (x*GRID_SIZE)) % SCREEN_WIDTH), (now[1] + (y*GRID_SIZE)) % SCREEN_HEIGHT)
+        new = (((now[0] + (x*GRID_SIZE)) % SCREEN_SIZE), (now[1] + (y*GRID_SIZE)) % SCREEN_SIZE)
         if len(self.positions) > 2 and new in self.positions[2:]:
             # it means end of game by collision with own body
             self.reset()
@@ -199,8 +196,8 @@ class Snake(object):
       
 # draw Grid
 def drawGrid(surface):
-    for y in range(0, int(GRID_HEIGHT)):
-        for x in range(0, int(GRID_WIDTH)):
+    for y in range(0, int(GRID_NUM)):
+        for x in range(0, int(GRID_NUM)):
             if (x+y) % 2 == 0:
                 r = pygame.Rect((x*GRID_SIZE, y*GRID_SIZE), (GRID_SIZE, GRID_SIZE))
                 # is 2nd parameter color?
@@ -222,7 +219,7 @@ def main():
     #HWSURFACE : 하드웨어 가속 사용. 전체 화면 모드에서만 가능
     #OPENGL : OpenGL 사용 가능한 디스플레이를 초기화
     #DOUBLEBUF : 더블 버퍼 모드를 사용. HWSURFACE or OPENGL에서 사용을 추천
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
+    screen = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE), 0, 32)
     
     # surface == 2D object / 색이나 이미지를 가지는 빈 시트
     surface = pygame.Surface(screen.get_size())

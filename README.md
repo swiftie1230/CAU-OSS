@@ -59,13 +59,13 @@
 
 * * *
 
-### 👩🏻‍💻 [Eigth Commit] *Update snake.key_handling : Gong yeah na*
+### 👩🏻‍💻 [Eigth Commit] *Update snake.key_handling : Gong ye na*
 
 - Added snake's key_handling function
 
 * * *
 
-### 👩🏻‍💻 [Ninth Commit] *Update snake.reset : Gong yeah na*
+### 👩🏻‍💻 [Ninth Commit] *Update snake.reset : Gong ye na*
 
 - Added snake's reset function
 
@@ -73,7 +73,7 @@
 
 * * *
 
-### 👩🏻‍💻 [Tenth Commit] *Replace exit code from main to snake : Gong yeah na*
+### 👩🏻‍💻 [Tenth Commit] *Replace exit code from main to snake : Gong ye na*
 
 - changed position of previous exit function to inside of snake class
 
@@ -81,27 +81,28 @@
 
 * * *
 
-### 👩🏻‍💻 [Eleventh Commit] *Add when snake eats food : Gong yeah na*
+### 👩🏻‍💻 [Eleventh Commit] *Add when snake eats food : Gong ye na*
 
 - Added codes to handle when snake eats food
 
 * * *
 
-### 👩🏻‍💻 [Twelveth Commit] *Fix score reset when snake reset : Gong yeah na*
+### 👩🏻‍💻 [Twelveth Commit] *Fix score reset when snake reset : Gong ye na*
 
 - Added function (기능) to handle the score reset when snake resets!
 
 * * *
 
-### 👩🏻‍💻 [Thirteenth Commit] *Add food.draw image : Gong yeah na*
+### 👩🏻‍💻 [Thirteenth Commit] *Add food.draw image : Gong ye na*
 
 - Added image of apple instead of square for food! 🍎     
 
-    <img width="592" alt="Screen Shot 2022-04-29 at 12 43 03 PM" src="https://user-images.githubusercontent.com/63195670/165882313-ef1edb59-1a60-42c8-8b52-90c1659b32e6.png">    
+    <img width="592" alt="Screen Shot 2022-04-29 at 12 43 03 PM" src="https://user-images.githubusercontent.com/63195670/165882313-ef1edb59-1a60-42c8-8b52-90c1659b32e6.png">   
+    <a href="https://www.flaticon.com/free-icons/fruit" title="fruit icons">Fruit icons created by Smashicons - Flaticon</a>
 
 * * *
 
-### 👩🏻‍💻 [Fourteenth Commit] *Fix bug snake.turn : Gong yeah na*
+### 👩🏻‍💻 [Fourteenth Commit] *Fix bug snake.turn : Gong ye na*
 
 - Fixed the bug in snake.turn!    
 

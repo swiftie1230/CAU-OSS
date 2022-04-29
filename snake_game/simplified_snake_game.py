@@ -95,10 +95,24 @@ class Snake(object):
         pass
     
     def draw(self, surface):
-        for p in self.positions:
-            r = pygame.Rect((p[0], p[1]), (GRID_SIZE, GRID_SIZE))
-            pygame.draw.rect(surface, self.color, r)
-            pygame.draw.rect(surface, (93,216, 228), r, 1)
+        for i in range(len(self.positions)):
+            if i == 0:
+                snake_head_image = pygame.image.load('./imgs/snake_head1.png')
+                snake_head_image = pygame.transform.scale(snake_head_image, (GRID_SIZE, GRID_SIZE))
+                if self.direction == UP:
+                    rotate = 180
+                elif self.direction == DOWN:
+                    rotate = 0
+                elif self.direction == LEFT:
+                    rotate = 270
+                elif self.direction == RIGHT:
+                    rotate = 90
+                snake_head_image = pygame.transform.rotate(snake_head_image, rotate)
+                surface.blit(snake_head_image, (self.positions[i][0], self.positions[i][1]))
+            else:
+                r = pygame.Rect((self.positions[i][0], self.positions[i][1]), (GRID_SIZE, GRID_SIZE))
+                pygame.draw.rect(surface, self.color, r)
+                pygame.draw.rect(surface, (93,216, 228), r, 1)
     
     # head for interact food
     def get_head(self):

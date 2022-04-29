@@ -22,7 +22,7 @@ class Food(object):
         self.position = (random.randint(0, GRID_WIDTH-1) * GRID_SIZE, random.randint(0,GRID_HEIGHT-1) * GRID_SIZE)
 
     def draw(self, surface):
-        food_image = pygame.image.load('/Users/seojin/Desktop/CAU_OSS/snake_game/imgs/apple.png')
+        food_image = pygame.image.load("snake_game/imgs/apple.png")
         food_image = pygame.transform.scale(food_image, (GRID_SIZE, GRID_SIZE))
         surface.blit(food_image, (self.position[0], self.position[1]))
         

@@ -91,34 +91,36 @@ class Snake(object):
         # set start point to center
         self.positions = [((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))]
         self.color = (40,50,90)
-        self.direction = [random.choice([UP, DOWN, LEFT, RIGHT])]
+        self.directions = [random.choice([UP, DOWN, LEFT, RIGHT])]
         pass
     
     def draw(self, surface):
         for i in range(len(self.positions)):
+            print(i, self.directions, end =' ')
+            print(self.positions)
             if i == 0:
                 snake_head_image = pygame.image.load('snake_game/imgs/snake_head1.png')
                 snake_head_image = pygame.transform.scale(snake_head_image, (GRID_SIZE, GRID_SIZE))
-                if self.direction[i] == UP:
+                if self.directions[i] == UP:
                     rotate = 180
-                elif self.direction[i] == DOWN:
+                elif self.directions[i] == DOWN:
                     rotate = 0
-                elif self.direction[i] == LEFT:
+                elif self.directions[i] == LEFT:
                     rotate = 270
-                elif self.direction[i] == RIGHT:
+                elif self.directions[i] == RIGHT:
                     rotate = 90
                 snake_head_image = pygame.transform.rotate(snake_head_image, rotate)
                 surface.blit(snake_head_image, (self.positions[i][0], self.positions[i][1]))
-            elif i!= 0 and i == len(self.positions) - 1:
+            elif i == len(self.positions) - 1:
                 snake_tail_image = pygame.image.load('snake_game/imgs/snake_tail.png')
                 snake_tail_image = pygame.transform.scale(snake_tail_image, (GRID_SIZE, GRID_SIZE))
-                if self.direction[i] == UP:
+                if self.directions[i] == UP:
                     rotate = 180
-                elif self.direction[i] == DOWN:
+                elif self.directions[i] == DOWN:
                     rotate = 0
-                elif self.direction[i] == LEFT:
+                elif self.directions[i] == LEFT:
                     rotate = 270
-                elif self.direction[i] == RIGHT:
+                elif self.directions[i] == RIGHT:
                     rotate = 90
                 snake_tail_image = pygame.transform.rotate(snake_tail_image, rotate)
                 surface.blit(snake_tail_image, (self.positions[i][0], self.positions[i][1]))
@@ -134,16 +136,17 @@ class Snake(object):
     def reset(self):
         self.length = 1
         self.positions = [((SCREEN_WIDTH / 2) , (SCREEN_HEIGHT / 2))]
-        self.direction = [random.choice([UP, DOWN, LEFT, RIGHT])]
+        self.directions = [random.choice([UP, DOWN, LEFT, RIGHT])]
         global score
         score = 0
 
     def turn(self, UDLR):
-        #set direction
-        if self.length > 1 and (UDLR[0]*-1, UDLR[1]*-1) == self.direction[0]:
+        #set directions
+        if self.length > 1 and (UDLR[0]*-1, UDLR[1]*-1) == self.directions[0]:
             return
         else:
-            self.direction.insert(0, UDLR)
+            self.directions[0] = UDLR
+
     
     def key_handling(self):
         for event in pygame.event.get():
@@ -165,7 +168,7 @@ class Snake(object):
     
     def move(self):
         now = self.get_head()
-        x, y = self.direction[0]
+        x, y = self.directions[0]
         new = (((now[0] + (x*GRID_SIZE)) % SCREEN_WIDTH), (now[1] + (y*GRID_SIZE)) % SCREEN_HEIGHT)
         if len(self.positions) > 2 and new in self.positions[2:]:
             # it means end of game by collision with own body
@@ -189,6 +192,9 @@ class Snake(object):
             self.positions.insert(0,new)
             if len(self.positions) > self.length:
                 self.positions.pop()
+            self.directions.insert(0, self.directions[0])
+            if len(self.directions) > self.length:
+                self.directions.pop()
       
 # draw Grid
 def drawGrid(surface):
@@ -247,6 +253,7 @@ def main():
         if snake.get_head() == food.position:
             snake.length += 1
             score += 1
+            snake.directions.append(snake.directions[-1])
             food.randomize_position()
         
         screen.blit(surface, (0,0))

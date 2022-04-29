@@ -21,10 +21,10 @@ quitImg = pygame.image.load("snake_game/imgs/quiticon.png")
 clickStartImg = pygame.image.load("snake_game/imgs/clickedStartIcon.png")
 clickQuitImg = pygame.image.load("snake_game/imgs/clickedQuitIcon.png")
 
-display_width = 800
-display_height = 600
+display_width = 480
+display_height = 480
 gameDisplay = pygame.display.set_mode((display_width, display_height))
-pygame.display.set_caption("헝그리  댕댕이")
+pygame.display.set_caption("Hello CAU_OSS Snake Game!")
 
 clock = pygame.time.Clock()
 
@@ -57,9 +57,9 @@ def mainmenu():
 
         gameDisplay.fill(white)
         
-        titletext = gameDisplay.blit(titleImg, (220,150))
-        startButton = Button(startImg,280,260,60,20,clickStartImg,273,258,main)
-        quitButton = Button(quitImg,445,260,60,20,clickQuitImg,440,258,quitgame)
+        titletext = gameDisplay.blit(titleImg, (70,150))
+        startButton = Button(startImg,130,260,60,20,clickStartImg,130,258,main)
+        quitButton = Button(quitImg,280,260,60,20,clickQuitImg,280,258,quitgame)
         pygame.display.update()
         clock.tick(15)
 

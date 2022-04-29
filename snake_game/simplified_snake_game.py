@@ -97,7 +97,7 @@ class Snake(object):
     def draw(self, surface):
         for i in range(len(self.positions)):
             if i == 0:
-                snake_head_image = pygame.image.load('./imgs/snake_head1.png')
+                snake_head_image = pygame.image.load('snake_game/imgs/snake_head1.png')
                 snake_head_image = pygame.transform.scale(snake_head_image, (GRID_SIZE, GRID_SIZE))
                 if self.direction == UP:
                     rotate = 180

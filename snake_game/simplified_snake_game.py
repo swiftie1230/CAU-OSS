@@ -91,7 +91,7 @@ class Snake(object):
         # set start point to center
         self.positions = [((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))]
         self.color = (40,50,90)
-        self.direction = random.choice([UP, DOWN, LEFT, RIGHT])
+        self.direction = [random.choice([UP, DOWN, LEFT, RIGHT])]
         pass
     
     def draw(self, surface):
@@ -99,29 +99,29 @@ class Snake(object):
             if i == 0:
                 snake_head_image = pygame.image.load('snake_game/imgs/snake_head1.png')
                 snake_head_image = pygame.transform.scale(snake_head_image, (GRID_SIZE, GRID_SIZE))
-                if self.direction == UP:
+                if self.direction[i] == UP:
                     rotate = 180
-                elif self.direction == DOWN:
+                elif self.direction[i] == DOWN:
                     rotate = 0
-                elif self.direction == LEFT:
+                elif self.direction[i] == LEFT:
                     rotate = 270
-                elif self.direction == RIGHT:
+                elif self.direction[i] == RIGHT:
                     rotate = 90
                 snake_head_image = pygame.transform.rotate(snake_head_image, rotate)
                 surface.blit(snake_head_image, (self.positions[i][0], self.positions[i][1]))
-            elif i == len(self.positions):
-                snake_head_image = pygame.image.load('./imgs/snake_tail.png')
-                snake_head_image = pygame.transform.scale(snake_head_image, (GRID_SIZE, GRID_SIZE))
-                if self.direction == UP:
+            elif i!= 0 and i == len(self.positions) - 1:
+                snake_tail_image = pygame.image.load('snake_game/imgs/snake_tail.png')
+                snake_tail_image = pygame.transform.scale(snake_tail_image, (GRID_SIZE, GRID_SIZE))
+                if self.direction[i] == UP:
                     rotate = 180
-                elif self.direction == DOWN:
+                elif self.direction[i] == DOWN:
                     rotate = 0
-                elif self.direction == LEFT:
+                elif self.direction[i] == LEFT:
                     rotate = 270
-                elif self.direction == RIGHT:
+                elif self.direction[i] == RIGHT:
                     rotate = 90
-                snake_head_image = pygame.transform.rotate(snake_head_image, rotate)
-                surface.blit(snake_head_image, (self.positions[i][0], self.positions[i][1]))
+                snake_tail_image = pygame.transform.rotate(snake_tail_image, rotate)
+                surface.blit(snake_tail_image, (self.positions[i][0], self.positions[i][1]))
             else:
                 r = pygame.Rect((self.positions[i][0], self.positions[i][1]), (GRID_SIZE, GRID_SIZE))
                 pygame.draw.rect(surface, self.color, r)
@@ -134,16 +134,16 @@ class Snake(object):
     def reset(self):
         self.length = 1
         self.positions = [((SCREEN_WIDTH / 2) , (SCREEN_HEIGHT / 2))]
-        self.direction = random.choice([UP, DOWN, LEFT, RIGHT])
+        self.direction = [random.choice([UP, DOWN, LEFT, RIGHT])]
         global score
         score = 0
 
     def turn(self, UDLR):
         #set direction
-        if self.length > 1 and (UDLR[0]*-1, UDLR[1]*-1) == self.direction:
+        if self.length > 1 and (UDLR[0]*-1, UDLR[1]*-1) == self.direction[0]:
             return
         else:
-            self.direction = UDLR
+            self.direction.insert(0, UDLR)
     
     def key_handling(self):
         for event in pygame.event.get():
@@ -165,7 +165,7 @@ class Snake(object):
     
     def move(self):
         now = self.get_head()
-        x, y = self.direction
+        x, y = self.direction[0]
         new = (((now[0] + (x*GRID_SIZE)) % SCREEN_WIDTH), (now[1] + (y*GRID_SIZE)) % SCREEN_HEIGHT)
         if len(self.positions) > 2 and new in self.positions[2:]:
             # it means end of game by collision with own body

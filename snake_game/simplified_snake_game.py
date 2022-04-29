@@ -109,6 +109,19 @@ class Snake(object):
                     rotate = 90
                 snake_head_image = pygame.transform.rotate(snake_head_image, rotate)
                 surface.blit(snake_head_image, (self.positions[i][0], self.positions[i][1]))
+            elif i == len(self.positions):
+                snake_head_image = pygame.image.load('./imgs/snake_tail.png')
+                snake_head_image = pygame.transform.scale(snake_head_image, (GRID_SIZE, GRID_SIZE))
+                if self.direction == UP:
+                    rotate = 180
+                elif self.direction == DOWN:
+                    rotate = 0
+                elif self.direction == LEFT:
+                    rotate = 270
+                elif self.direction == RIGHT:
+                    rotate = 90
+                snake_head_image = pygame.transform.rotate(snake_head_image, rotate)
+                surface.blit(snake_head_image, (self.positions[i][0], self.positions[i][1]))
             else:
                 r = pygame.Rect((self.positions[i][0], self.positions[i][1]), (GRID_SIZE, GRID_SIZE))
                 pygame.draw.rect(surface, self.color, r)

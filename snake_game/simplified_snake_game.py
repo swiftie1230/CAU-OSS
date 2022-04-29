@@ -89,8 +89,23 @@ class Snake(object):
         x, y = self.direction
         new = (((now[0] + (x*GRID_SIZE)) % SCREEN_WIDTH), (now[1] + (y*GRID_SIZE)) % SCREEN_HEIGHT)
         if len(self.positions) > 2 and new in self.positions[2:]:
-            # it means end of game
+            # it means end of game by collision with own body
             self.reset()
+        
+        elif now[0] == 0 and x == -1:
+            # it means the game is ended because of the collision with the left wall
+            self.reset()
+        elif new[0] == 0 and x == 1:
+            # it means the game is ended because of the collision with the right wall
+            self.reset() 
+        
+        elif now[1] == 0 and y == -1: 
+            # it means end of game by collision with the upper wall
+            self.reset()
+        elif new[1] == 0 and y == 1: 
+            # it means end of game by collision with the below wall
+            self.reset()
+        
         else:
             self.positions.insert(0,new)
             if len(self.positions) > self.length:

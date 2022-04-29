@@ -89,17 +89,18 @@ RIGHT = (1, 0)
 
 data = {
     "score" : 0,
-    #head
-    #direction
+    "positions" : 0,
+    "now" : 0,
+    "direction" : [UP]
 }
 
 class Snake(object):
     def __init__(self):
-        self.length = 1
+        self.length = data["score"] + 1
         # set start point to center
         self.positions = [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))]
         self.color = (40,50,90)
-        self.directions = [UP]
+        self.directions = data["direction"]
         pass
     
     def draw(self, surface):
@@ -137,7 +138,9 @@ class Snake(object):
                 r = pygame.Rect((self.positions[i][0], self.positions[i][1]), (GRID_SIZE, GRID_SIZE))
                 pygame.draw.rect(surface, self.color, r)
                 pygame.draw.rect(surface, (93,216, 228), r, 1)
-    
+                
+            data["direction"] = self.directions[i]
+            
     # head for interact food
     def get_head(self):
         return self.positions[0]
@@ -179,8 +182,11 @@ class Snake(object):
     
     def move(self):
         now = self.get_head()
+        data["now"] = now
+        
         x, y = self.directions[0]
         new = (((now[0] + (x*GRID_SIZE)) % SCREEN_SIZE), (now[1] + (y*GRID_SIZE)) % SCREEN_SIZE)
+        
         if len(self.positions) > 2 and new in self.positions[2:]:
             # it means end of game by collision with own body
             self.reset()
@@ -191,19 +197,19 @@ class Snake(object):
         elif new[0] == 0 and x == 1:
             # it means the game is ended because of the collision with the right wall
             self.reset() 
-        
         elif now[1] == 0 and y == -1: 
             # it means end of game by collision with the upper wall
             self.reset()
         elif new[1] == 0 and y == 1: 
             # it means end of game by collision with the below wall
             self.reset()
-        
         else:
             self.positions.insert(0,new)
+            
             if len(self.positions) > self.length:
                 self.positions.pop()
             self.directions.insert(0, self.directions[0])
+            
             if len(self.directions) > self.length:
                 self.directions.pop()
       
@@ -221,8 +227,8 @@ def drawGrid(surface):
 
 
 def main():
-    # with open('save.txt') as save_file:
-    #     data = json.load(save_file)
+    with open('save.txt') as save_file:
+         data = json.load(save_file)
     
     # library initalize
     pygame.init()
@@ -245,7 +251,8 @@ def main():
     drawGrid(surface)
     
     global score
-    score = 0
+    score = data["score"]
+    
     snake = Snake()
     food = Food()
 
@@ -269,6 +276,9 @@ def main():
             score += 1
             snake.directions.append(snake.directions[-1])
             food.randomize_position()
+            
+        data["positions"] = snake.positions
+        data["score"] = score
         
         screen.blit(surface, (0,0))
         text = myfont.render("Score {0}".format(score), 1, (255,255,255))

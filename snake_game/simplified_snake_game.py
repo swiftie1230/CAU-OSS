@@ -1,5 +1,6 @@
 import pygame
-import random 
+import random
+import json
 import time
 import sys
 
@@ -36,7 +37,10 @@ class Button:
         else:
             gameDisplay.blit(img_in,(x,y))
 
-def quitgame():
+def quitgame(data):
+    with open('save.txt','w') as save_file:
+        json.dump(data,save_file)
+        
     pygame.quit()
     sys.exit()
 
@@ -80,6 +84,14 @@ UP = (0, -1)
 DOWN = (0, 1)
 LEFT = (-1, 0)
 RIGHT = (1, 0)
+
+# save_data
+
+data = {
+    "score" : 0,
+    #head
+    #direction
+}
 
 class Snake(object):
     def __init__(self):
@@ -162,6 +174,8 @@ class Snake(object):
                     self.turn(LEFT)
                 elif event.key == pygame.K_RIGHT:
                     self.turn(RIGHT)
+                elif event.key == pygame.K_ESCAPE:
+                    quitgame(data)
     
     def move(self):
         now = self.get_head()
@@ -207,6 +221,9 @@ def drawGrid(surface):
 
 
 def main():
+    # with open('save.txt') as save_file:
+    #     data = json.load(save_file)
+    
     # library initalize
     pygame.init()
     

@@ -19,8 +19,7 @@ quitImg = pygame.image.load("snake_game/imgs/quiticon.png")
 clickStartImg = pygame.image.load("snake_game/imgs/clickedStartIcon.png")
 clickQuitImg = pygame.image.load("snake_game/imgs/clickedQuitIcon.png")
 
-display_size = 800
-gameDisplay = pygame.display.set_mode((display_size, display_size))
+gameDisplay = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
 pygame.display.set_caption("Hello CAU_OSS Snake Game!")
 
 clock = pygame.time.Clock()
@@ -55,7 +54,7 @@ def mainmenu():
         gameDisplay.fill(white)
         
         titletext = gameDisplay.blit(titleImg, (210,310))
-        startButton = Button(startImg,290,420,60,20,clickStartImg,250,418,main)
+        startButton = Button(startImg,290,420,60,20,clickStartImg,290,418,main)
         quitButton = Button(quitImg,440,420,60,20,clickQuitImg,440,418,quitgame)
         pygame.display.update()
         clock.tick(15)
@@ -88,7 +87,7 @@ class Snake(object):
         # set start point to center
         self.positions = [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))]
         self.color = (40,50,90)
-        self.directions = [random.choice([UP, DOWN, LEFT, RIGHT])]
+        self.directions = [UP]
         pass
     
     def draw(self, surface):
@@ -134,7 +133,7 @@ class Snake(object):
     def reset(self):
         self.length = 1
         self.positions = [((SCREEN_SIZE / 2) , (SCREEN_SIZE / 2))]
-        self.directions = [random.choice([UP, DOWN, LEFT, RIGHT])]
+        self.directions = [UP]
         global score
         score = 0
 

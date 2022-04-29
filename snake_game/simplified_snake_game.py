@@ -1,7 +1,7 @@
-import sys
-import random 
 import pygame
-
+import random 
+import time
+import sys
 
 # screen size
 SCREEN_WIDTH = 480
@@ -10,6 +10,58 @@ SCREEN_HEIGHT = 480
 GRID_SIZE = 20
 GRID_WIDTH = SCREEN_WIDTH / GRID_SIZE
 GRID_HEIGHT = SCREEN_HEIGHT / GRID_SIZE
+
+pygame.init()
+
+white = (255, 255, 255)
+
+titleImg = pygame.image.load("snake_game/imgs/title.png")
+startImg = pygame.image.load("snake_game/imgs/starticon.png")
+quitImg = pygame.image.load("snake_game/imgs/quiticon.png")
+clickStartImg = pygame.image.load("snake_game/imgs/clickedStartIcon.png")
+clickQuitImg = pygame.image.load("snake_game/imgs/clickedQuitIcon.png")
+
+display_width = 800
+display_height = 600
+gameDisplay = pygame.display.set_mode((display_width, display_height))
+pygame.display.set_caption("헝그리  댕댕이")
+
+clock = pygame.time.Clock()
+
+class Button:
+    def __init__(self, img_in, x, y, width, height, img_act, x_act, y_act, action = None):
+        mouse = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()
+        if x + width > mouse[0] > x and y + height > mouse[1] > y:
+            gameDisplay.blit(img_act,(x_act, y_act))
+            if click[0] and action != None:
+                time.sleep(1)
+                action()
+        else:
+            gameDisplay.blit(img_in,(x,y))
+
+def quitgame():
+    pygame.quit()
+    sys.exit()
+
+
+def mainmenu():
+
+    menu = True
+
+    while menu:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+        gameDisplay.fill(white)
+        
+        titletext = gameDisplay.blit(titleImg, (220,150))
+        startButton = Button(startImg,280,260,60,20,clickStartImg,273,258,main)
+        quitButton = Button(quitImg,445,260,60,20,clickQuitImg,440,258,quitgame)
+        pygame.display.update()
+        clock.tick(15)
 
 # Food Class
 class Food(object):
@@ -176,4 +228,5 @@ def main():
 
         pygame.display.update()
 
-main()
+#main()
+mainmenu()

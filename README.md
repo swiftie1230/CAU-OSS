@@ -1,117 +1,95 @@
-# CAU_OSS for TEAM 3
+# WELCOME TO CAU_OSS repository for TEAM 3 !
 
-## I. Simple Version(MVP) of Snake Game 🐍
+## I. Simple Version(MVP) of Snake Game 🐍 : "SANKE GAME"
 
-### 👩🏻‍💻 [First Commit] *import & background commit : Hwang seo jin*
+### 👀 Details about our implementation
 
-- Set up for game font, background
+- **A programming language used to implement the game** : Python
+
+- **A platform to run the game** : Pygame
+
+- **Tools used for the collaborative development** : Notion & Discord & KaKaoTalk    
+     
+    <img width="348" alt="image" src="https://user-images.githubusercontent.com/63195670/166117642-1abb283b-d4e7-4656-b12b-f19efd71e190.png">    
+
+    <img width="398" alt="image" src="https://user-images.githubusercontent.com/63195670/166117644-90ad989b-c190-4d5d-be4e-f80d93016f23.png">      
   
-  - 디자인 구리지만...일단 최대한 깔끔하게만!      
+    <img width="135" alt="image" src="https://user-images.githubusercontent.com/63195670/166117648-c52c5299-2da4-4c31-a308-5be7d4f7d57e.png">       
 
-    <img width="479" alt="Screen Shot 2022-04-16 at 1 10 12 PM" src="https://user-images.githubusercontent.com/63195670/163660882-4f0a2def-5687-463a-bfe2-c5be1838c2f7.png">      
+- **Introduction for our game**
 
-- If you click X button (Quit button on window), you can exit the game
+    - i. If you successfully Load our game, you will see this Screen, “Main Menu”     
 
-  - The exit button and logic not implemented yet. So for now, once the X button is pressed, it is closed.
+        <img width="168" alt="image" src="https://user-images.githubusercontent.com/63195670/166117713-d735829a-2488-465c-b75a-c6c6addff9b9.png">   <img width="168" alt="image" src="https://user-images.githubusercontent.com/63195670/166117716-e7d1e005-f35a-4d13-8bfa-5083d63f2aab.png">    
 
-* * *
+        - By clicking LOAD, you can RELOAD the SAVED game
 
-### 👩🏻‍💻 [Second Commit] *created Food Class and updated file name : Hwang seo jin*
+            - If there is **no saved game, button will not be clicked**, like right image. (nothing will happen)
 
-- Created Food Class
-  
-  - Food for snake is shown in game screen      
+        - By clicking START, you can START the game   
 
-  <img width="592" alt="Screen Shot 2022-04-16 at 1 47 22 PM" src="https://user-images.githubusercontent.com/63195670/163661859-8978489b-5bfc-4e10-94fa-3a6f12350da4.png">    
+        <img width="174" alt="image" src="https://user-images.githubusercontent.com/63195670/166117798-d1bc9908-5034-4c73-aecc-c5a4deba1d1b.png">   <img width="169" alt="image" src="https://user-images.githubusercontent.com/63195670/166117800-afeb3ba1-eba3-4bc8-86c0-b20b0097cbdf.png">    
 
-- Created the same new file and named it `simplifed_snake_game.py`
+        - By clicking RANKING, the top-10 ranked player’s name and score are DISPLAYED
 
-* * *
+            - If there is **no saved rank, It will display ‘There is No Rank’**, like the right image.
 
-### 👩🏻‍💻 [Third Commit] *deleted before file - test.py : Hwang seo jin*
+	        - If there are saved ranks, It will display them, like left image. (At most 10)
 
-- Deleted before file (test.py)
+            - If you click QUIT here, you can go back to main menu.
 
-* * *
+        - By clicking QUIT, you can EXIT the game
 
-### 👨🏻‍💻 [Fourth Commit] *Add snake class : Lee jun hak*
+    - ii. Play game ! ( Game play screen looks like below )   
 
-- Added snake class
-    - Defined snake head (which interacts with food and wall)
+        <img width="162" alt="image" src="https://user-images.githubusercontent.com/63195670/166117957-35233331-f2f2-4c92-997a-2e136c61d872.png">   <img width="156" alt="image" src="https://user-images.githubusercontent.com/63195670/166117953-a868c396-83f9-44e6-9ea4-c9a2a02eba79.png">    
 
-* * *
+        - If you want to **PAUSE** game during play, **PRESS “ESC”**
 
-### 👨🏻‍💻 [Fifth Commit] *Add snake.draw : Lee jun hak*
+        - The game continues until the snake “dies”.
 
-- Added the draw function of snake
+            - The snake dies by either
 
-* * *
+                - Running into the edge of the board,
+                - Running into its own body
 
-### 👨🏻‍💻 [Sixth Commit] *Add snake.color : Lee jun hak*
+        - Once the snake dies, you will see this screen.    
 
-- Added the color function of snake
+            <img width="184" alt="image" src="https://user-images.githubusercontent.com/63195670/166118007-7f54f6a9-c2da-412f-8cc5-63fdf59f6221.png">    
 
-* * *
+            - You can write your name by just typing it using the keyboard (Clicking the part is not necessary)
 
-### 👨🏻‍💻 [Seventh Commit] *Add snake.move : Lee jun hak*
+                - **USE “BACKSPACE” first to ERASE THE DEFAULT** displayed on right-top of the screen, then write your name, and **press “ENTER” to SAVE in RANKING!** (Don’t Click GO MENU)
 
-- Added snake's movement (straight)
+            - If you **don’t want to write any name, then just click GO Main menu.** 
 
-* * *
+                - It will **not store your data in RANKING** and just return to main menu! 
 
-### 👩🏻‍💻 [Eigth Commit] *Update snake.key_handling : Gong ye na*
+    - iii. If you PAUSE the game, you will see this screen.   
 
-- Added snake's key_handling function
+        <img width="206" alt="image" src="https://user-images.githubusercontent.com/63195670/166118147-e5449f5a-2f57-4bc2-8255-f033c1301f4c.png">      
 
-* * *
-
-### 👩🏻‍💻 [Ninth Commit] *Update snake.reset : Gong ye na*
-
-- Added snake's reset function
-
-    - reset snake's atrributes
+        - By clicking RESUME, you can RESUME the game
+        - By clicking RESTART, you can START a NEW game
+        - By clicking SAVE, you can SAVE the current game status and return to the main menu
+        - By clicking QUIT, you can return to the main menu without saving the current game status
 
 * * *
 
-### 👩🏻‍💻 [Tenth Commit] *Replace exit code from main to snake : Gong ye na*
+### ☝🏻 Guidelines to install and run our game
 
-- changed position of previous exit function to inside of snake class
+- Our game is based on “pygame”! First, **Install pygame** on your computer.
 
-    - snake.key_handling
+- **Download zip file** from our  Public GitHub repository.
 
-* * *
+    <img width="317" alt="image" src="https://user-images.githubusercontent.com/63195670/166118275-75446fed-33f2-44aa-a17a-9e8b699a4c0c.png">        
 
-### 👩🏻‍💻 [Eleventh Commit] *Add when snake eats food : Gong ye na*
+- Go to the directory like below and run ‘simplified_snake_game.py’
 
-- Added codes to handle when snake eats food
+    - Using cd, move to ***“CAU_OSS”*** directory in your own computer and **access, open the file using below commands.**
 
-* * *
+        <img width="468" alt="image" src="https://user-images.githubusercontent.com/63195670/166118352-240e3cfc-9307-47a1-8e2c-065b0f5de702.png">    
 
-### 👩🏻‍💻 [Twelveth Commit] *Fix score reset when snake reset : Gong ye na*
+        - *If you use python instead of python3, use python as command! It depends on your computer develop environment.
 
-- Added function (기능) to handle the score reset when snake resets!
-
-* * *
-
-### 👩🏻‍💻 [Thirteenth Commit] *Add food.draw image : Gong ye na*
-
-- Added image of apple instead of square for food! 🍎     
-
-    <img width="592" alt="Screen Shot 2022-04-29 at 12 43 03 PM" src="https://user-images.githubusercontent.com/63195670/165882313-ef1edb59-1a60-42c8-8b52-90c1659b32e6.png">   
-    <a href="https://www.flaticon.com/free-icons/fruit" title="fruit icons">Fruit icons created by Smashicons - Flaticon</a>
-
-* * *
-
-### 👩🏻‍💻 [Fourteenth Commit] *Fix bug snake.turn : Gong ye na*
-
-- Fixed the bug in snake.turn!    
-
-* * *
-
-### 👩🏻‍💻 [Fifteenth Commit] *wall_hit_reset : Gong yeah na*
-
-- Added the code for the reset when the snake's head hits the wall!     
-
-* * *
-
- 
+            - Ex)  `\CAU_OSS> python .\snake_game\simplified_snake_game.py`

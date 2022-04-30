@@ -28,7 +28,7 @@ gameOverImg = pygame.image.load("snake_game/imgs/gameover.png")
 goMenuImg = pygame.image.load("snake_game/imgs/gomenu.png")
 clickgoMenuImg = pygame.image.load("snake_game/imgs/clickedgomenu.png")
 resumeImg = pygame.image.load("snake_game/imgs/resume.png")
-clickresumeImg = pygame.image.load("snake_game/imgs/clickedgomenu.png")
+clickresumeImg = pygame.image.load("snake_game/imgs/clickedresume.png")
 restartImg = pygame.image.load("snake_game/imgs/restart.png")
 clickrestartImg = pygame.image.load("snake_game/imgs/clickedrestart.png")
 

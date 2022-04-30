@@ -171,7 +171,7 @@ def showrank():
                 sys.exit()
 
         gameDisplay.fill(white)
-        myfont = pygame.font.SysFont("arial", 16, True, True)
+        myfont = pygame.font.SysFont("arial", 21, True, True)
         
         if(is_it_rank()):
             tmp = 0

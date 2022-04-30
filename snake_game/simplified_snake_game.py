@@ -55,8 +55,7 @@ data = {
 }
 
 ranking = {
-    "test": 1,
-    "jun":3
+
 }
 
 class Button:
@@ -142,12 +141,13 @@ def getrank():
     global ranking
     
     print("load data")
-    with open('ranking.txt') as rank_file:
-        ranking = json.load(rank_file)
+    try:
+        with open('ranking.txt') as rank_file:
+            ranking = json.load(rank_file)
         
-    ranking = dict(sorted(ranking.items(), key=lambda x: x[1], reverse = True))
-    print(ranking)
-    
+        ranking = dict(sorted(ranking.items(), key=lambda x: x[1], reverse = True))
+    except:
+        return
 
 def showrank():
     getrank()
@@ -161,11 +161,15 @@ def showrank():
         gameDisplay.fill(white)
         myfont = pygame.font.SysFont("arial", 16, True, True)
         
-        tmp = 0
-        for name, sc in ranking.items():
-            rank = myfont.render(str(tmp+1) + ". " + name+ " : " + str(sc), 1, (0,0,0))
-            screen.blit(rank, (40,100+tmp*50))
-            tmp += 1
+        if(is_it_rank()):
+            tmp = 0
+            for name, sc in ranking.items():
+                rank = myfont.render(str(tmp+1) + ". " + name+ " : " + str(sc), 1, (0,0,0))
+                #SCREEN -> 800 120~570
+                screen.blit(rank, (300,120+tmp*50))
+                tmp += 1
+                if tmp == 10:
+                    break
         
         quitButton = Button(quitImg,490,420,60,20,clickQuitImg,490,418,mainmenu)
         
@@ -174,6 +178,10 @@ def showrank():
         
 def is_it_save():
     file_path = "./save.txt"
+    return(os.path.isfile(file_path)) 
+
+def is_it_rank():
+    file_path = "./ranking.txt"
     return(os.path.isfile(file_path)) 
     
 def mainmenu():

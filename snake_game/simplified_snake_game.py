@@ -55,7 +55,8 @@ data = {
 }
 
 ranking = {
-    
+    "test": 1,
+    "jun":3
 }
 
 class Button:
@@ -133,7 +134,11 @@ def gameover(screen):
         screen.blit(text, (15,10))
         pygame.display.update()
         clock.tick(15)
-    
+
+#def showrank(screen):
+#    test = {"jun":1, "hi":0}
+#    text = myfont.render(test, 1, (0,0,0))
+#    screen.blit(text, (15,10))
 
 def mainmenu():
     global load
@@ -150,7 +155,7 @@ def mainmenu():
         
         titletext = gameDisplay.blit(titleImg, (210,310))
         startButton = Button(startImg,190,420,60,20,clickStartImg,190,418,main)
-        saveButton = Button(saveImg,290,420,60,20,clicksaveImg,290,418,savegame)
+        saveButton = Button(saveImg,290,420,60,20,clicksaveImg,290,418,main)
         loadButton = Button(loadImg,390,422,60,20,clickloadImg,390,418,loadgame)
         quitButton = Button(quitImg,490,420,60,20,clickQuitImg,490,418,quitgame)
         
@@ -428,6 +433,12 @@ def main():
         text = myfont.render("Score {0}".format(score), 1, (255,255,255))
         screen.blit(text, (15,10))
 
+        tmp = 0
+        for name, sc in ranking.items():
+            rank = myfont.render(name+ " : " + str(sc), 1, (255,255,255))
+            screen.blit(rank, (40,100+tmp*50))
+            tmp += 1
+        
         pygame.display.update()
 
 #main()

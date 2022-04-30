@@ -19,6 +19,10 @@ startImg = pygame.image.load("snake_game/imgs/starticon.png")
 quitImg = pygame.image.load("snake_game/imgs/quiticon.png")
 clickStartImg = pygame.image.load("snake_game/imgs/clickedStartIcon.png")
 clickQuitImg = pygame.image.load("snake_game/imgs/clickedQuitIcon.png")
+saveImg = pygame.image.load("snake_game/imgs/save.png")
+loadImg = pygame.image.load("snake_game/imgs/load.png")
+clicksaveImg = pygame.image.load("snake_game/imgs/clickedSaveIcon.png")
+clickloadImg = pygame.image.load("snake_game/imgs/clickedLoadIcon.png")
 
 gameDisplay = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
 pygame.display.set_caption("Hello CAU_OSS Snake Game!")
@@ -30,6 +34,8 @@ UP = (0, -1)
 DOWN = (0, 1)
 LEFT = (-1, 0)
 RIGHT = (1, 0)
+
+load = 0
 
 class Button:
     def __init__(self, img_in, x, y, width, height, img_act, x_act, y_act, action = None):
@@ -43,21 +49,31 @@ class Button:
         else:
             gameDisplay.blit(img_in,(x,y))
 
-def quitgame():
-    print("end game...")
-    
+def savegame():
     print(data["score"])
     print(data["positions"])
     print(data["directions"])
     
     with open('save.txt','w') as save_file:
         json.dump(data,save_file)
-    
+        
+    print("save done")
+
+def loadgame():
+    global load
+    load = 1
+    main()
+
+def quitgame():
+    print("end game...")
     pygame.quit()
     sys.exit()
 
 
 def mainmenu():
+    global load
+    load = 0
+    
     menu = True
     while menu:
         for event in pygame.event.get():
@@ -68,8 +84,11 @@ def mainmenu():
         gameDisplay.fill(white)
         
         titletext = gameDisplay.blit(titleImg, (210,310))
-        startButton = Button(startImg,290,420,60,20,clickStartImg,290,418,main)
-        quitButton = Button(quitImg,440,420,60,20,clickQuitImg,440,418,quitgame)
+        startButton = Button(startImg,190,420,60,20,clickStartImg,190,418,main)
+        saveButton = Button(saveImg,290,420,60,20,clicksaveImg,290,418,savegame)
+        loadButton = Button(loadImg,390,422,60,20,clickloadImg,390,418,loadgame)
+        quitButton = Button(quitImg,490,420,60,20,clickQuitImg,490,418,quitgame)
+        
         pygame.display.update()
         clock.tick(15)
 
@@ -185,7 +204,7 @@ class Snake(object):
                 elif event.key == pygame.K_RIGHT:
                     self.turn(RIGHT)
                 elif event.key == pygame.K_ESCAPE:
-                    quitgame()
+                    mainmenu()
     
     def move(self):
         now = self.get_head()
@@ -239,24 +258,6 @@ data = {
 }
 
 def main():
-    # save_data
-    # data = {
-    #     "score" : 0,
-    #     "positions" : [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))],
-    #     "directions" : [UP]
-    # }
-    
-    print("load data")
-    with open('save.txt') as save_file:
-        global data
-        data = json.load(save_file)
-    
-    # list to tuple
-    for i in range(0,len(data["positions"])):
-        data["positions"][i] = tuple(data["positions"][i])
-    for i in range(0,len(data["directions"])):
-        data["directions"][i] = tuple(data["directions"][i])
-    
     # library initalize
     pygame.init()
     
@@ -284,11 +285,24 @@ def main():
     food = Food()
 
     myfont = pygame.font.SysFont("arial", 16, True, True)
-    snake.set_state()
     
+    print(load)
+    if (load == 1):
+        print("load data")
+        with open('save.txt') as save_file:
+            global data
+            data = json.load(save_file)
+        # list to tuple
+        for i in range(0,len(data["positions"])):
+            data["positions"][i] = tuple(data["positions"][i])
+        for i in range(0,len(data["directions"])):
+            data["directions"][i] = tuple(data["directions"][i])
+            
+        snake.set_state()
+        
     # Boolean value for End clause 
     running = True
-
+    
     while(running):
         clock.tick(10)
         drawGrid(surface)

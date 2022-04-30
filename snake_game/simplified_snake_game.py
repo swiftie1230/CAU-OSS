@@ -45,6 +45,19 @@ RIGHT = (1, 0)
 load = 0
 resume = 0
 
+
+# for test
+data = {
+    "score" : 0,
+    "positions" : [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))],
+    "directions" : [UP],
+    "food_position" : (0,0)
+}
+
+ranking = {
+    
+}
+
 class Button:
     def __init__(self, img_in, x, y, width, height, img_act, x_act, y_act, action = None):
         mouse = pygame.mouse.get_pos()
@@ -82,24 +95,45 @@ def quitgame():
     print("end game...")
     pygame.quit()
     sys.exit()
-    
-def gameover():
-    gameDisplay.fill(white)
-    
-    titletext = gameDisplay.blit(gameOverImg, (210,310))
-    menuButton = Button(goMenuImg,260,420,60,20,clickgoMenuImg,260,418,mainmenu)
-    
+
+def write_rank():
+    name = input("what is your name?")
+    ranking[name] = data["score"]
     pygame.display.update()
+        
+    with open('ranking.txt','w') as save_file:
+        json.dump(ranking,save_file)
     
-    #menu = True
-    #while menu:
-    #    for event in pygame.event.get():
-    #        if event.type == pygame.QUIT:
-    #            pygame.quit()
-    #            sys.exit()
-    #
-    #
-    #    clock.tick(15)
+def gameover(screen):
+    global myfont
+    text1 = "Please Enter Your Name"
+    
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+    
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_BACKSPACE:
+                    if len(text1)> 0:
+                        text1 = text1[:-1]
+                        print("x")
+    
+                else:
+                    text1 += event.unicode
+        gameDisplay.fill(white)
+    
+        titletext = gameDisplay.blit(gameOverImg, (210,310))
+        menuButton = Button(goMenuImg,260,420,60,20,clickgoMenuImg,260,418,mainmenu)      
+        
+        myfont = pygame.font.SysFont("arial", 16, True, True)
+        text = myfont.render(text1, 1, (0,0,0))
+        screen.blit(text, (15,10))
+        pygame.display.update()
+        clock.tick(15)
+    
 
 def mainmenu():
     global load
@@ -264,7 +298,7 @@ class Snake(object):
                 elif event.key == pygame.K_ESCAPE:
                     pausemenu()
     
-    def move(self):
+    def move(self, screen):
         now = self.get_head()
         
         x, y = self.directions[0]
@@ -273,23 +307,23 @@ class Snake(object):
         # it means end of game by collision with own body
         if len(self.positions) > 2 and new in self.positions[2:]:
             self.reset()
-            gameover()
+            gameover(screen)
         elif now[0] == 0 and x == -1:
             # it means the game is ended because of the collision with the left wall
             self.reset()
-            gameover()
+            gameover(screen)
         elif new[0] == 0 and x == 1:
             # it means the game is ended because of the collision with the right wall
             self.reset() 
-            gameover()
+            gameover(screen)
         elif now[1] == 0 and y == -1: 
             # it means end of game by collision with the upper wall
             self.reset()
-            gameover()
+            gameover(screen)
         elif new[1] == 0 and y == 1: 
             # it means end of game by collision with the below wall
             self.reset()
-            gameover()
+            gameover(screen)
         else:
             self.positions.insert(0,new)
             
@@ -311,14 +345,6 @@ def drawGrid(surface):
             else:
                 rr =pygame.Rect((x*GRID_SIZE, y*GRID_SIZE), (GRID_SIZE, GRID_SIZE))
                 pygame.draw.rect(surface, (20, 20, 20), rr)
-
-# for test
-data = {
-    "score" : 0,
-    "positions" : [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))],
-    "directions" : [UP],
-    "food_position" : (0,0)
-}
 
 def main():
     global resume
@@ -381,7 +407,7 @@ def main():
         clock.tick(10)
         drawGrid(surface)
         
-        snake.move()
+        snake.move(screen)
         snake.key_handling()
         
         food.draw(surface)

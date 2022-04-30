@@ -106,6 +106,7 @@ class Snake(object):
                 else:
                     snake_head_image = pygame.image.load('snake_game/imgs/snake_head1.png')
                 snake_head_image = pygame.transform.scale(snake_head_image, (GRID_SIZE, GRID_SIZE))
+                
                 if self.directions[i] == UP:
                     rotate = 180
                 elif self.directions[i] == DOWN:
@@ -114,6 +115,7 @@ class Snake(object):
                     rotate = 270
                 elif self.directions[i] == RIGHT:
                     rotate = 90
+                    
                 snake_head_image = pygame.transform.rotate(snake_head_image, rotate)
                 surface.blit(snake_head_image, (self.positions[i][0], self.positions[i][1]))
             elif i == len(self.positions) - 1:
@@ -146,6 +148,11 @@ class Snake(object):
         score = 0
 
     def set_state(self):
+        print("setting state..")
+        print(data["score"])
+        print(data["positions"])
+        print(data["directions"])
+        
         self.length = data["score"] + 1
         self.positions = data["positions"]
         self.directions = data["directions"]
@@ -239,8 +246,16 @@ def main():
     #     "directions" : [UP]
     # }
     
-    # with open('save.txt') as save_file:
-    #      data = json.load(save_file)
+    print("load data")
+    with open('save.txt') as save_file:
+        global data
+        data = json.load(save_file)
+    
+    # list to tuple
+    for i in range(0,len(data["positions"])):
+        data["positions"][i] = tuple(data["positions"][i])
+    for i in range(0,len(data["directions"])):
+        data["directions"][i] = tuple(data["directions"][i])
     
     # library initalize
     pygame.init()
@@ -270,8 +285,9 @@ def main():
 
     myfont = pygame.font.SysFont("arial", 16, True, True)
 
-    print("start game")
+    snake.set_state()
     
+    print("start game")
     print(snake.positions)
     print(snake.length)
     print(snake.directions)
@@ -285,10 +301,9 @@ def main():
         
         snake.move()
         
-        
-        print(data["score"])
-        print(data["positions"])
-        print(data["directions"])
+        # print(data["score"])
+        # print(data["positions"])
+        # print(data["directions"])
         
         snake.key_handling()
         
@@ -303,6 +318,7 @@ def main():
             
         data["score"] = score
         data["positions"] = snake.positions
+        print(snake.directions)
         data["directions"] = snake.directions
         
         screen.blit(surface, (0,0))

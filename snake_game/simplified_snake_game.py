@@ -209,7 +209,7 @@ def pausemenu():
         
         titletext = gameDisplay.blit(titleImg, (210,310))
         resumeButton = Button(resumeImg,190,420,60,20,clickresumeImg,190,418,resumegame)
-        restartButton = Button(restartImg,290,420,60,20,clickrestartImg,290,418,main)
+        restartButton = Button(restartImg,290,420,60,20,clickrestartImg,290,418,mainmenu)
         loadButton = Button(saveImg,390,422,60,20,clicksaveImg,390,418,savegame)
         quitButton = Button(quitImg,490,420,60,20,clickQuitImg,490,418,mainmenu)
         

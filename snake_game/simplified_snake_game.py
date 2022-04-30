@@ -126,14 +126,26 @@ def gameover(screen):
                     break
                 else:
                     text1 += event.unicode
+                    
         gameDisplay.fill(white)
     
-        titletext = gameDisplay.blit(gameOverImg, (210,310))
-        menuButton = Button(goMenuImg,260,420,60,20,clickgoMenuImg,260,418,mainmenu)      
+        # show GAME OVER !!!
+        titletext = gameDisplay.blit(gameOverImg, (400 - (gameOverImg.get_width()/2),300))
         
-        myfont = pygame.font.SysFont("arial", 16, True, True)
+        # show Enter name
+        myfont = pygame.font.SysFont("arial", 23, True, True)
         text = myfont.render(text1, 1, (0,0,0))
-        screen.blit(text, (15,10))
+        screen.blit(text, (400 - (text.get_width()/2),400))
+        
+        # show Go menu Button
+        menuButton = Button(goMenuImg,
+                            400 - (goMenuImg.get_width()/2),510,
+                            goMenuImg.get_width(),goMenuImg.get_height(),
+                            clickgoMenuImg,
+                            (400 - clickgoMenuImg.get_width()/2),508,
+                            mainmenu
+                            )      
+        
         pygame.display.update()
         clock.tick(15)
 

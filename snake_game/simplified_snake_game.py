@@ -284,13 +284,7 @@ def main():
     food = Food()
 
     myfont = pygame.font.SysFont("arial", 16, True, True)
-
     snake.set_state()
-    
-    print("start game")
-    print(snake.positions)
-    print(snake.length)
-    print(snake.directions)
     
     # Boolean value for End clause 
     running = True
@@ -300,11 +294,6 @@ def main():
         drawGrid(surface)
         
         snake.move()
-        
-        # print(data["score"])
-        # print(data["positions"])
-        # print(data["directions"])
-        
         snake.key_handling()
         
         food.draw(surface)
@@ -318,7 +307,6 @@ def main():
             
         data["score"] = score
         data["positions"] = snake.positions
-        print(snake.directions)
         data["directions"] = snake.directions
         
         screen.blit(surface, (0,0))

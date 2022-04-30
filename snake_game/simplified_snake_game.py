@@ -31,13 +31,6 @@ DOWN = (0, 1)
 LEFT = (-1, 0)
 RIGHT = (1, 0)
 
-# save_data
-data = {
-    "score" : 0,
-    "positions" : [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))],
-    "direction" : [UP]
-}
-
 class Button:
     def __init__(self, img_in, x, y, width, height, img_act, x_act, y_act, action = None):
         mouse = pygame.mouse.get_pos()
@@ -55,7 +48,7 @@ def quitgame():
     
     print(data["score"])
     print(data["positions"])
-    print(data["direction"])
+    print(data["directions"])
     
     with open('save.txt','w') as save_file:
         json.dump(data,save_file)
@@ -97,7 +90,7 @@ class Food(object):
     
 
 class Snake(object):
-    def __init__(self, data):
+    def __init__(self):
         self.length = 1
         # set start point to center
         self.positions = [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))]
@@ -152,6 +145,13 @@ class Snake(object):
         global score
         score = 0
 
+    def set_state(self):
+        self.length = data["score"] + 1
+        self.positions = data["positions"]
+        self.directions = data["directions"]
+        global score
+        score = data["score"]
+    
     def turn(self, UDLR):
         #set directions
         if self.length > 1 and (UDLR[0]*-1, UDLR[1]*-1) == self.directions[0]:
@@ -224,8 +224,21 @@ def drawGrid(surface):
                 rr =pygame.Rect((x*GRID_SIZE, y*GRID_SIZE), (GRID_SIZE, GRID_SIZE))
                 pygame.draw.rect(surface, (20, 20, 20), rr)
 
+# for test
+data = {
+    "score" : 0,
+    "positions" : [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))],
+    "directions" : [UP]
+}
 
 def main():
+    # save_data
+    # data = {
+    #     "score" : 0,
+    #     "positions" : [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))],
+    #     "directions" : [UP]
+    # }
+    
     # with open('save.txt') as save_file:
     #      data = json.load(save_file)
     
@@ -252,7 +265,7 @@ def main():
     global score
     score = 0
     
-    snake = Snake(data)
+    snake = Snake()
     food = Food()
 
     myfont = pygame.font.SysFont("arial", 16, True, True)
@@ -271,6 +284,12 @@ def main():
         drawGrid(surface)
         
         snake.move()
+        
+        
+        print(data["score"])
+        print(data["positions"])
+        print(data["directions"])
+        
         snake.key_handling()
         
         food.draw(surface)
@@ -282,14 +301,10 @@ def main():
             snake.directions.append(snake.directions[-1])
             food.randomize_position()
             
-        # data["score"] = score
-        # data["positions"] = snake.positions
-        # data["direction"] = snake.directions
+        data["score"] = score
+        data["positions"] = snake.positions
+        data["directions"] = snake.directions
         
-        # print(data["score"])
-        # print(data["positions"])
-        # print(data["direction"])
-    
         screen.blit(surface, (0,0))
         text = myfont.render("Score {0}".format(score), 1, (255,255,255))
         screen.blit(text, (15,10))

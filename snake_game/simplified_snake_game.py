@@ -33,6 +33,7 @@ restartImg = pygame.image.load("snake_game/imgs/restart.png")
 clickrestartImg = pygame.image.load("snake_game/imgs/clickedrestart.png")
 rankingImg = pygame.image.load("snake_game/imgs/ranking.png")
 clickrankingImg = pygame.image.load("snake_game/imgs/clickedranking.png")
+pausetitleImg = pygame.image.load("snake_game/imgs/pausetitle.png")
 
 gameDisplay = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
 pygame.display.set_caption("Hello CAU_OSS Snake Game!")
@@ -174,19 +175,26 @@ def showrank():
 
         gameDisplay.fill(white)
         myfont = pygame.font.SysFont("arial", 21, True, True)
+        Nofont = pygame.font.SysFont("arial", 40, True, True)
+        
+        Button_width = startImg.get_width()
+        Button_height = startImg.get_height()
         
         if(is_it_rank()):
+            quitButton = Button(quitImg,600,400-Button_height/2,Button_width,Button_height,clickQuitImg,598,400-Button_height/2,mainmenu)
             tmp = 0
             for name, sc in ranking.items():
                 rank = myfont.render(str(tmp+1) + ". " + name+ " : " + str(sc), 1, (0,0,0))
                 #SCREEN -> 800 120~570
-                screen.blit(rank, (300,120+tmp*50))
+                screen.blit(rank, (200,120+tmp*50))
                 tmp += 1
                 if tmp == 10:
                     break
-        
-        quitButton = Button(quitImg,490,420,60,20,clickQuitImg,490,418,mainmenu)
-        
+        else:
+            text = Nofont.render("There is No Rank", 1, (0,0,0))
+            screen.blit(text, (400-(text.get_width()/2),300))
+            quitButton = Button(quitImg,400-Button_width/2,600,Button_width,Button_height,clickQuitImg,400-Button_width/2,600,mainmenu)
+            
         pygame.display.update()
         clock.tick(15)
         
@@ -211,14 +219,20 @@ def mainmenu():
 
         gameDisplay.fill(white)
         
-        titletext = gameDisplay.blit(titleImg, (210,310))
-        startButton = Button(startImg,190,420,60,20,clickStartImg,190,418,main)
-        rankingButton = Button(rankingImg,290,420,60,20,clickrankingImg,290,418,showrank)
+        titletext = gameDisplay.blit(titleImg, (400-(titleImg.get_width()/2),220))
+        
+        Button_width = startImg.get_width()
+        Button_height = startImg.get_height()
+        
+        startButton = Button(startImg,100,420,Button_width,Button_height,clickStartImg,100,418,main)
+        rankingButton = Button(rankingImg,250,420,Button_width,Button_height,clickrankingImg,250,418,showrank)
         
         if(is_it_save()):
-            loadButton = Button(loadImg,390,422,60,20,clickloadImg,390,418,loadgame)
+            loadButton = Button(loadImg,415,420,Button_width,Button_height,clickloadImg,415,418,loadgame)
+        else:
+            loadButton = Button(clickloadImg,415,420,Button_width,Button_height,clickloadImg,415,418,None)
         
-        quitButton = Button(quitImg,490,420,60,20,clickQuitImg,490,418,quitgame)
+        quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,quitgame)
         
         pygame.display.update()
         clock.tick(15)
@@ -238,11 +252,16 @@ def pausemenu():
 
         gameDisplay.fill(white)
         
-        titletext = gameDisplay.blit(titleImg, (210,310))
-        resumeButton = Button(resumeImg,190,420,60,20,clickresumeImg,190,418,resumegame)
-        restartButton = Button(restartImg,290,420,60,20,clickrestartImg,290,418,main)
-        loadButton = Button(saveImg,390,422,60,20,clicksaveImg,390,418,savegame)
-        quitButton = Button(quitImg,490,420,60,20,clickQuitImg,490,418,mainmenu)
+        
+        Button_width = startImg.get_width()
+        Button_height = startImg.get_height()
+        
+        pausetitletext = gameDisplay.blit(pausetitleImg, (400-(pausetitleImg.get_width()/2),220))
+        
+        resumeButton  = Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
+        restartButton = Button(restartImg,260,420,Button_width,Button_height,clickrestartImg,260,418,main)
+        saveButton = Button(saveImg,415,420,Button_width,Button_height,clicksaveImg,415,418,savegame)
+        quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
         
         pygame.display.update()
         clock.tick(15)
@@ -458,9 +477,11 @@ def main():
         load = 0
         
     elif (resume == 1):
+        print("resume game..")
         snake.set_state()
         food.set_state()
         resume = 0
+        print(data)
         
     else:
         score = 0

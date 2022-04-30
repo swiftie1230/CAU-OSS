@@ -31,6 +31,8 @@ resumeImg = pygame.image.load("snake_game/imgs/resume.png")
 clickresumeImg = pygame.image.load("snake_game/imgs/clickedresume.png")
 restartImg = pygame.image.load("snake_game/imgs/restart.png")
 clickrestartImg = pygame.image.load("snake_game/imgs/clickedrestart.png")
+rankingImg = pygame.image.load("snake_game/imgs/ranking.png")
+clickrankingImg = pygame.image.load("snake_game/imgs/clickedranking.png")
 
 gameDisplay = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
 pygame.display.set_caption("Hello CAU_OSS Snake Game!")
@@ -211,7 +213,7 @@ def mainmenu():
         
         titletext = gameDisplay.blit(titleImg, (210,310))
         startButton = Button(startImg,190,420,60,20,clickStartImg,190,418,main)
-        saveButton = Button(saveImg,290,420,60,20,clicksaveImg,290,418,showrank)
+        rankingButton = Button(rankingImg,290,420,60,20,clickrankingImg,290,418,showrank)
         
         if(is_it_save()):
             loadButton = Button(loadImg,390,422,60,20,clickloadImg,390,418,loadgame)

@@ -20,7 +20,7 @@
 
     - i. If you successfully Load our game, you will see this Screen, “Main Menu”     
 
-        <img width="168" alt="image" src="https://user-images.githubusercontent.com/63195670/166117713-d735829a-2488-465c-b75a-c6c6addff9b9.png">   <img width="168" alt="image" src="https://user-images.githubusercontent.com/63195670/166117716-e7d1e005-f35a-4d13-8bfa-5083d63f2aab.png">    
+        <p align="center"><img width="168" alt="image" src="https://user-images.githubusercontent.com/63195670/166117713-d735829a-2488-465c-b75a-c6c6addff9b9.png">   <img width="168" alt="image" src="https://user-images.githubusercontent.com/63195670/166117716-e7d1e005-f35a-4d13-8bfa-5083d63f2aab.png"></p>    
 
         - By clicking LOAD, you can RELOAD the SAVED game
 
@@ -28,7 +28,7 @@
 
         - By clicking START, you can START the game   
 
-        <img width="174" alt="image" src="https://user-images.githubusercontent.com/63195670/166117798-d1bc9908-5034-4c73-aecc-c5a4deba1d1b.png">   <img width="169" alt="image" src="https://user-images.githubusercontent.com/63195670/166117800-afeb3ba1-eba3-4bc8-86c0-b20b0097cbdf.png">    
+        <p align="center"><img width="174" alt="image" src="https://user-images.githubusercontent.com/63195670/166117798-d1bc9908-5034-4c73-aecc-c5a4deba1d1b.png">   <img width="169" alt="image" src="https://user-images.githubusercontent.com/63195670/166117800-afeb3ba1-eba3-4bc8-86c0-b20b0097cbdf.png"></p>    
 
         - By clicking RANKING, the top-10 ranked player’s name and score are DISPLAYED
 
@@ -42,7 +42,7 @@
 
     - ii. Play game ! ( Game play screen looks like below )   
 
-        <img width="162" alt="image" src="https://user-images.githubusercontent.com/63195670/166117957-35233331-f2f2-4c92-997a-2e136c61d872.png">   <img width="156" alt="image" src="https://user-images.githubusercontent.com/63195670/166117953-a868c396-83f9-44e6-9ea4-c9a2a02eba79.png">    
+        <p align="center"><img width="162" alt="image" src="https://user-images.githubusercontent.com/63195670/166117957-35233331-f2f2-4c92-997a-2e136c61d872.png">   <img width="156" alt="image" src="https://user-images.githubusercontent.com/63195670/166117953-a868c396-83f9-44e6-9ea4-c9a2a02eba79.png"></p>    
 
         - If you want to **PAUSE** game during play, **PRESS “ESC”**
 

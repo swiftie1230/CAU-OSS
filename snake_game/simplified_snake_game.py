@@ -97,8 +97,7 @@ def quitgame():
     pygame.quit()
     sys.exit()
 
-def write_rank():
-    name = input("what is your name?")
+def write_rank(name):
     ranking[name] = data["score"]
     pygame.display.update()
         
@@ -120,8 +119,10 @@ def gameover(screen):
                 if event.key == pygame.K_BACKSPACE:
                     if len(text1)> 0:
                         text1 = text1[:-1]
-                        print("x")
-    
+                elif event.key == pygame.K_RETURN:
+                    write_rank(text1)
+                    mainmenu()
+                    break
                 else:
                     text1 += event.unicode
         gameDisplay.fill(white)
@@ -135,10 +136,39 @@ def gameover(screen):
         pygame.display.update()
         clock.tick(15)
 
-#def showrank(screen):
-#    test = {"jun":1, "hi":0}
-#    text = myfont.render(test, 1, (0,0,0))
-#    screen.blit(text, (15,10))
+def getrank():
+    global ranking
+    
+    print("load data")
+    with open('ranking.txt') as rank_file:
+        ranking = json.load(rank_file)
+        
+    ranking = dict(sorted(ranking.items(), key=lambda x: x[1], reverse = True))
+    print(ranking)
+    
+
+def showrank():
+    getrank()
+    menu = True
+    while menu:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+        gameDisplay.fill(white)
+        myfont = pygame.font.SysFont("arial", 16, True, True)
+        
+        tmp = 0
+        for name, sc in ranking.items():
+            rank = myfont.render(str(tmp+1) + ". " + name+ " : " + str(sc), 1, (0,0,0))
+            screen.blit(rank, (40,100+tmp*50))
+            tmp += 1
+        
+        quitButton = Button(quitImg,490,420,60,20,clickQuitImg,490,418,mainmenu)
+        
+        pygame.display.update()
+        clock.tick(15)
 
 def mainmenu():
     global load
@@ -155,7 +185,7 @@ def mainmenu():
         
         titletext = gameDisplay.blit(titleImg, (210,310))
         startButton = Button(startImg,190,420,60,20,clickStartImg,190,418,main)
-        saveButton = Button(saveImg,290,420,60,20,clicksaveImg,290,418,main)
+        saveButton = Button(saveImg,290,420,60,20,clicksaveImg,290,418,showrank)
         loadButton = Button(loadImg,390,422,60,20,clickloadImg,390,418,loadgame)
         quitButton = Button(quitImg,490,420,60,20,clickQuitImg,490,418,quitgame)
         
@@ -281,7 +311,6 @@ class Snake(object):
             return
         else:
             self.directions[0] = UDLR
-
     
     def key_handling(self):
         for event in pygame.event.get():
@@ -350,24 +379,23 @@ def drawGrid(surface):
             else:
                 rr =pygame.Rect((x*GRID_SIZE, y*GRID_SIZE), (GRID_SIZE, GRID_SIZE))
                 pygame.draw.rect(surface, (20, 20, 20), rr)
+# library initalize
+pygame.init()
 
+# make object trace time
+clock = pygame.time.Clock()
+
+# screen initalize
+#FULLSCREEN : 전체 화면 모드를 사용
+#HWSURFACE : 하드웨어 가속 사용. 전체 화면 모드에서만 가능
+#OPENGL : OpenGL 사용 가능한 디스플레이를 초기화
+#DOUBLEBUF : 더블 버퍼 모드를 사용. HWSURFACE or OPENGL에서 사용을 추천
+screen = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE), 0, 32)
+    
 def main():
     global resume
     global score
     global load
-    
-    # library initalize
-    pygame.init()
-    
-    # make object trace time
-    clock = pygame.time.Clock()
-
-    # screen initalize
-    #FULLSCREEN : 전체 화면 모드를 사용
-    #HWSURFACE : 하드웨어 가속 사용. 전체 화면 모드에서만 가능
-    #OPENGL : OpenGL 사용 가능한 디스플레이를 초기화
-    #DOUBLEBUF : 더블 버퍼 모드를 사용. HWSURFACE or OPENGL에서 사용을 추천
-    screen = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE), 0, 32)
     
     # surface == 2D object / 색이나 이미지를 가지는 빈 시트
     surface = pygame.Surface(screen.get_size())
@@ -432,12 +460,6 @@ def main():
         screen.blit(surface, (0,0))
         text = myfont.render("Score {0}".format(score), 1, (255,255,255))
         screen.blit(text, (15,10))
-
-        tmp = 0
-        for name, sc in ranking.items():
-            rank = myfont.render(name+ " : " + str(sc), 1, (255,255,255))
-            screen.blit(rank, (40,100+tmp*50))
-            tmp += 1
         
         pygame.display.update()
 

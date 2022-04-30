@@ -10,11 +10,11 @@
 
 - **Tools used for the collaborative development** : Notion & Discord & KaKaoTalk    
      
-    <img width="348" alt="image" src="https://user-images.githubusercontent.com/63195670/166117642-1abb283b-d4e7-4656-b12b-f19efd71e190.png">    
+    <img width="116" alt="image" src="https://user-images.githubusercontent.com/63195670/166117642-1abb283b-d4e7-4656-b12b-f19efd71e190.png">    
 
-    <img width="398" alt="image" src="https://user-images.githubusercontent.com/63195670/166117644-90ad989b-c190-4d5d-be4e-f80d93016f23.png">      
+    <img width="199" alt="image" src="https://user-images.githubusercontent.com/63195670/166117644-90ad989b-c190-4d5d-be4e-f80d93016f23.png">      
   
-    <img width="135" alt="image" src="https://user-images.githubusercontent.com/63195670/166117648-c52c5299-2da4-4c31-a308-5be7d4f7d57e.png">       
+    <img width="45" alt="image" src="https://user-images.githubusercontent.com/63195670/166117648-c52c5299-2da4-4c31-a308-5be7d4f7d57e.png">       
 
 - **Introduction for our game**
 
@@ -55,7 +55,7 @@
 
         - Once the snake dies, you will see this screen.    
 
-            <img width="184" alt="image" src="https://user-images.githubusercontent.com/63195670/166118007-7f54f6a9-c2da-412f-8cc5-63fdf59f6221.png">    
+            <p align="center"><img width="184" alt="image" src="https://user-images.githubusercontent.com/63195670/166118007-7f54f6a9-c2da-412f-8cc5-63fdf59f6221.png"></p>    
 
             - You can write your name by just typing it using the keyboard (Clicking the part is not necessary)
 
@@ -67,7 +67,7 @@
 
     - iii. If you PAUSE the game, you will see this screen.   
 
-        <img width="206" alt="image" src="https://user-images.githubusercontent.com/63195670/166118147-e5449f5a-2f57-4bc2-8255-f033c1301f4c.png">      
+        <p align="center"><img width="206" alt="image" src="https://user-images.githubusercontent.com/63195670/166118147-e5449f5a-2f57-4bc2-8255-f033c1301f4c.png"></p>      
 
         - By clicking RESUME, you can RESUME the game
         - By clicking RESTART, you can START a NEW game

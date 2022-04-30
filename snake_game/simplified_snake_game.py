@@ -87,6 +87,7 @@ def savegame():
     
     write_save(new_save)
     print("save done")
+    mainmenu()
 
 def loadgame():
     global load

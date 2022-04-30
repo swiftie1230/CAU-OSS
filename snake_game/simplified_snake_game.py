@@ -25,6 +25,19 @@ pygame.display.set_caption("Hello CAU_OSS Snake Game!")
 
 clock = pygame.time.Clock()
 
+# move
+UP = (0, -1)
+DOWN = (0, 1)
+LEFT = (-1, 0)
+RIGHT = (1, 0)
+
+# save_data
+data = {
+    "score" : 0,
+    "positions" : [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))],
+    "direction" : [UP]
+}
+
 class Button:
     def __init__(self, img_in, x, y, width, height, img_act, x_act, y_act, action = None):
         mouse = pygame.mouse.get_pos()
@@ -37,18 +50,22 @@ class Button:
         else:
             gameDisplay.blit(img_in,(x,y))
 
-def quitgame(data):
+def quitgame():
+    print("end game...")
+    
+    print(data["score"])
+    print(data["positions"])
+    print(data["direction"])
+    
     with open('save.txt','w') as save_file:
         json.dump(data,save_file)
-        
+    
     pygame.quit()
     sys.exit()
 
 
 def mainmenu():
-
     menu = True
-
     while menu:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -77,30 +94,15 @@ class Food(object):
         food_image = pygame.image.load("snake_game/imgs/apple.png")
         food_image = pygame.transform.scale(food_image, (GRID_SIZE, GRID_SIZE))
         surface.blit(food_image, (self.position[0], self.position[1]))
-        
-
-# move
-UP = (0, -1)
-DOWN = (0, 1)
-LEFT = (-1, 0)
-RIGHT = (1, 0)
-
-# save_data
-
-data = {
-    "score" : 0,
-    "positions" : 0,
-    "now" : 0,
-    "direction" : [UP]
-}
+    
 
 class Snake(object):
-    def __init__(self):
-        self.length = data["score"] + 1
+    def __init__(self, data):
+        self.length = 1
         # set start point to center
         self.positions = [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))]
         self.color = (40,50,90)
-        self.directions = data["direction"]
+        self.directions = [UP]
         pass
     
     def draw(self, surface):
@@ -138,8 +140,6 @@ class Snake(object):
                 r = pygame.Rect((self.positions[i][0], self.positions[i][1]), (GRID_SIZE, GRID_SIZE))
                 pygame.draw.rect(surface, self.color, r)
                 pygame.draw.rect(surface, (93,216, 228), r, 1)
-                
-            data["direction"] = self.directions[i]
             
     # head for interact food
     def get_head(self):
@@ -178,17 +178,16 @@ class Snake(object):
                 elif event.key == pygame.K_RIGHT:
                     self.turn(RIGHT)
                 elif event.key == pygame.K_ESCAPE:
-                    quitgame(data)
+                    quitgame()
     
     def move(self):
         now = self.get_head()
-        data["now"] = now
         
         x, y = self.directions[0]
         new = (((now[0] + (x*GRID_SIZE)) % SCREEN_SIZE), (now[1] + (y*GRID_SIZE)) % SCREEN_SIZE)
         
+        # it means end of game by collision with own body
         if len(self.positions) > 2 and new in self.positions[2:]:
-            # it means end of game by collision with own body
             self.reset()
         
         elif now[0] == 0 and x == -1:
@@ -227,8 +226,8 @@ def drawGrid(surface):
 
 
 def main():
-    with open('save.txt') as save_file:
-         data = json.load(save_file)
+    # with open('save.txt') as save_file:
+    #      data = json.load(save_file)
     
     # library initalize
     pygame.init()
@@ -251,13 +250,19 @@ def main():
     drawGrid(surface)
     
     global score
-    score = data["score"]
+    score = 0
     
-    snake = Snake()
+    snake = Snake(data)
     food = Food()
 
     myfont = pygame.font.SysFont("arial", 16, True, True)
 
+    print("start game")
+    
+    print(snake.positions)
+    print(snake.length)
+    print(snake.directions)
+    
     # Boolean value for End clause 
     running = True
 
@@ -277,9 +282,14 @@ def main():
             snake.directions.append(snake.directions[-1])
             food.randomize_position()
             
-        data["positions"] = snake.positions
-        data["score"] = score
+        # data["score"] = score
+        # data["positions"] = snake.positions
+        # data["direction"] = snake.directions
         
+        # print(data["score"])
+        # print(data["positions"])
+        # print(data["direction"])
+    
         screen.blit(surface, (0,0))
         text = myfont.render("Score {0}".format(score), 1, (255,255,255))
         screen.blit(text, (15,10))

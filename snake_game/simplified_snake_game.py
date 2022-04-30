@@ -26,6 +26,10 @@ clickloadImg = pygame.image.load("snake_game/imgs/clickedLoadIcon.png")
 gameOverImg = pygame.image.load("snake_game/imgs/gameover.png")
 goMenuImg = pygame.image.load("snake_game/imgs/gomenu.png")
 clickgoMenuImg = pygame.image.load("snake_game/imgs/clickedgomenu.png")
+resumeImg = pygame.image.load("snake_game/imgs/resume.png")
+clickresumeImg = pygame.image.load("snake_game/imgs/clickedgomenu.png")
+restartImg = pygame.image.load("snake_game/imgs/restart.png")
+clickrestartImg = pygame.image.load("snake_game/imgs/clickedrestart.png")
 
 gameDisplay = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
 pygame.display.set_caption("Hello CAU_OSS Snake Game!")
@@ -39,6 +43,7 @@ LEFT = (-1, 0)
 RIGHT = (1, 0)
 
 load = 0
+resume = 0
 
 class Button:
     def __init__(self, img_in, x, y, width, height, img_act, x_act, y_act, action = None):
@@ -79,20 +84,22 @@ def quitgame():
     sys.exit()
     
 def gameover():
-    menu = True
-    while menu:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-        gameDisplay.fill(white)
-        
-        titletext = gameDisplay.blit(gameOverImg, (210,310))
-        menuButton = Button(goMenuImg,260,420,60,20,clickgoMenuImg,260,418,mainmenu)
-        
-        pygame.display.update()
-        clock.tick(15)
+    gameDisplay.fill(white)
+    
+    titletext = gameDisplay.blit(gameOverImg, (210,310))
+    menuButton = Button(goMenuImg,260,420,60,20,clickgoMenuImg,260,418,mainmenu)
+    
+    pygame.display.update()
+    
+    #menu = True
+    #while menu:
+    #    for event in pygame.event.get():
+    #        if event.type == pygame.QUIT:
+    #            pygame.quit()
+    #            sys.exit()
+    #
+    #
+    #    clock.tick(15)
 
 def mainmenu():
     global load
@@ -116,12 +123,39 @@ def mainmenu():
         pygame.display.update()
         clock.tick(15)
 
+def resumegame():
+    global resume
+    resume = 1
+    main()
+
+def pausemenu():
+    menu = True
+    while menu:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+        gameDisplay.fill(white)
+        
+        titletext = gameDisplay.blit(titleImg, (210,310))
+        resumeButton = Button(resumeImg,190,420,60,20,clickresumeImg,190,418,resumegame)
+        restartButton = Button(restartImg,290,420,60,20,clickrestartImg,290,418,main)
+        loadButton = Button(saveImg,390,422,60,20,clicksaveImg,390,418,savegame)
+        quitButton = Button(quitImg,490,420,60,20,clickQuitImg,490,418,mainmenu)
+        
+        pygame.display.update()
+        clock.tick(15)
+
 # Food Class
 class Food(object):
     def __init__(self):
         self.position = (0,0)
         self.color = (200, 0, 0)
         self.randomize_position()
+    
+    def set_state(self):
+        self.position = data["food_position"]
     
     def randomize_position(self):
         self.position = (random.randint(0, GRID_NUM-1) * GRID_SIZE, random.randint(0,GRID_NUM-1) * GRID_SIZE)
@@ -140,6 +174,25 @@ class Snake(object):
         self.color = (40,50,90)
         self.directions = [UP]
         pass
+    
+    def reset(self):
+        self.length = 1
+        self.positions = [((SCREEN_SIZE / 2) , (SCREEN_SIZE / 2))]
+        self.directions = [UP]
+        global score
+        score = 0
+
+    def set_state(self):
+        print("setting state..")
+        print(data["score"])
+        print(data["positions"])
+        print(data["directions"])
+        
+        self.length = data["score"] + 1
+        self.positions = data["positions"]
+        self.directions = data["directions"]
+        global score
+        score = data["score"]
     
     def draw(self, surface):
         for i in range(len(self.positions)):
@@ -182,25 +235,6 @@ class Snake(object):
     # head for interact food
     def get_head(self):
         return self.positions[0]
-
-    def reset(self):
-        self.length = 1
-        self.positions = [((SCREEN_SIZE / 2) , (SCREEN_SIZE / 2))]
-        self.directions = [UP]
-        global score
-        score = 0
-
-    def set_state(self):
-        print("setting state..")
-        print(data["score"])
-        print(data["positions"])
-        print(data["directions"])
-        
-        self.length = data["score"] + 1
-        self.positions = data["positions"]
-        self.directions = data["directions"]
-        global score
-        score = data["score"]
     
     def turn(self, UDLR):
         #set directions
@@ -228,7 +262,7 @@ class Snake(object):
                 elif event.key == pygame.K_RIGHT:
                     self.turn(RIGHT)
                 elif event.key == pygame.K_ESCAPE:
-                    mainmenu()
+                    pausemenu()
     
     def move(self):
         now = self.get_head()
@@ -282,10 +316,15 @@ def drawGrid(surface):
 data = {
     "score" : 0,
     "positions" : [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))],
-    "directions" : [UP]
+    "directions" : [UP],
+    "food_position" : (0,0)
 }
 
 def main():
+    global resume
+    global score
+    global load
+    
     # library initalize
     pygame.init()
     
@@ -306,15 +345,11 @@ def main():
     surface = surface.convert()
     drawGrid(surface)
     
-    global score
-    score = 0
-    
     snake = Snake()
     food = Food()
 
     myfont = pygame.font.SysFont("arial", 16, True, True)
     
-    print(load)
     if (load == 1):
         print("load data")
         with open('save.txt') as save_file:
@@ -326,11 +361,22 @@ def main():
         for i in range(0,len(data["directions"])):
             data["directions"][i] = tuple(data["directions"][i])
             
+        data["food_position"] = tuple(data["food_position"])
+        
         snake.set_state()
+        food.set_state()
+        load = 0
+        
+    elif (resume == 1):
+        snake.set_state()
+        food.set_state()
+        resume = 0
+        
+    else:
+        score = 0
         
     # Boolean value for End clause 
     running = True
-    
     while(running):
         clock.tick(10)
         drawGrid(surface)
@@ -350,7 +396,8 @@ def main():
         data["score"] = score
         data["positions"] = snake.positions
         data["directions"] = snake.directions
-        
+        data["food_position"] = food.position
+
         screen.blit(surface, (0,0))
         text = myfont.render("Score {0}".format(score), 1, (255,255,255))
         screen.blit(text, (15,10))

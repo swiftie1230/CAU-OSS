@@ -10,11 +10,11 @@
 
 - **Tools used for the collaborative development** : Notion & Discord & KaKaoTalk    
      
-    <img width="116" alt="image" src="https://user-images.githubusercontent.com/63195670/166117642-1abb283b-d4e7-4656-b12b-f19efd71e190.png">    
+    <p align="center"><img width="116" alt="image" src="https://user-images.githubusercontent.com/63195670/166117642-1abb283b-d4e7-4656-b12b-f19efd71e190.png">    
 
     <img width="199" alt="image" src="https://user-images.githubusercontent.com/63195670/166117644-90ad989b-c190-4d5d-be4e-f80d93016f23.png">      
   
-    <img width="45" alt="image" src="https://user-images.githubusercontent.com/63195670/166117648-c52c5299-2da4-4c31-a308-5be7d4f7d57e.png">       
+    <img width="45" alt="image" src="https://user-images.githubusercontent.com/63195670/166117648-c52c5299-2da4-4c31-a308-5be7d4f7d57e.png"></p>       
 
 - **Introduction for our game**
 

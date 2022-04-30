@@ -23,6 +23,9 @@ saveImg = pygame.image.load("snake_game/imgs/save.png")
 loadImg = pygame.image.load("snake_game/imgs/load.png")
 clicksaveImg = pygame.image.load("snake_game/imgs/clickedSaveIcon.png")
 clickloadImg = pygame.image.load("snake_game/imgs/clickedLoadIcon.png")
+gameOverImg = pygame.image.load("snake_game/imgs/gameover.png")
+goMenuImg = pygame.image.load("snake_game/imgs/gomenu.png")
+clickgoMenuImg = pygame.image.load("snake_game/imgs/clickedgomenu.png")
 
 gameDisplay = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
 pygame.display.set_caption("Hello CAU_OSS Snake Game!")
@@ -49,14 +52,20 @@ class Button:
         else:
             gameDisplay.blit(img_in,(x,y))
 
-def savegame():
-    print(data["score"])
-    print(data["positions"])
-    print(data["directions"])
-    
+def create_save():
+    return data
+
+def write_save(new_save):
     with open('save.txt','w') as save_file:
-        json.dump(data,save_file)
-        
+        json.dump(new_save,save_file)
+
+def savegame():
+    new_save = create_save()
+    print(new_save["score"])
+    print(new_save["positions"])
+    print(new_save["directions"])
+    
+    write_save(new_save)
     print("save done")
 
 def loadgame():
@@ -68,7 +77,22 @@ def quitgame():
     print("end game...")
     pygame.quit()
     sys.exit()
+    
+def gameover():
+    menu = True
+    while menu:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
 
+        gameDisplay.fill(white)
+        
+        titletext = gameDisplay.blit(gameOverImg, (210,310))
+        menuButton = Button(goMenuImg,260,420,60,20,clickgoMenuImg,260,418,mainmenu)
+        
+        pygame.display.update()
+        clock.tick(15)
 
 def mainmenu():
     global load
@@ -215,19 +239,23 @@ class Snake(object):
         # it means end of game by collision with own body
         if len(self.positions) > 2 and new in self.positions[2:]:
             self.reset()
-        
+            gameover()
         elif now[0] == 0 and x == -1:
             # it means the game is ended because of the collision with the left wall
             self.reset()
+            gameover()
         elif new[0] == 0 and x == 1:
             # it means the game is ended because of the collision with the right wall
             self.reset() 
+            gameover()
         elif now[1] == 0 and y == -1: 
             # it means end of game by collision with the upper wall
             self.reset()
+            gameover()
         elif new[1] == 0 and y == 1: 
             # it means end of game by collision with the below wall
             self.reset()
+            gameover()
         else:
             self.positions.insert(0,new)
             
@@ -318,7 +346,7 @@ def main():
             score += 1
             snake.directions.append(snake.directions[-1])
             food.randomize_position()
-            
+        
         data["score"] = score
         data["positions"] = snake.positions
         data["directions"] = snake.directions

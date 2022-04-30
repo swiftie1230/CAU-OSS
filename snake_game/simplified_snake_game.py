@@ -3,6 +3,7 @@ import random
 import json
 import time
 import sys
+import os
 
 # screen size
 SCREEN_SIZE = 800
@@ -45,7 +46,6 @@ RIGHT = (1, 0)
 load = 0
 resume = 0
 
-
 # for test
 data = {
     "score" : 0,
@@ -80,6 +80,7 @@ def write_save(new_save):
 
 def savegame():
     new_save = create_save()
+    
     print(new_save["score"])
     print(new_save["positions"])
     print(new_save["directions"])
@@ -169,7 +170,11 @@ def showrank():
         
         pygame.display.update()
         clock.tick(15)
-
+        
+def is_it_save():
+    file_path = "./save.txt"
+    return(os.path.isfile(file_path)) 
+    
 def mainmenu():
     global load
     load = 0
@@ -186,7 +191,10 @@ def mainmenu():
         titletext = gameDisplay.blit(titleImg, (210,310))
         startButton = Button(startImg,190,420,60,20,clickStartImg,190,418,main)
         saveButton = Button(saveImg,290,420,60,20,clicksaveImg,290,418,showrank)
-        loadButton = Button(loadImg,390,422,60,20,clickloadImg,390,418,loadgame)
+        
+        if(is_it_save()):
+            loadButton = Button(loadImg,390,422,60,20,clickloadImg,390,418,loadgame)
+        
         quitButton = Button(quitImg,490,420,60,20,clickQuitImg,490,418,quitgame)
         
         pygame.display.update()

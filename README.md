@@ -54,7 +54,7 @@
 
             - You can write your name by just typing it using the keyboard (Clicking the part is not necessary)
 
-                - **USE “BACKSPACE” first to ERASE THE DEFAULT** displayed on right-top of the screen, then write your name, and **press “ENTER” to SAVE in RANKING!** (Don’t Click GO MENU)
+                - **USE “BACKSPACE” first to ERASE THE DEFAULT** displayed on middle of the screen, then write your name, and **press “ENTER” to SAVE in RANKING!** (Don’t Click GO MENU)
 
             - If you **don’t want to write any name, then just click GO Main menu.** 
 

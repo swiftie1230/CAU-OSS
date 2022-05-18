@@ -16,9 +16,9 @@ pygame.init()
 white = (255, 255, 255)
 
 titleImg = pygame.image.load("snake_game/imgs/title.png")
-startImg = pygame.image.load("snake_game/imgs/start.png")
+startImg = pygame.image.load("snake_game/imgs/single.png")
 quitImg = pygame.image.load("snake_game/imgs/quit.png")
-clickStartImg = pygame.image.load("snake_game/imgs/clickedstart.png")
+clickStartImg = pygame.image.load("snake_game/imgs/clickedsingle.png")
 clickQuitImg = pygame.image.load("snake_game/imgs/clickedquit.png")
 saveImg = pygame.image.load("snake_game/imgs/save.png")
 loadImg = pygame.image.load("snake_game/imgs/load.png")
@@ -34,6 +34,10 @@ clickrestartImg = pygame.image.load("snake_game/imgs/clickedrestart.png")
 rankingImg = pygame.image.load("snake_game/imgs/ranking.png")
 clickrankingImg = pygame.image.load("snake_game/imgs/clickedranking.png")
 pausetitleImg = pygame.image.load("snake_game/imgs/pausetitle.png")
+clickDualImg = pygame.image.load("snake_game/imgs/clickeddual.png")
+dualImg = pygame.image.load("snake_game/imgs/dual.png")
+clickAutoImg = pygame.image.load("snake_game/imgs/clickedauto.png")
+autoImg = pygame.image.load("snake_game/imgs/auto.png")
 
 gameDisplay = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
 pygame.display.set_caption("Hello CAU_OSS Snake Game!")
@@ -205,7 +209,13 @@ def is_it_save():
 def is_it_rank():
     file_path = "./ranking.txt"
     return(os.path.isfile(file_path)) 
-    
+
+def dualgame():
+    pass
+
+def autogame():
+    pass
+
 def mainmenu():
     global load
     load = 0
@@ -224,15 +234,18 @@ def mainmenu():
         Button_width = startImg.get_width()
         Button_height = startImg.get_height()
         
-        startButton = Button(startImg,100,420,Button_width,Button_height,clickStartImg,100,418,main)
-        rankingButton = Button(rankingImg,250,420,Button_width,Button_height,clickrankingImg,250,418,showrank)
+        singleButton = Button(startImg,125,420,Button_width,Button_height,clickStartImg,125,418,main)
+        dualButton = Button(dualImg,325,420,Button_width,Button_height,clickDualImg,325,418,dualgame)
+        autoButton = Button(autoImg,525,420,Button_width,Button_height,clickAutoImg,525,418,autogame)
+        
+        rankingButton = Button(rankingImg,125,520,Button_width,Button_height,clickrankingImg,125,518,showrank)
         
         if(is_it_save()):
-            loadButton = Button(loadImg,415,420,Button_width,Button_height,clickloadImg,415,418,loadgame)
+            loadButton = Button(loadImg,325,520,Button_width,Button_height,clickloadImg,325,518,loadgame)
         else:
-            loadButton = Button(clickloadImg,415,420,Button_width,Button_height,clickloadImg,415,418,None)
+            loadButton = Button(clickloadImg,325,520,Button_width,Button_height,clickloadImg,325,518,None)
         
-        quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,quitgame)
+        quitButton = Button(quitImg,525,520,Button_width,Button_height,clickQuitImg,525,518,quitgame)
         
         pygame.display.update()
         clock.tick(15)

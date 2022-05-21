@@ -286,7 +286,6 @@ def pausemenu():
 
 # pause for dual mode
 def pausemenu_dual():
-    # gameDisplay = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
     menu = True
     while menu:
 
@@ -440,6 +439,7 @@ class Snake(object):
         global score
         score = data["score"]
 
+    # set state for snake_1 in dual mode
     def set_state_1(self):
         print("setting state for player 1...")
         print(data_dual["position_1"])
@@ -449,6 +449,7 @@ class Snake(object):
         self.positions = data_dual["position_1"]
         self.directions = data_dual["direction_1"]
 
+    # set state for snake_2 in dual_mode
     def set_state_2(self):
         print("setting state for player 2...")
         print(data_dual["position_2"])
@@ -717,13 +718,12 @@ def main():
         
         pygame.display.update()
 
+# dual game mode
 def dualgame():
     global gameChoice
     global resume
     global score
     global load
-
-    # screen_dual = pygame.display.set_mode((SCREEN_WIDTH_DUAL, SCREEN_HEIGHT_DUAL))
 
     # dual player mode
     gameChoice = 2
@@ -743,8 +743,6 @@ def dualgame():
     
     food1 = Food()
     food2 = Food()
-
-    # myfont = pygame.font.SysFont("arial", 16, True, True)
         
     if (resume == 1):
         print("resume game..")
@@ -754,10 +752,7 @@ def dualgame():
         food2.set_state2()
         resume = 0
         print(data)
-        
-    # else:
-        # score = 0
-        
+
     # Boolean value for End clause 
     running = True
 
@@ -772,7 +767,7 @@ def dualgame():
             if event.type == pygame.QUIT: # game exit
                 pygame.quit()
                 sys.exit()
-            elif event.type ==pygame.KEYDOWN: # key input
+            elif event.type == pygame.KEYDOWN: # key input
                 if event.key == pygame.K_ESCAPE:
                     running = False
                     pausemenu_dual()
@@ -803,23 +798,19 @@ def dualgame():
         
         if snake1.get_head() == food1.position:
             snake1.length += 1
-            # score += 1
             snake1.directions.append(snake1.directions[-1])
             food1.randomize_position()
         elif snake1.get_head() == food2.position:
             snake1.length += 1
-            # score += 1
             snake1.directions.append(snake1.directions[-1])
             food2.randomize_position()
 
         if snake2.get_head() == food1.position:
             snake2.length += 1
-            # score += 1
             snake2.directions.append(snake2.directions[-1])
             food1.randomize_position()
         elif snake2.get_head() == food2.position:
             snake2.length += 1
-            # score += 1
             snake2.directions.append(snake2.directions[-1])
             food2.randomize_position()
         

@@ -7,7 +7,6 @@ import os
 
 # screen size
 SCREEN_SIZE = 800
-
 GRID_SIZE = 20
 GRID_NUM = SCREEN_SIZE / GRID_SIZE
 
@@ -44,6 +43,8 @@ pygame.display.set_caption("Hello CAU_OSS Snake Game!")
 
 clock = pygame.time.Clock()
 
+global gameChoice
+
 # move
 UP = (0, -1)
 DOWN = (0, 1)
@@ -59,6 +60,17 @@ data = {
     "positions" : [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))],
     "directions" : [UP],
     "food_position" : (0,0)
+}
+
+data_dual = {
+    "length_1" : 0,
+    "length_2" : 0,
+    "position_1" : [(0, 0)],
+    "position_2" : [(SCREEN_SIZE - GRID_SIZE, SCREEN_SIZE)],
+    "direction_1" : [DOWN],
+    "direction_2" : [UP],
+    "food_position_1" : (0,0),
+    "food_position_2" : (0,0)
 }
 
 ranking = {
@@ -111,6 +123,37 @@ def write_rank(name):
         
     with open('ranking.txt','w') as save_file:
         json.dump(ranking,save_file)
+
+def gameover_dual(screen, player):
+    global myfont
+
+    if player == 1:
+        text1 = "Player2 Won!"
+    elif player == 2:
+        text1 = "Player1 Won!"
+
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+                    
+        gameDisplay.fill(white)
+    
+        # show GAME OVER !!!
+        titletext = gameDisplay.blit(gameOverImg, (400 - (gameOverImg.get_width()/2),300))
+        
+        # show Enter name
+        myfont = pygame.font.SysFont("arial", 23, True, True)
+        text = myfont.render(text1, 1, (0,0,0))
+        screen.blit(text, (400 - (text.get_width()/2),400))
+        
+        # show Go menu Button
+        menuButton = Button(goMenuImg, 400 - (goMenuImg.get_width()/2),510, goMenuImg.get_width(),goMenuImg.get_height(), clickgoMenuImg, (400 - clickgoMenuImg.get_width()/2),508, mainmenu)      
+        
+        pygame.display.update()
+        clock.tick(15)
     
 def gameover(screen):
     global myfont
@@ -210,13 +253,68 @@ def is_it_rank():
     file_path = "./ranking.txt"
     return(os.path.isfile(file_path)) 
 
-def dualgame():
-    pass
+def pausemenu():
+    menu = True
+    while menu:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
 
-def autogame():
-    pass
+        gameDisplay.fill(white)
+        
+        
+        Button_width = startImg.get_width()
+        Button_height = startImg.get_height()
+        
+        
+        pausetitletext = gameDisplay.blit(pausetitleImg, (400-(pausetitleImg.get_width()/2),220))
+        
+        if gameChoice == 1:
+            resumeButton  = Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
+            restartButton = Button(restartImg,260,420,Button_width,Button_height,clickrestartImg,260,418,main)
+            saveButton = Button(saveImg,415,420,Button_width,Button_height,clicksaveImg,415,418,savegame)
+            quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
+        
+        else:
+            resumeButton  = Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
+            restartButton = Button(restartImg,330,420,Button_width,Button_height,clickrestartImg,330,418,dualgame)
+            quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
+
+        pygame.display.update()
+        clock.tick(15)
+
+# pause for dual mode
+def pausemenu_dual():
+    # gameDisplay = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
+    menu = True
+    while menu:
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+        gameDisplay.fill(white)
+        
+        
+        Button_width = startImg.get_width()
+        Button_height = startImg.get_height()
+        
+        
+        pausetitletext = gameDisplay.blit(pausetitleImg, (400-(pausetitleImg.get_width()/2),220))
+        
+        resumeButton  = Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
+        restartButton = Button(restartImg,330,420,Button_width,Button_height,clickrestartImg,330,418,dualgame)
+        quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
+
+        pygame.display.update()
+        clock.tick(15)
+
+
 
 def mainmenu():
+    global gameChoice
     global load
     load = 0
     
@@ -234,7 +332,7 @@ def mainmenu():
         Button_width = startImg.get_width()
         Button_height = startImg.get_height()
         
-        singleButton = Button(startImg,125,420,Button_width,Button_height,clickStartImg,125,418,main)
+        singleButton = Button(startImg,125,420,Button_width,Button_height,clickStartImg,125,418, main)
         dualButton = Button(dualImg,325,420,Button_width,Button_height,clickDualImg,325,418,dualgame)
         autoButton = Button(autoImg,525,420,Button_width,Button_height,clickAutoImg,525,418,autogame)
         
@@ -253,31 +351,10 @@ def mainmenu():
 def resumegame():
     global resume
     resume = 1
-    main()
-
-def pausemenu():
-    menu = True
-    while menu:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-        gameDisplay.fill(white)
-        
-        
-        Button_width = startImg.get_width()
-        Button_height = startImg.get_height()
-        
-        pausetitletext = gameDisplay.blit(pausetitleImg, (400-(pausetitleImg.get_width()/2),220))
-        
-        resumeButton  = Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
-        restartButton = Button(restartImg,260,420,Button_width,Button_height,clickrestartImg,260,418,main)
-        saveButton = Button(saveImg,415,420,Button_width,Button_height,clicksaveImg,415,418,savegame)
-        quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
-        
-        pygame.display.update()
-        clock.tick(15)
+    if gameChoice == 1:
+        main()
+    elif gameChoice == 2:
+        dualgame()
 
 # Food Class
 class Food(object):
@@ -288,13 +365,22 @@ class Food(object):
     
     def set_state(self):
         self.position = data["food_position"]
+
+    def set_state1(self):
+        self.position = data_dual["food_position_1"]
+
+    def set_state2(self):
+        self.position = data_dual["food_position_2"]
     
     def randomize_position(self):
         self.position = (random.randint(0, GRID_NUM-1) * GRID_SIZE, random.randint(0,GRID_NUM-1) * GRID_SIZE)
 
+            
+
     def draw(self, surface):
         food_image = pygame.image.load("snake_game/imgs/apple.png")
         food_image = pygame.transform.scale(food_image, (GRID_SIZE, GRID_SIZE))
+
         surface.blit(food_image, (self.position[0], self.position[1]))
     
 
@@ -306,6 +392,20 @@ class Snake(object):
         self.color = (40,50,90)
         self.directions = [UP]
         pass
+
+    def set_snake1(self):
+        self.length = 1
+        # set start point to left-top
+        self.positions = [(0, SCREEN_SIZE)]
+        self.color = (40,50,90)
+        self.directions = [DOWN] 
+
+    def set_snake2(self):
+        self.length = 1
+        # set start point to right-bottom
+        self.positions = [(SCREEN_SIZE - GRID_SIZE, SCREEN_SIZE)]
+        self.color = (40,50,90)
+        self.directions = [UP]
     
     def reset(self):
         self.length = 1
@@ -313,6 +413,20 @@ class Snake(object):
         self.directions = [UP]
         global score
         score = 0
+
+    def reset_snake1(self):
+        self.length = 1
+        self.positions = [(0 , SCREEN_SIZE)]
+        self.directions = [DOWN]
+        # global score
+        # score = 0
+
+    def reset_snake2(self):
+        self.length = 1
+        self.positions = [(SCREEN_SIZE - GRID_SIZE, SCREEN_SIZE)]
+        self.color = (40,50,90)
+        self.directions = [UP]
+
 
     def set_state(self):
         print("setting state..")
@@ -325,6 +439,25 @@ class Snake(object):
         self.directions = data["directions"]
         global score
         score = data["score"]
+
+    def set_state_1(self):
+        print("setting state for player 1...")
+        print(data_dual["position_1"])
+        print(data_dual["direction_1"])    
+
+        self.length = data_dual["length_1"] 
+        self.positions = data_dual["position_1"]
+        self.directions = data_dual["direction_1"]
+
+    def set_state_2(self):
+        print("setting state for player 2...")
+        print(data_dual["position_2"])
+        print(data_dual["direction_2"])    
+
+        self.length = data_dual["length_2"]
+        self.positions = data_dual["position_2"]
+        self.directions = data_dual["direction_2"]
+
     
     def draw(self, surface):
         for i in range(len(self.positions)):
@@ -377,9 +510,6 @@ class Snake(object):
     
     def key_handling(self):
         for event in pygame.event.get():
-            # If you click X button (quit button), then you exit the game
-            # The exit button and logic not implemented yet
-            # So once the X button is pressed, it is closed.
             if event.type == pygame.QUIT: # game exit
                 pygame.quit()
                 sys.exit()
@@ -394,7 +524,7 @@ class Snake(object):
                     self.turn(RIGHT)
                 elif event.key == pygame.K_ESCAPE:
                     pausemenu()
-    
+
     def move(self, screen):
         now = self.get_head()
         
@@ -430,6 +560,59 @@ class Snake(object):
             
             if len(self.directions) > self.length:
                 self.directions.pop()
+
+    # move function for dual mode
+    # have player parameter for displaying winner 
+    def move_dual(self, screen, player):
+        now = self.get_head()
+        
+        x, y = self.directions[0]
+        new = (((now[0] + (x*GRID_SIZE)) % SCREEN_SIZE), (now[1] + (y*GRID_SIZE)) % SCREEN_SIZE)
+        
+        position2 = []
+        
+        if player == 1:
+            position2 = data_dual["position_2"]
+        elif player == 2:
+            position2 = data_dual["position_1"]
+
+        # it means end of game by collision with own body
+        if len(self.positions) > 2 and new in self.positions[2:]:
+            self.reset()
+            gameover_dual(screen, player)
+       
+       # it means end of game by collision with other snake
+        elif new in position2[:]:
+            self.reset()
+            gameover_dual(screen, player)
+        
+        elif now[0] == 0 and x == -1:
+            # it means the game is ended because of the collision with the left wall
+            self.reset()
+            gameover_dual(screen, player)
+        elif new[0] == 0 and x == 1:
+            # it means the game is ended because of the collision with the right wall
+            self.reset() 
+            gameover_dual(screen, player)
+        elif now[1] == 0 and y == -1: 
+            # it means end of game by collision with the upper wall
+            self.reset()
+            gameover_dual(screen, player)
+        elif new[1] == 0 and y == 1: 
+            # it means end of game by collision with the below wall
+            self.reset()
+            gameover_dual(screen, player)
+
+
+        else:
+            self.positions.insert(0,new)
+            
+            if len(self.positions) > self.length:
+                self.positions.pop()
+            self.directions.insert(0, self.directions[0])
+            
+            if len(self.directions) > self.length:
+                self.directions.pop()
       
 # draw Grid
 def drawGrid(surface):
@@ -442,6 +625,7 @@ def drawGrid(surface):
             else:
                 rr =pygame.Rect((x*GRID_SIZE, y*GRID_SIZE), (GRID_SIZE, GRID_SIZE))
                 pygame.draw.rect(surface, (20, 20, 20), rr)
+
 # library initalize
 pygame.init()
 
@@ -453,12 +637,17 @@ clock = pygame.time.Clock()
 #HWSURFACE : 하드웨어 가속 사용. 전체 화면 모드에서만 가능
 #OPENGL : OpenGL 사용 가능한 디스플레이를 초기화
 #DOUBLEBUF : 더블 버퍼 모드를 사용. HWSURFACE or OPENGL에서 사용을 추천
+# screen_dual = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE), 0, 32)
 screen = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE), 0, 32)
     
 def main():
+    global gameChoice 
     global resume
     global score
     global load
+
+    # single_player_mode
+    gameChoice = 1
     
     # surface == 2D object / 색이나 이미지를 가지는 빈 시트
     surface = pygame.Surface(screen.get_size())
@@ -527,6 +716,129 @@ def main():
         screen.blit(text, (15,10))
         
         pygame.display.update()
+
+def dualgame():
+    global gameChoice
+    global resume
+    global score
+    global load
+
+    # screen_dual = pygame.display.set_mode((SCREEN_WIDTH_DUAL, SCREEN_HEIGHT_DUAL))
+
+    # dual player mode
+    gameChoice = 2
+    
+    # surface == 2D object / 색이나 이미지를 가지는 빈 시트
+    surface = pygame.Surface(screen.get_size())
+    
+    # Surface to the same pixel format as the one you use for final display
+    surface = surface.convert()
+    drawGrid(surface)
+    
+    snake1 = Snake()
+    snake1.set_snake1()
+    
+    snake2 = Snake()
+    snake2.set_snake2()
+    
+    food1 = Food()
+    food2 = Food()
+
+    # myfont = pygame.font.SysFont("arial", 16, True, True)
+        
+    if (resume == 1):
+        print("resume game..")
+        snake1.set_state_1()
+        snake2.set_state_2()
+        food1.set_state1()
+        food2.set_state2()
+        resume = 0
+        print(data)
+        
+    # else:
+        # score = 0
+        
+    # Boolean value for End clause 
+    running = True
+
+    while(running):
+        clock.tick(10)
+        drawGrid(surface)
+        
+        snake1.move_dual(screen, 1)
+        snake2.move_dual(screen, 2)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: # game exit
+                pygame.quit()
+                sys.exit()
+            elif event.type ==pygame.KEYDOWN: # key input
+                if event.key == pygame.K_ESCAPE:
+                    running = False
+                    pausemenu_dual()
+                
+                else:
+                    if event.key== pygame.K_UP:
+                        snake2.turn(UP)
+                    elif event.key == pygame.K_DOWN:
+                        snake2.turn(DOWN)
+                    elif event.key == pygame.K_LEFT:
+                        snake2.turn(LEFT)
+                    elif event.key == pygame.K_RIGHT:
+                        snake2.turn(RIGHT)
+                    
+                    if event.key == pygame.K_a:
+                        snake1.turn(LEFT)
+                    elif event.key == pygame.K_d:
+                        snake1.turn(RIGHT)
+                    elif event.key == pygame.K_w:
+                        snake1.turn(UP)
+                    elif event.key == pygame.K_s:
+                        snake1.turn(DOWN)
+
+        food1.draw(surface)
+        food2.draw(surface)
+        snake1.draw(surface)
+        snake2.draw(surface)
+        
+        if snake1.get_head() == food1.position:
+            snake1.length += 1
+            # score += 1
+            snake1.directions.append(snake1.directions[-1])
+            food1.randomize_position()
+        elif snake1.get_head() == food2.position:
+            snake1.length += 1
+            # score += 1
+            snake1.directions.append(snake1.directions[-1])
+            food2.randomize_position()
+
+        if snake2.get_head() == food1.position:
+            snake2.length += 1
+            # score += 1
+            snake2.directions.append(snake2.directions[-1])
+            food1.randomize_position()
+        elif snake2.get_head() == food2.position:
+            snake2.length += 1
+            # score += 1
+            snake2.directions.append(snake2.directions[-1])
+            food2.randomize_position()
+        
+        data_dual["length_1"] = snake1.length
+        data_dual["position_1"] = snake1.positions
+        data_dual["direction_1"] = snake1.directions
+        data_dual["food_position_1"] = food1.position
+
+        data_dual["length_2"] = snake2.length
+        data_dual["position_2"] = snake2.positions
+        data_dual["direction_2"] = snake2.directions
+        data_dual["food_position_2"] = food2.position
+
+        screen.blit(surface, (0,0))
+        
+        pygame.display.update()
+
+def autogame():
+    pass
 
 #main()
 mainmenu()

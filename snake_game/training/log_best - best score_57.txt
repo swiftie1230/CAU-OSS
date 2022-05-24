@@ -1,0 +1,885 @@
+Terminate! score:   0 fitness:    -531
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:     -76
+Terminate! score:   0 fitness:    -530
+upperwall! score:   0 fitness:    -205
+Terminate! score:   0 fitness:    -531
+upperwall! score:   0 fitness:    -227
+Terminate! score:   0 fitness:    -531
+Terminate! score:   0 fitness:    -531
+Terminate! score:   0 fitness:    -530
+leftwall! score:   0 fitness:    -226
+Terminate! score:   0 fitness:    -531
+leftwall! score:   1 fitness:     -92
+Terminate! score:   0 fitness:    -530
+Terminate! score:   0 fitness:    -531
+Terminate! score:   0 fitness:    -530
+below wall! score:   0 fitness:    -206
+Terminate! score:   0 fitness:    -530
+upperwall! score:   0 fitness:    -227
+Terminate! score:   0 fitness:    -530
+Terminate! score:   0 fitness:    -531
+upperwall! score:   0 fitness:    -227
+Terminate! score:   0 fitness:    -531
+Terminate! score:   0 fitness:    -530
+Terminate! score:   0 fitness:    -530
+Terminate! score:   0 fitness:    -530
+Terminate! score:   0 fitness:    -531
+below wall! score:   0 fitness:    -227
+Terminate! score:   0 fitness:    -530
+Terminate! score:   0 fitness:    -530
+===== Generaton #1	Best Fitness -76.5	Best Score 1 =====
+upperwall! score:   0 fitness:    -222
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -227
+below wall! score:   0 fitness:    -206
+below wall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -220
+below wall! score:   1 fitness:     -79
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -192
+Terminate! score:   0 fitness:    -531
+below wall! score:   1 fitness:     -79
+leftwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -222
+below wall! score:   0 fitness:    -206
+upperwall! score:   0 fitness:    -227
+below wall! score:   0 fitness:    -225
+below wall! score:   1 fitness:     -52
+upperwall! score:   0 fitness:    -227
+Terminate! score:   0 fitness:    -531
+below wall! score:   1 fitness:     -89
+below wall! score:   1 fitness:     -67
+leftwall! score:   1 fitness:     -90
+upperwall! score:   0 fitness:    -212
+Terminate! score:   0 fitness:    -530
+below wall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:     -73
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -185
+below wall! score:   1 fitness:    -114
+===== Generaton #2	Best Fitness -52.0	Best Score 1 =====
+upperwall! score:   0 fitness:    -182
+upperwall! score:   0 fitness:    -210
+below wall! score:   1 fitness:     -69
+below wall! score:   0 fitness:    -197
+below wall! score:   1 fitness:    -107
+upperwall! score:   0 fitness:    -197
+below wall! score:   1 fitness:     -67
+below wall! score:   1 fitness:     -88
+below wall! score:   1 fitness:     -77
+below wall! score:   1 fitness:    -115
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:     -93
+below wall! score:   1 fitness:     -98
+upperwall! score:   0 fitness:    -227
+Terminate! score:   0 fitness:    -531
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:     -97
+below wall! score:   1 fitness:    -112
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:     -95
+below wall! score:   1 fitness:     -79
+below wall! score:   1 fitness:     -90
+below wall! score:   1 fitness:    -108
+below wall! score:   1 fitness:     -94
+upperwall! score:   0 fitness:    -227
+below wall! score:   0 fitness:    -205
+below wall! score:   1 fitness:     -94
+upperwall! score:   0 fitness:    -215
+upperwall! score:   0 fitness:    -227
+===== Generaton #3	Best Fitness -52.0	Best Score 1 =====
+below wall! score:   1 fitness:     -95
+below wall! score:   1 fitness:     -93
+below wall! score:   1 fitness:     -67
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:     -87
+upperwall! score:   0 fitness:    -215
+upperwall! score:   0 fitness:    -207
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -190
+upperwall! score:   0 fitness:    -217
+upperwall! score:   0 fitness:    -222
+upperwall! score:   0 fitness:    -212
+below wall! score:   1 fitness:     -55
+upperwall! score:   0 fitness:    -195
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -210
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:    -116
+below wall! score:   1 fitness:    -105
+below wall! score:   1 fitness:    -118
+upperwall! score:   0 fitness:    -202
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:     -78
+below wall! score:   1 fitness:     -98
+below wall! score:   1 fitness:     -76
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:    -102
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -227
+===== Generaton #4	Best Fitness -52.0	Best Score 1 =====
+below wall! score:   1 fitness:     -88
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:    -114
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:     -88
+below wall! score:   1 fitness:    -117
+below wall! score:   1 fitness:    -111
+upperwall! score:   0 fitness:    -207
+below wall! score:   1 fitness:     -95
+below wall! score:   1 fitness:    -101
+upperwall! score:   0 fitness:    -227
+Terminate! score:   0 fitness:    -531
+below wall! score:   1 fitness:     -86
+below wall! score:   1 fitness:    -119
+below wall! score:   1 fitness:    -109
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -197
+Terminate! score:   0 fitness:    -530
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -215
+below wall! score:   1 fitness:     -92
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:    -107
+below wall! score:   1 fitness:    -126
+below wall! score:   1 fitness:    -130
+below wall! score:   1 fitness:    -123
+below wall! score:   1 fitness:    -111
+upperwall! score:   0 fitness:    -227
+===== Generaton #5	Best Fitness -52.0	Best Score 1 =====
+upperwall! score:   0 fitness:    -202
+below wall! score:   1 fitness:    -131
+below wall! score:   1 fitness:    -130
+below wall! score:   1 fitness:    -126
+below wall! score:   1 fitness:    -130
+below wall! score:   0 fitness:    -205
+below wall! score:   1 fitness:    -111
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -182
+upperwall! score:   0 fitness:    -207
+below wall! score:   1 fitness:    -119
+below wall! score:   1 fitness:     -99
+upperwall! score:   0 fitness:    -180
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -192
+below wall! score:   1 fitness:    -123
+upperwall! score:   0 fitness:    -180
+upperwall! score:   0 fitness:    -217
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:     -54
+upperwall! score:   0 fitness:    -180
+upperwall! score:   0 fitness:    -192
+below wall! score:   1 fitness:     -95
+upperwall! score:   0 fitness:    -197
+below wall! score:   1 fitness:     -94
+below wall! score:   1 fitness:     -67
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -227
+===== Generaton #6	Best Fitness -52.0	Best Score 1 =====
+below wall! score:   1 fitness:     -97
+below wall! score:   0 fitness:    -197
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:     -96
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:     -68
+upperwall! score:   0 fitness:    -217
+below wall! score:   1 fitness:    -111
+below wall! score:   1 fitness:     -66
+below wall! score:   0 fitness:    -217
+below wall! score:   2 fitness:      57
+below wall! score:   1 fitness:    -120
+below wall! score:  18 fitness:    2085
+below wall! score:   1 fitness:    -127
+below wall! score:   1 fitness:    -135
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:     -94
+upperwall! score:   0 fitness:    -227
+below wall! score:   0 fitness:    -200
+upperwall! score:   0 fitness:    -192
+below wall! score:   1 fitness:    -121
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:    -101
+below wall! score:   1 fitness:     -81
+below wall! score:   1 fitness:    -110
+upperwall! score:   0 fitness:    -210
+upperwall! score:   0 fitness:    -187
+===== Generaton #7	Best Fitness 2085.5	Best Score 18 =====
+upperwall! score:   0 fitness:    -200
+below wall! score:   1 fitness:     -95
+below wall! score:   1 fitness:    -119
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -202
+below wall! score:   1 fitness:     -93
+upperwall! score:   0 fitness:    -195
+upperwall! score:   0 fitness:    -227
+own body! score:   3 fitness:     -73
+below wall! score:   2 fitness:      -2
+rightwall! score:   1 fitness:    -112
+upperwall! score:   3 fitness:     158
+upperwall! score:   0 fitness:    -225
+upperwall! score:   0 fitness:    -222
+below wall! score:   1 fitness:     -93
+below wall! score:   1 fitness:    -105
+Terminate! score:   0 fitness:    -531
+below wall! score:   1 fitness:     -93
+below wall! score:   2 fitness:     -10
+own body! score:  12 fitness:    1094
+own body! score:   3 fitness:     -54
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:    -107
+upperwall! score:   0 fitness:    -227
+leftwall! score:   0 fitness:    -225
+upperwall! score:   0 fitness:    -227
+own body! score:   4 fitness:     100
+own body! score:  13 fitness:    1249
+below wall! score:   2 fitness:      28
+below wall! score:   1 fitness:    -108
+===== Generaton #8	Best Fitness 2085.5	Best Score 18 =====
+below wall! score:   1 fitness:     -78
+own body! score:   3 fitness:     -12
+below wall! score:   2 fitness:      23
+upperwall! score:   0 fitness:    -227
+below wall! score:   0 fitness:    -210
+rightwall! score:   4 fitness:     298
+below wall! score:   5 fitness:     346
+upperwall! score:   2 fitness:      -1
+below wall! score:   1 fitness:    -114
+below wall! score:   1 fitness:    -111
+upperwall! score:   0 fitness:    -205
+below wall! score:   1 fitness:     -73
+rightwall! score:   5 fitness:     426
+below wall! score:   1 fitness:    -110
+below wall! score:   6 fitness:     592
+rightwall! score:   1 fitness:    -108
+below wall! score:   1 fitness:     -90
+rightwall! score:   0 fitness:    -226
+rightwall! score:   3 fitness:     161
+below wall! score:   6 fitness:     539
+below wall! score:   2 fitness:      17
+below wall! score:   1 fitness:     -86
+below wall! score:   2 fitness:      78
+Terminate! score:   0 fitness:    -531
+rightwall! score:   3 fitness:     157
+below wall! score:   5 fitness:     358
+below wall! score:   1 fitness:    -110
+below wall! score:   1 fitness:     -76
+below wall! score:   1 fitness:     -91
+Terminate! score:   0 fitness:    -531
+===== Generaton #9	Best Fitness 2085.5	Best Score 18 =====
+below wall! score:   1 fitness:     -86
+below wall! score:   1 fitness:    -107
+rightwall! score:   1 fitness:     -84
+Terminate! score:   0 fitness:    -531
+below wall! score:   7 fitness:     657
+below wall! score:   0 fitness:    -205
+upperwall! score:   6 fitness:     519
+below wall! score:   1 fitness:     -53
+below wall! score:   1 fitness:     -90
+rightwall! score:   6 fitness:     456
+below wall! score:   1 fitness:     -90
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:    -129
+upperwall! score:   0 fitness:    -227
+own body! score:   7 fitness:     525
+below wall! score:   1 fitness:     -87
+upperwall! score:   0 fitness:    -192
+below wall! score:   1 fitness:     -56
+rightwall! score:   6 fitness:     536
+own body! score:   3 fitness:     -58
+Terminate! score:   0 fitness:    -531
+upperwall! score:   0 fitness:    -222
+Terminate! score:   0 fitness:    -531
+upperwall! score:   5 fitness:     478
+below wall! score:   0 fitness:    -212
+below wall! score:   1 fitness:     -96
+rightwall! score:   4 fitness:     297
+own body! score:   6 fitness:     366
+below wall! score:  12 fitness:    1268
+below wall! score:   2 fitness:     -23
+===== Generaton #10	Best Fitness 2085.5	Best Score 18 =====
+own body! score:  12 fitness:    1147
+below wall! score:   1 fitness:    -130
+below wall! score:   1 fitness:    -133
+below wall! score:   0 fitness:    -227
+below wall! score:   0 fitness:    -195
+below wall! score:   1 fitness:     -86
+leftwall! score:  28 fitness:    3309
+own body! score:   4 fitness:      71
+below wall! score:   1 fitness:     -97
+below wall! score:   4 fitness:     338
+below wall! score:   0 fitness:    -192
+own body! score:   5 fitness:     253
+rightwall! score:   8 fitness:     748
+upperwall! score:   0 fitness:    -227
+upperwall! score:   0 fitness:    -227
+below wall! score:   1 fitness:     -80
+own body! score:  16 fitness:    1640
+below wall! score:   1 fitness:    -116
+below wall! score:   1 fitness:    -109
+own body! score:   4 fitness:      55
+below wall! score:   1 fitness:     -83
+upperwall! score:   0 fitness:    -227
+below wall! score:   9 fitness:     860
+upperwall! score:   0 fitness:    -207
+below wall! score:   4 fitness:     293
+rightwall! score:   5 fitness:     325
+below wall! score:   2 fitness:      -6
+rightwall! score:   3 fitness:     161
+below wall! score:   1 fitness:    -110
+upperwall! score:   0 fitness:    -227
+===== Generaton #11	Best Fitness 3309.5	Best Score 28 =====
+upperwall! score:   3 fitness:     185
+below wall! score:   8 fitness:     809
+own body! score:   6 fitness:     333
+below wall! score:   2 fitness:      28
+below wall! score:   1 fitness:     -95
+upperwall! score:   4 fitness:     315
+own body! score:   6 fitness:     337
+below wall! score:   7 fitness:     609
+leftwall! score:   4 fitness:     288
+below wall! score:   0 fitness:    -206
+rightwall! score:   1 fitness:     -82
+rightwall! score:   2 fitness:      23
+below wall! score:   1 fitness:    -102
+below wall! score:   1 fitness:     -79
+Terminate! score:   0 fitness:    -531
+own body! score:  29 fitness:    3161
+below wall! score:   3 fitness:     151
+own body! score:   6 fitness:     310
+leftwall! score:  23 fitness:    2666
+leftwall! score:   2 fitness:      41
+own body! score:  31 fitness:    3519
+below wall! score:   6 fitness:     474
+below wall! score:   1 fitness:    -125
+rightwall! score:  12 fitness:    1257
+below wall! score:   1 fitness:     -47
+leftwall! score:  34 fitness:    4152
+own body! score:  20 fitness:    2023
+below wall! score:   2 fitness:     -14
+upperwall! score:   2 fitness:      50
+below wall! score:   0 fitness:    -206
+===== Generaton #12	Best Fitness 4152.5	Best Score 34 =====
+upperwall! score:  17 fitness:    1917
+upperwall! score:   2 fitness:      26
+own body! score:  18 fitness:    1847
+own body! score:  29 fitness:    3302
+own body! score:  21 fitness:    2330
+own body! score:  24 fitness:    2570
+upperwall! score:  34 fitness:    4166
+own body! score:  15 fitness:    1446
+upperwall! score:   0 fitness:    -226
+own body! score:  11 fitness:     960
+own body! score:  24 fitness:    2523
+upperwall! score:   1 fitness:     -77
+own body! score:  30 fitness:    3219
+own body! score:  19 fitness:    1884
+upperwall! score:   9 fitness:     933
+own body! score:  12 fitness:    1110
+own body! score:   9 fitness:     699
+own body! score:  12 fitness:    1095
+below wall! score:   0 fitness:    -206
+upperwall! score:  19 fitness:    2123
+own body! score:   3 fitness:     -75
+own body! score:  17 fitness:    1767
+leftwall! score:   9 fitness:     845
+leftwall! score:   8 fitness:     793
+own body! score:  15 fitness:    1442
+upperwall! score:  23 fitness:    2661
+own body! score:  26 fitness:    2872
+upperwall! score:  24 fitness:    2686
+upperwall! score:   7 fitness:     679
+own body! score:   5 fitness:     181
+===== Generaton #13	Best Fitness 4166.5	Best Score 34 =====
+upperwall! score:   2 fitness:      34
+leftwall! score:  10 fitness:    1016
+upperwall! score:  15 fitness:    1712
+own body! score:  22 fitness:    2357
+own body! score:  57 fitness:    6576
+own body! score:  12 fitness:    1090
+upperwall! score:   2 fitness:      45
+own body! score:  31 fitness:    3406
+rightwall! score:   1 fitness:     -92
+own body! score:   8 fitness:     580
+upperwall! score:   6 fitness:     515
+leftwall! score:   1 fitness:     -71
+upperwall! score:   4 fitness:     224
+own body! score:  22 fitness:    2278
+upperwall! score:   3 fitness:     169
+own body! score:  22 fitness:    2311
+upperwall! score:   0 fitness:    -181
+own body! score:  24 fitness:    2541
+own body! score:  20 fitness:    2059
+own body! score:   7 fitness:     508
+leftwall! score:   8 fitness:     765
+own body! score:  34 fitness:    3903
+own body! score:  15 fitness:    1440
+leftwall! score:  16 fitness:    1798
+own body! score:   5 fitness:     210
+own body! score:  36 fitness:    4157
+below wall! score:   1 fitness:    -105
+rightwall! score:   1 fitness:    -112
+below wall! score:   1 fitness:    -112
+leftwall! score:  26 fitness:    3109
+===== Generaton #14	Best Fitness 6576.0	Best Score 57 =====
+upperwall! score:   0 fitness:    -226
+own body! score:   3 fitness:     -18
+leftwall! score:  11 fitness:    1225
+own body! score:  16 fitness:    1529
+below wall! score:   1 fitness:     -91
+own body! score:  30 fitness:    3189
+Terminate! score:   0 fitness:    -530
+upperwall! score:   4 fitness:     286
+own body! score:  36 fitness:    4069
+own body! score:  19 fitness:    1931
+below wall! score:   1 fitness:    -119
+own body! score:  16 fitness:    1612
+own body! score:  12 fitness:    1083
+rightwall! score:   1 fitness:    -109
+leftwall! score:   2 fitness:      28
+own body! score:  32 fitness:    3661
+rightwall! score:   4 fitness:     291
+leftwall! score:   5 fitness:     405
+upperwall! score:  16 fitness:    1757
+rightwall! score:   5 fitness:     400
+own body! score:   5 fitness:     214
+own body! score:   5 fitness:     195
+below wall! score:   1 fitness:    -110
+own body! score:  29 fitness:    3313
+upperwall! score:   7 fitness:     653
+leftwall! score:  25 fitness:    2842
+own body! score:  16 fitness:    1622
+upperwall! score:   5 fitness:     405
+below wall! score:   1 fitness:    -100
+own body! score:  19 fitness:    1917
+===== Generaton #15	Best Fitness 6576.0	Best Score 57 =====
+own body! score:  46 fitness:    5183
+below wall! score:   1 fitness:     -71
+below wall! score:   1 fitness:    -110
+own body! score:  28 fitness:    2938
+leftwall! score:   1 fitness:     -76
+upperwall! score:   1 fitness:     -64
+leftwall! score:   0 fitness:    -179
+leftwall! score:  31 fitness:    3663
+upperwall! score:   4 fitness:     296
+leftwall! score:   8 fitness:     745
+rightwall! score:   0 fitness:    -192
+upperwall! score:   0 fitness:    -226
+upperwall! score:   0 fitness:    -179
+upperwall! score:   6 fitness:     515
+own body! score:  35 fitness:    4062
+upperwall! score:   0 fitness:    -194
+own body! score:  34 fitness:    3860
+leftwall! score:   4 fitness:     319
+own body! score:  19 fitness:    1924
+own body! score:   4 fitness:     101
+leftwall! score:   7 fitness:     661
+own body! score:   9 fitness:     771
+own body! score:  24 fitness:    2545
+own body! score:  34 fitness:    3810
+below wall! score:   5 fitness:     377
+leftwall! score:  15 fitness:    1694
+own body! score:  29 fitness:    3190
+own body! score:  32 fitness:    3650
+leftwall! score:  18 fitness:    2010
+own body! score:  13 fitness:    1201
+===== Generaton #16	Best Fitness 6576.0	Best Score 57 =====
+own body! score:  18 fitness:    1761
+own body! score:   9 fitness:     611
+below wall! score:   1 fitness:    -110
+below wall! score:   3 fitness:     141
+own body! score:   3 fitness:     -25
+own body! score:  18 fitness:    1843
+own body! score:   9 fitness:     651
+own body! score:  22 fitness:    2305
+own body! score:  17 fitness:    1761
+own body! score:  11 fitness:     969
+upperwall! score:   2 fitness:      76
+own body! score:   9 fitness:     754
+leftwall! score:   0 fitness:    -179
+below wall! score:   4 fitness:     282
+rightwall! score:   1 fitness:     -88
+leftwall! score:   1 fitness:     -70
+own body! score:  24 fitness:    2572
+own body! score:  16 fitness:    1634
+leftwall! score:   7 fitness:     673
+upperwall! score:  25 fitness:    2913
+leftwall! score:   3 fitness:     181
+Terminate! score:   1 fitness:    -435
+upperwall! score:   0 fitness:    -196
+upperwall! score:  33 fitness:    4064
+leftwall! score:   2 fitness:      21
+below wall! score:   2 fitness:      47
+below wall! score:   8 fitness:     728
+upperwall! score:   3 fitness:     153
+leftwall! score:   3 fitness:      81
+upperwall! score:  11 fitness:    1175
+===== Generaton #17	Best Fitness 6576.0	Best Score 57 =====
+Terminate! score:   0 fitness:    -531
+own body! score:  23 fitness:    2384
+leftwall! score:  30 fitness:    3478
+own body! score:  15 fitness:    1457
+leftwall! score:  26 fitness:    2993
+upperwall! score:   0 fitness:    -206
+own body! score:  32 fitness:    3519
+own body! score:  12 fitness:    1150
+own body! score:  27 fitness:    2947
+upperwall! score:  39 fitness:    4607
+leftwall! score:   4 fitness:     329
+upperwall! score:   0 fitness:    -219
+own body! score:  38 fitness:    4470
+rightwall! score:   3 fitness:      72
+upperwall! score:   9 fitness:     906
+own body! score:  17 fitness:    1667
+below wall! score:   1 fitness:    -109
+leftwall! score:  14 fitness:    1490
+upperwall! score:   0 fitness:    -186
+own body! score:   5 fitness:     194
+own body! score:  28 fitness:    3095
+own body! score:  24 fitness:    2467
+upperwall! score:   6 fitness:     520
+own body! score:  18 fitness:    1868
+rightwall! score:   1 fitness:    -116
+upperwall! score:  13 fitness:    1390
+leftwall! score:   4 fitness:     278
+below wall! score:   1 fitness:    -109
+own body! score:  15 fitness:    1481
+upperwall! score:   2 fitness:      50
+===== Generaton #18	Best Fitness 6576.0	Best Score 57 =====
+leftwall! score:   6 fitness:     569
+own body! score:  28 fitness:    3180
+rightwall! score:   7 fitness:     677
+own body! score:  29 fitness:    3110
+own body! score:  15 fitness:    1471
+upperwall! score:   2 fitness:      54
+own body! score:  10 fitness:     799
+leftwall! score:   2 fitness:      78
+own body! score:  28 fitness:    3091
+own body! score:  16 fitness:    1548
+upperwall! score:  18 fitness:    2053
+own body! score:   9 fitness:     716
+rightwall! score:   3 fitness:     130
+upperwall! score:   2 fitness:      27
+upperwall! score:  32 fitness:    3802
+own body! score:  27 fitness:    2976
+upperwall! score:   0 fitness:    -226
+own body! score:  24 fitness:    2708
+own body! score:  19 fitness:    1868
+own body! score:   8 fitness:     628
+upperwall! score:   6 fitness:     521
+rightwall! score:   3 fitness:     168
+upperwall! score:  12 fitness:    1247
+own body! score:  29 fitness:    3086
+own body! score:  52 fitness:    6056
+own body! score:  17 fitness:    1772
+own body! score:  41 fitness:    4736
+leftwall! score:   5 fitness:     488
+below wall! score:   6 fitness:     547
+own body! score:  27 fitness:    3051
+===== Generaton #19	Best Fitness 6576.0	Best Score 57 =====
+own body! score:  40 fitness:    4513
+upperwall! score:  27 fitness:    3139
+own body! score:  12 fitness:    1072
+own body! score:  19 fitness:    1904
+own body! score:  11 fitness:     919
+own body! score:   9 fitness:     686
+own body! score:   4 fitness:      69
+below wall! score:   1 fitness:    -138
+upperwall! score:   2 fitness:      39
+below wall! score:   3 fitness:     197
+leftwall! score:  12 fitness:    1306
+below wall! score:   2 fitness:      32
+rightwall! score:   1 fitness:     -75
+rightwall! score:   1 fitness:    -109
+upperwall! score:   1 fitness:     -66
+own body! score:   9 fitness:     733
+leftwall! score:  48 fitness:    5813
+own body! score:  34 fitness:    3873
+own body! score:   8 fitness:     527
+leftwall! score:  22 fitness:    2547
+own body! score:  11 fitness:     962
+own body! score:  31 fitness:    3550
+own body! score:   6 fitness:     331
+own body! score:  32 fitness:    3772
+own body! score:   4 fitness:      94
+own body! score:  47 fitness:    5413
+leftwall! score:   6 fitness:     519
+upperwall! score:  18 fitness:    2068
+upperwall! score:   8 fitness:     784
+own body! score:   5 fitness:     162
+===== Generaton #20	Best Fitness 6576.0	Best Score 57 =====
+own body! score:   6 fitness:     335
+own body! score:   7 fitness:     401
+own body! score:  13 fitness:    1178
+own body! score:  32 fitness:    3588
+own body! score:  18 fitness:    1906
+upperwall! score:   2 fitness:      58
+leftwall! score:   1 fitness:     -71
+upperwall! score:  21 fitness:    2424
+upperwall! score:   0 fitness:    -227
+leftwall! score:  15 fitness:    1699
+below wall! score:   1 fitness:    -101
+rightwall! score:   1 fitness:    -107
+upperwall! score:   0 fitness:    -186
+own body! score:  14 fitness:    1288
+leftwall! score:   1 fitness:     -66
+rightwall! score:   4 fitness:     252
+leftwall! score:   6 fitness:     502
+upperwall! score:   0 fitness:    -179
+upperwall! score:  26 fitness:    2953
+own body! score:  35 fitness:    4120
+rightwall! score:   3 fitness:     218
+leftwall! score:  12 fitness:    1249
+own body! score:  10 fitness:     792
+rightwall! score:   3 fitness:     114
+own body! score:   5 fitness:     230
+leftwall! score:  29 fitness:    3485
+own body! score:   7 fitness:     480
+own body! score:   8 fitness:     570
+own body! score:   7 fitness:     465
+own body! score:  34 fitness:    3691
+===== Generaton #21	Best Fitness 6576.0	Best Score 57 =====
+upperwall! score:   2 fitness:      61
+own body! score:  29 fitness:    3178
+leftwall! score:  31 fitness:    3535
+own body! score:  42 fitness:    4759
+below wall! score:   0 fitness:    -206
+own body! score:   3 fitness:     -29
+own body! score:  45 fitness:    5291
+own body! score:  13 fitness:    1205
+leftwall! score:   8 fitness:     778
+leftwall! score:  16 fitness:    1819
+own body! score:  12 fitness:    1046
+upperwall! score:   0 fitness:    -179
+own body! score:  36 fitness:    4103
+own body! score:   3 fitness:    -134
+own body! score:  17 fitness:    1712
+leftwall! score:   1 fitness:     -65
+upperwall! score:  19 fitness:    2281
+own body! score:  26 fitness:    2803
+own body! score:  33 fitness:    3819
+upperwall! score:  22 fitness:    2468
+leftwall! score:  20 fitness:    2329
+leftwall! score:   3 fitness:     193
+rightwall! score:   1 fitness:    -117
+upperwall! score:   0 fitness:    -216
+own body! score:  10 fitness:     821
+upperwall! score:   8 fitness:     781
+own body! score:  28 fitness:    3070
+own body! score:  40 fitness:    4504
+own body! score:  39 fitness:    4662
+rightwall! score:   6 fitness:     479
+===== Generaton #22	Best Fitness 6576.0	Best Score 57 =====
+own body! score:  36 fitness:    4107
+own body! score:   7 fitness:     463
+own body! score:  45 fitness:    5158
+own body! score:  10 fitness:     831
+upperwall! score:  24 fitness:    2798
+own body! score:  15 fitness:    1465
+own body! score:  19 fitness:    1957
+below wall! score:   1 fitness:     -90
+own body! score:  25 fitness:    2740
+own body! score:  26 fitness:    2820
+own body! score:  20 fitness:    2157
+own body! score:   7 fitness:     467
+own body! score:  30 fitness:    3348
+rightwall! score:   9 fitness:     872
+own body! score:  37 fitness:    4074
+leftwall! score:  12 fitness:    1458
+upperwall! score:  27 fitness:    3179
+own body! score:  10 fitness:     845
+own body! score:   4 fitness:     119
+rightwall! score:   3 fitness:     159
+leftwall! score:   6 fitness:     558
+own body! score:  17 fitness:    1720
+upperwall! score:  14 fitness:    1415
+below wall! score:   3 fitness:     174
+own body! score:  41 fitness:    4809
+upperwall! score:  29 fitness:    3447
+upperwall! score:  19 fitness:    2125
+own body! score:  28 fitness:    2986
+upperwall! score:   9 fitness:     907
+upperwall! score:   0 fitness:    -194
+===== Generaton #23	Best Fitness 6576.0	Best Score 57 =====
+leftwall! score:   6 fitness:     556
+own body! score:   5 fitness:     218
+upperwall! score:   0 fitness:    -226
+own body! score:  37 fitness:    4157
+own body! score:   6 fitness:     292
+rightwall! score:   5 fitness:     356
+own body! score:   9 fitness:     663
+own body! score:  19 fitness:    1921
+upperwall! score:  28 fitness:    3343
+own body! score:  17 fitness:    1798
+below wall! score:   1 fitness:    -133
+upperwall! score:   2 fitness:      64
+upperwall! score:   0 fitness:    -226
+own body! score:   5 fitness:     218
+own body! score:  15 fitness:    1500
+own body! score:  41 fitness:    4580
+rightwall! score:   2 fitness:      -3
+own body! upperwall! score:  15 fitness:    1639
+rightwall! score:   1 fitness:    -105
+own body! leftwall! own body! score:  42 fitness:    4788
+below wall! score:   1 fitness:    -118
+own body! own body! score:  25 fitness:    2737
+upperwall! score:   9 fitness:     997
+own body! score:  22 fitness:    2300
+upperwall! score:   3 fitness:     191
+upperwall! score:   0 fitness:    -204
+leftwall! score:  11 fitness:    1246
+own body! score:  21 fitness:    2104
+upperwall! score:   5 fitness:     382
+upperwall! score:   1 fitness:    -114
+===== Generaton #24	Best Fitness 6576.0	Best Score 57 =====
+below wall! score:   1 fitness:    -134
+own body! rightwall! score:   5 fitness:     391
+own body! score:  13 fitness:    1157
+upperwall! score:  11 fitness:    1201
+leftwall! score:  12 fitness:    1410
+leftwall! score:   7 fitness:     625
+own body! score:   6 fitness:     300
+upperwall! score:   0 fitness:    -226
+own body! score:  14 fitness:    1300
+upperwall! score:   2 fitness:      44
+own body! score:   9 fitness:     668
+own body! score:  29 fitness:    3272
+upperwall! score:   1 fitness:     -70
+upperwall! score:  13 fitness:    1401
+own body! score:   5 fitness:     255
+own body! score:  24 fitness:    2484
+leftwall! score:   1 fitness:     -76
+leftwall! score:  11 fitness:    1115
+rightwall! score:   8 fitness:     719
+leftwall! score:   2 fitness:     100
+rightwall! score:   1 fitness:    -124
+own body! score:  12 fitness:    1012
+below wall! score:   4 fitness:     332
+rightwall! score:   1 fitness:    -105
+rightwall! score:   1 fitness:    -115
+upperwall! score:  17 fitness:    1893
+upperwall! score:   8 fitness:     861
+leftwall! score:   2 fitness:      67
+below wall! score:   1 fitness:     -91
+own body! score:   7 fitness:     430
+===== Generaton #25	Best Fitness 6576.0	Best Score 57 =====
+leftwall! score:   5 fitness:     427
+leftwall! score:  15 fitness:    1736
+own body! score:   7 fitness:     480
+own body! score:  38 fitness:    4349
+own body! score:  27 fitness:    2941
+own body! score:  38 fitness:    4379
+own body! score:  42 fitness:    4732
+own body! score:  24 fitness:    2465
+own body! score:  34 fitness:    3866
+Terminate! score:   0 fitness:    -531
+leftwall! score:  14 fitness:    1562
+below wall! score:   4 fitness:     276
+own body! score:  35 fitness:    3934
+rightwall! score:  12 fitness:    1317
+upperwall! score:   0 fitness:    -219
+own body! score:   6 fitness:     290
+below wall! score:   4 fitness:     232
+own body! score:   8 fitness:     539
+leftwall! score:   6 fitness:     579
+own body! score:  29 fitness:    3196
+upperwall! score:   1 fitness:     -75
+own body! score:  14 fitness:    1352
+own body! score:  31 fitness:    3567
+own body! score:   6 fitness:     298
+own body! score:  11 fitness:     899
+own body! score:  36 fitness:    4097
+upperwall! score:   8 fitness:     773
+leftwall! score:   8 fitness:     779
+below wall! score:   1 fitness:    -105
+own body! score:  29 fitness:    3198
+===== Generaton #26	Best Fitness 6576.0	Best Score 57 =====
+own body! score:   9 fitness:     735
+own body! score:  23 fitness:    2343
+own body! score:  30 fitness:    3299
+upperwall! score:   6 fitness:     567
+rightwall! score:   5 fitness:     392
+upperwall! score:   4 fitness:     286
+upperwall! score:   0 fitness:    -181
+upperwall! score:   0 fitness:    -226
+own body! score:  29 fitness:    3056
+own body! score:  27 fitness:    2942
+below wall! score:   1 fitness:     -92
+leftwall! score:   1 fitness:     -78
+rightwall! score:  16 fitness:    1711
+upperwall! score:  14 fitness:    1608
+own body! score:  17 fitness:    1593
+own body! score:  13 fitness:    1195
+Terminate! score:   2 fitness:    -290
+below wall! score:   1 fitness:    -114
+leftwall! score:   9 fitness:     934
+own body! score:   3 fitness:     -42
+rightwall! score:   3 fitness:     132
+rightwall! score:   3 fitness:     172
+own body! score:  14 fitness:    1334
+below wall! score:   1 fitness:    -118
+own body! score:   9 fitness:     602
+own body! score:  50 fitness:    5712
+own body! score:  27 fitness:    2868
+own body! score:  33 fitness:    3616
+leftwall! score:  17 fitness:    1900
+own body! score:   4 fitness:      77
+===== Generaton #27	Best Fitness 6576.0	Best Score 57 =====
+own body! score:  31 fitness:    3454
+own body! score:  44 fitness:    5283
+rightwall! score:   6 fitness:     474
+leftwall! score:   4 fitness:     352
+own body! score:  10 fitness:     811
+rightwall! score:   3 fitness:     137
+upperwall! score:   0 fitness:    -226
+upperwall! score:   7 fitness:     691
+own body! score:  13 fitness:    1211
+upperwall! score:   2 fitness:      47
+own body! score:  29 fitness:    3309
+upperwall! score:  10 fitness:    1042
+below wall! score:   3 fitness:     108
+upperwall! score:   3 fitness:     162
+Terminate! score:   0 fitness:    -531
+upperwall! score:  15 fitness:    1736
+below wall! score:   0 fitness:    -206
+own body! score:  23 fitness:    2349
+below wall! score:   1 fitness:     -77
+own body! score:  30 fitness:    3277
+upperwall! score:   6 fitness:     591
+own body! score:  17 fitness:    1758
+own body! score:   7 fitness:     411
+below wall! score:   1 fitness:    -105
+below wall! score:   1 fitness:    -112
+upperwall! score:  25 fitness:    2906
+own body! score:  11 fitness:    1055
+leftwall! score:  12 fitness:    1319
+own body! score:   4 fitness:     135
+rightwall! score:   4 fitness:     262
+===== Generaton #28	Best Fitness 6576.0	Best Score 57 =====
+own body! score:  20 fitness:    2201
+own body! score:  20 fitness:    2108
+own body! score:  15 fitness:    1409
+own body! score:   5 fitness:     209
+leftwall! score:   2 fitness:      55
+upperwall! score:   3 fitness:     174
+Terminate! score:   0 fitness:    -531
+upperwall! score:   9 fitness:    1036
+own body! score:  39 fitness:    4560
+leftwall! score:   9 fitness:     904
+own body! score:  29 fitness:    3153
+upperwall! score:  38 fitness:    4642
+rightwall! score:   8 fitness:     800
+rightwall! score:   7 fitness:     601
+own body! score:   3 fitness:     -36
+upperwall! score:   3 fitness:     153
+upperwall! score:   2 fitness:      22

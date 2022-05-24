@@ -116,31 +116,31 @@ class Snake(object):
             # it means end of game by collision with own body
             print('own body! ', end='')
             self.fitness -= 200
-            with open('log.txt','a') as file:
+            with open('snake_game/training/log.txt','a') as file:
                 file.write('own body! ')
             return False
         elif now[0] == 0 and x == -1:
             # it means the game is ended because of the collision with the left wall
             print('leftwall! ', end='')
-            with open('log.txt','a') as file:
+            with open('snake_game/training/log.txt','a') as file:
                 file.write('leftwall! ')
             return False
         elif new[0] == 0 and x == 1:
             # it means the game is ended because of the collision with the right wall
             print('rightwall! ', end='')
-            with open('log.txt','a') as file:
+            with open('snake_game/training/log.txt','a') as file:
                 file.write('rightwall! ')
             return False
         elif now[1] == 0 and y == -1: 
             # it means end of game by collision with the upper wall
             print('upperwall! ', end='')
-            with open('log.txt','a') as file:
+            with open('snake_game/training/log.txt','a') as file:
                 file.write('upperwall! ')
             return False
         elif new[1] == 0 and y == 1: 
             # it means end of game by collision with the below wall
             print('below wall! ', end='')
-            with open('log.txt','a') as file:
+            with open('snake_game/training/log.txt','a') as file:
                 file.write('below wall! ')
             return False
         else:
@@ -224,7 +224,7 @@ def main(genome, screen, surface):
         if snake.fitness < -30 or snake.timer - snake.last_fruit_time > 0.1 * 60 * 5:
             print('Terminate! ', end='')
             snake.fitness -= 500
-            with open('log.txt','a') as file:
+            with open('snake_game/training/log.txt','a') as file:
                 file.write('Terminate! ')
             break
         

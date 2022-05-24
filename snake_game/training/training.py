@@ -1,7 +1,6 @@
 import pygame, random
 import numpy as np
 from copy import deepcopy
-from training.simplified_snake_game_for_training import Snake, main, SCREEN_SIZE, GRID_SIZE
 import pickle
 
 class Genome():
@@ -41,6 +40,8 @@ N_CHILDREN = 5
 PROB_MUTATION = 0.4
 
 if __name__ == '__main__':
+  from simplified_snake_game_for_training import Snake, main, SCREEN_SIZE, GRID_SIZE
+
   pygame.init()
   pygame.font.init()
   screen = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE), 0, 32)
@@ -63,11 +64,11 @@ if __name__ == '__main__':
       #snake = Snake(genome, surface)
       fitness, score = main(genome, screen, surface)
       print('score: %3d fitness: %7d\t' % (score, fitness))
-      with open('log.txt','a') as file:
+      with open('snake_game/training/log.txt','a') as file:
        file.write('score: %3d fitness: %7d\n' % (score, fitness))
       if score > best_score:
        best_score = score
-       with open('save.p','wb') as save_file:
+       with open('snake_game/training/save.p','wb') as save_file:
         pickle.dump(genome,save_file)
 
       genome.fitness = fitness
@@ -79,7 +80,7 @@ if __name__ == '__main__':
 
     print('===== Generaton #%s\tBest Fitness %s\tBest Score %d =====' % (n_gen, genomes[0].fitness, best_score))
     
-    with open('log.txt','a') as file:
+    with open('snake_game/training/log.txt','a') as file:
      file.write('===== Generaton #%s\tBest Fitness %s\tBest Score %d =====\n' % (n_gen, genomes[0].fitness, best_score))
 
     best_genomes = deepcopy(genomes[:N_BEST])

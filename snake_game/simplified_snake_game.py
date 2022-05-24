@@ -4,6 +4,9 @@ import json
 import time
 import sys
 import os
+import numpy as np
+import pickle
+from training import Genome
 
 # screen size
 SCREEN_SIZE = 800
@@ -46,10 +49,17 @@ clock = pygame.time.Clock()
 global gameChoice
 
 # move
-UP = (0, -1)
-DOWN = (0, 1)
-LEFT = (-1, 0)
-RIGHT = (1, 0)
+UP = 0
+LEFT = 1
+DOWN = 2
+RIGHT = 3
+
+DIRECTION = [
+    (0, -1), # UP
+    (-1, 0), # LEFT
+    (0, 1), # DOWN
+    (1, 0) # RIGHT
+]
 
 load = 0
 resume = 0
@@ -58,7 +68,7 @@ resume = 0
 data = {
     "score" : 0,
     "positions" : [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))],
-    "directions" : [UP],
+    "directions" : [DIRECTION[UP]],
     "food_position" : (0,0)
 }
 
@@ -67,8 +77,8 @@ data_dual = {
     "length_2" : 0,
     "position_1" : [(0, 0)],
     "position_2" : [(SCREEN_SIZE - GRID_SIZE, SCREEN_SIZE)],
-    "direction_1" : [DOWN],
-    "direction_2" : [UP],
+    "direction_1" : [DIRECTION[DOWN]],
+    "direction_2" : [DIRECTION[UP]],
     "food_position_1" : (0,0),
     "food_position_2" : (0,0)
 }
@@ -384,12 +394,16 @@ class Food(object):
     
 
 class Snake(object):
-    def __init__(self):
+    def __init__(self, genome, food):
         self.length = 1
         # set start point to center
         self.positions = [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))]
         self.color = (40,50,90)
-        self.directions = [UP]
+        self.directions = [DIRECTION[UP]]
+
+        self.timer = 0
+        self.last_fruit_time = 0
+        self.genome = genome
         pass
 
     def set_snake1(self):
@@ -397,26 +411,26 @@ class Snake(object):
         # set start point to left-top
         self.positions = [(0, SCREEN_SIZE)]
         self.color = (40,50,90)
-        self.directions = [DOWN] 
+        self.directions = [DIRECTION[DOWN]] 
 
     def set_snake2(self):
         self.length = 1
         # set start point to right-bottom
         self.positions = [(SCREEN_SIZE - GRID_SIZE, SCREEN_SIZE)]
         self.color = (40,50,90)
-        self.directions = [UP]
+        self.directions = [DIRECTION[UP]]
     
     def reset(self):
         self.length = 1
         self.positions = [((SCREEN_SIZE / 2) , (SCREEN_SIZE / 2))]
-        self.directions = [UP]
+        self.directions = [DIRECTION[UP]]
         global score
         score = 0
 
     def reset_snake1(self):
         self.length = 1
         self.positions = [(0 , SCREEN_SIZE)]
-        self.directions = [DOWN]
+        self.directions = [DIRECTION[DOWN]]
         # global score
         # score = 0
 
@@ -469,13 +483,13 @@ class Snake(object):
                     snake_head_image = pygame.image.load('snake_game/imgs/snake_head1.png')
                 snake_head_image = pygame.transform.scale(snake_head_image, (GRID_SIZE, GRID_SIZE))
                 
-                if self.directions[i] == UP:
+                if self.directions[i] == DIRECTION[UP]:
                     rotate = 180
-                elif self.directions[i] == DOWN:
+                elif self.directions[i] == DIRECTION[DOWN]:
                     rotate = 0
-                elif self.directions[i] == LEFT:
+                elif self.directions[i] == DIRECTION[LEFT]:
                     rotate = 270
-                elif self.directions[i] == RIGHT:
+                elif self.directions[i] == DIRECTION[RIGHT]:
                     rotate = 90
                     
                 snake_head_image = pygame.transform.rotate(snake_head_image, rotate)
@@ -483,13 +497,13 @@ class Snake(object):
             elif i == len(self.positions) - 1:
                 snake_tail_image = pygame.image.load('snake_game/imgs/snake_tail.png')
                 snake_tail_image = pygame.transform.scale(snake_tail_image, (GRID_SIZE, GRID_SIZE))
-                if self.directions[i] == UP:
+                if self.directions[i] == DIRECTION[UP]:
                     rotate = 180
-                elif self.directions[i] == DOWN:
+                elif self.directions[i] == DIRECTION[DOWN]:
                     rotate = 0
-                elif self.directions[i] == LEFT:
+                elif self.directions[i] == DIRECTION[LEFT]:
                     rotate = 270
-                elif self.directions[i] == RIGHT:
+                elif self.directions[i] == DIRECTION[RIGHT]:
                     rotate = 90
                 snake_tail_image = pygame.transform.rotate(snake_tail_image, rotate)
                 surface.blit(snake_tail_image, (self.positions[i][0], self.positions[i][1]))
@@ -603,8 +617,6 @@ class Snake(object):
             # it means end of game by collision with the below wall
             self.reset()
             gameover_dual(screen, player)
-
-
         else:
             self.positions.insert(0,new)
             
@@ -614,7 +626,39 @@ class Snake(object):
             
             if len(self.directions) > self.length:
                 self.directions.pop()
-      
+
+    def get_inputs(self, food):
+        head = self.positions[0]
+        result = [1., 1., 1., 0., 0., 0.] # [:3] - 장애물과의 거리, [3:] - 사과 위치 방향, 앞쪽, 왼쪽, 오른쪽
+
+        # 갈 수 있는 경로
+        current_direction = DIRECTION.index(self.directions[0])
+        possible_dirs = [
+            self.directions[0], # 직진
+            DIRECTION[(current_direction + 1) % 4], # 좌회전
+            DIRECTION[(current_direction + 3) % 4] # 우회전
+        ]
+
+        # 장애물 식별
+        # range(0, 1, 0.1), 0: 위험, 1: 안전 (장애물에 가까울 수록 0에 가까운 값)
+        for i, p_dir in enumerate(possible_dirs):
+            for j in range(10):
+                guess_head = head + p_dir * (j + 1) * GRID_SIZE
+                if (guess_head[0] <= 0 or guess_head[0] >= SCREEN_SIZE or
+                guess_head[1] <= 0 or guess_head[1] >= SCREEN_SIZE or
+                guess_head in self.positions):
+                    result[i] = j * 0.1
+                    break
+
+        if np.any(head == food.position) or np.sum(np.array(head) * np.array(possible_dirs[0])) < np.sum(np.array(food.position) * np.array(possible_dirs[0])):
+            result[3] = 1 # 사과가 앞쪽에 있는 경우
+        elif np.sum(np.array(head) * np.array(possible_dirs[1])) < np.sum(np.array(food.position) * np.array(possible_dirs[1])):
+            result[4] = 1 # 사과가 왼쪽에 있는 경우
+        else:
+            result[5] = 1 # 사과가 오른쪽에 있는 경우
+
+        return np.array(result)   
+
 # draw Grid
 def drawGrid(surface):
     for y in range(0, int(GRID_NUM)):
@@ -657,7 +701,7 @@ def main():
     surface = surface.convert()
     drawGrid(surface)
     
-    snake = Snake()
+    snake = Snake(genome=None, food=None)
     food = Food()
 
     myfont = pygame.font.SysFont("arial", 16, True, True)
@@ -735,10 +779,10 @@ def dualgame():
     surface = surface.convert()
     drawGrid(surface)
     
-    snake1 = Snake()
+    snake1 = Snake(genome=None, food=None)
     snake1.set_snake1()
     
-    snake2 = Snake()
+    snake2 = Snake(genome=None, food=None)
     snake2.set_snake2()
     
     food1 = Food()
@@ -829,7 +873,76 @@ def dualgame():
         pygame.display.update()
 
 def autogame():
-    pass
+    global gameChoice
+    global score
+
+    # Auto_play_mode
+    gameChoice = 3
+    score = 0
+
+    # surface == 2D object / 색이나 이미지를 가지는 빈 시트
+    surface = pygame.Surface(screen.get_size())
+    
+    # Surface to the same pixel format as the one you use for final display
+    surface = surface.convert()
+    drawGrid(surface)
+
+    # load trained genome algorithm
+    with open('snake_game/training/save_best.p', 'rb') as save_file:
+        genome = pickle.load(save_file)
+
+    food = Food()
+    snake = Snake(genome, food)
+
+    myfont = pygame.font.SysFont("arial", 16, True, True)
+
+    # Boolean value for End clause 
+    running = True
+    while(running):
+        clock.tick(10)
+        drawGrid(surface)
+
+        snake.timer += 0.1
+        if snake.fitness < -30 or snake.timer - snake.last_fruit_time > 0.1 * 60 * 5:
+            print('Terminate! ', end='')
+            break
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: # game exit
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:# key input
+                if event.key == pygame.K_ESCAPE:
+                    running = False
+                    pausemenu_auto()
+
+        inputs = snake.get_inputs(food)
+        outputs = snake.genome.forward(inputs)
+        outputs = np.argmax(outputs) #최적의 방향 반환
+
+        current_direction = DIRECTION.index(snake.directions[0])
+        if outputs == 1: # 좌회전
+            snake.directions[0] = DIRECTION[(current_direction + 1) % 4]
+        elif outputs == 2: # 우회전
+            snake.directions[0] = DIRECTION[(current_direction + 3) % 4]
+        # outputs == 0: 직진
+    
+        if snake.get_head() == food.position:
+            snake.length += 1
+            score += 1
+            snake.last_fruit_time = snake.timer
+            snake.directions.append(snake.directions[-1])
+            food.randomize_position()
+
+        food.draw(surface)
+        snake.draw(surface)
+
+        screen.blit(surface, (0,0))
+        text = myfont.render("Score {0}".format(score), 1, (255,255,255))
+        screen.blit(text, (15,10))
+
+        pygame.display.update()
+
 
 #main()
 mainmenu()

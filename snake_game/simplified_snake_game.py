@@ -6,7 +6,7 @@ import sys
 import os
 import numpy as np
 import pickle
-from training import Genome
+from training.training import Genome
 
 # screen size
 SCREEN_SIZE = 800
@@ -902,8 +902,11 @@ def autogame():
         clock.tick(10)
         drawGrid(surface)
 
+        snake.move(screen)
+        snake.key_handling()
+        
         snake.timer += 0.1
-        if snake.fitness < -30 or snake.timer - snake.last_fruit_time > 0.1 * 60 * 5:
+        if snake.timer - snake.last_fruit_time > 0.1 * 60 * 5:
             print('Terminate! ', end='')
             break
 

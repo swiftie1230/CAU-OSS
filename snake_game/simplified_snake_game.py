@@ -273,10 +273,8 @@ def pausemenu():
 
         gameDisplay.fill(white)
         
-        
         Button_width = startImg.get_width()
         Button_height = startImg.get_height()
-        
         
         pausetitletext = gameDisplay.blit(pausetitleImg, (400-(pausetitleImg.get_width()/2),220))
         
@@ -285,10 +283,13 @@ def pausemenu():
             restartButton = Button(restartImg,260,420,Button_width,Button_height,clickrestartImg,260,418,main)
             saveButton = Button(saveImg,415,420,Button_width,Button_height,clicksaveImg,415,418,savegame)
             quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
-        
-        else:
+        elif gameChoice == 2: # pause for dual mode
             resumeButton  = Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
             restartButton = Button(restartImg,330,420,Button_width,Button_height,clickrestartImg,330,418,dualgame)
+            quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
+        elif gameChoice == 3: # pause for auto mode
+            resumeButton  = Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
+            restartButton = Button(restartImg,330,420,Button_width,Button_height,clickrestartImg,330,418,autogame)
             quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
 
         pygame.display.update()
@@ -319,8 +320,6 @@ def pausemenu_dual():
 
         pygame.display.update()
         clock.tick(15)
-
-
 
 def mainmenu():
     global gameChoice
@@ -364,6 +363,8 @@ def resumegame():
         main()
     elif gameChoice == 2:
         dualgame()
+    elif gameChoice == 3:
+        autogame()
 
 # Food Class
 class Food(object):
@@ -874,11 +875,11 @@ def dualgame():
 
 def autogame():
     global gameChoice
+    global resume
     global score
 
     # Auto_play_mode
     gameChoice = 3
-    score = 0
 
     # surface == 2D object / 색이나 이미지를 가지는 빈 시트
     surface = pygame.Surface(screen.get_size())
@@ -896,6 +897,15 @@ def autogame():
 
     myfont = pygame.font.SysFont("arial", 16, True, True)
 
+    if (resume == 1):
+        print("resume game..")
+        snake.set_state()
+        food.set_state()
+        resume = 0
+        print(data)
+    else:
+        score = 0
+
     # Boolean value for End clause 
     running = True
     while(running):
@@ -903,7 +913,6 @@ def autogame():
         drawGrid(surface)
 
         snake.move(screen)
-        snake.key_handling()
         
         snake.timer += 0.1
         if snake.timer - snake.last_fruit_time > 0.1 * 60 * 5:
@@ -917,7 +926,7 @@ def autogame():
             elif event.type == pygame.KEYDOWN:# key input
                 if event.key == pygame.K_ESCAPE:
                     running = False
-                    pausemenu_auto()
+                    pausemenu()
 
         inputs = snake.get_inputs(food)
         outputs = snake.genome.forward(inputs)
@@ -937,6 +946,11 @@ def autogame():
             snake.directions.append(snake.directions[-1])
             food.randomize_position()
 
+        data["score"] = score
+        data["positions"] = snake.positions
+        data["directions"] = snake.directions
+        data["food_position"] = food.position
+        
         food.draw(surface)
         snake.draw(surface)
 

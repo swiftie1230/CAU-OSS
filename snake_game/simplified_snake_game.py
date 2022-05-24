@@ -531,13 +531,13 @@ class Snake(object):
                 sys.exit()
             elif event.type ==pygame.KEYDOWN: # key input
                 if event.key== pygame.K_UP:
-                    self.turn(UP)
+                    self.turn(DIRECTION[UP])
                 elif event.key == pygame.K_DOWN:
-                    self.turn(DOWN)
+                    self.turn(DIRECTION[DOWN])
                 elif event.key == pygame.K_LEFT:
-                    self.turn(LEFT)
+                    self.turn(DIRECTION[LEFT])
                 elif event.key == pygame.K_RIGHT:
-                    self.turn(RIGHT)
+                    self.turn(DIRECTION[RIGHT])
                 elif event.key == pygame.K_ESCAPE:
                     pausemenu()
 
@@ -819,22 +819,22 @@ def dualgame():
                 
                 else:
                     if event.key== pygame.K_UP:
-                        snake2.turn(UP)
+                        snake2.turn(DIRECTION[UP])
                     elif event.key == pygame.K_DOWN:
-                        snake2.turn(DOWN)
+                        snake2.turn(DIRECTION[DOWN])
                     elif event.key == pygame.K_LEFT:
-                        snake2.turn(LEFT)
+                        snake2.turn(DIRECTION[LEFT])
                     elif event.key == pygame.K_RIGHT:
-                        snake2.turn(RIGHT)
+                        snake2.turn(DIRECTION[RIGHT])
                     
                     if event.key == pygame.K_a:
-                        snake1.turn(LEFT)
+                        snake1.turn(DIRECTION[LEFT])
                     elif event.key == pygame.K_d:
-                        snake1.turn(RIGHT)
+                        snake1.turn(DIRECTION[RIGHT])
                     elif event.key == pygame.K_w:
-                        snake1.turn(UP)
+                        snake1.turn(DIRECTION[UP])
                     elif event.key == pygame.K_s:
-                        snake1.turn(DOWN)
+                        snake1.turn(DIRECTION[DOWN])
 
         food1.draw(surface)
         food2.draw(surface)

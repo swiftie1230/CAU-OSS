@@ -295,32 +295,6 @@ def pausemenu():
         pygame.display.update()
         clock.tick(15)
 
-# pause for dual mode
-def pausemenu_dual():
-    menu = True
-    while menu:
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-        gameDisplay.fill(white)
-        
-        
-        Button_width = startImg.get_width()
-        Button_height = startImg.get_height()
-        
-        
-        pausetitletext = gameDisplay.blit(pausetitleImg, (400-(pausetitleImg.get_width()/2),220))
-        
-        resumeButton  = Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
-        restartButton = Button(restartImg,330,420,Button_width,Button_height,clickrestartImg,330,418,dualgame)
-        quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
-
-        pygame.display.update()
-        clock.tick(15)
-
 def mainmenu():
     global gameChoice
     global load
@@ -815,7 +789,7 @@ def dualgame():
             elif event.type == pygame.KEYDOWN: # key input
                 if event.key == pygame.K_ESCAPE:
                     running = False
-                    pausemenu_dual()
+                    pausemenu()
                 
                 else:
                     if event.key== pygame.K_UP:

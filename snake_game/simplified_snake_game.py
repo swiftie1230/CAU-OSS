@@ -829,7 +829,82 @@ def dualgame():
         pygame.display.update()
 
 def autogame():
-    pass
+    global gameChoice 
+    global resume
+    global score
+    global load
+
+    # single_player_mode
+    gameChoice = 1
+    
+    # surface == 2D object / 색이나 이미지를 가지는 빈 시트
+    surface = pygame.Surface(screen.get_size())
+    
+    # Surface to the same pixel format as the one you use for final display
+    surface = surface.convert()
+    drawGrid(surface)
+    
+    snake = Snake()
+    food = Food()
+
+    myfont = pygame.font.SysFont("arial", 16, True, True)
+    
+    if (load == 1):
+        print("load data")
+        with open('save.txt') as save_file:
+            global data
+            data = json.load(save_file)
+        # list to tuple
+        for i in range(0,len(data["positions"])):
+            data["positions"][i] = tuple(data["positions"][i])
+        for i in range(0,len(data["directions"])):
+            data["directions"][i] = tuple(data["directions"][i])
+            
+        data["food_position"] = tuple(data["food_position"])
+        
+        snake.set_state()
+        food.set_state()
+        load = 0
+        
+    elif (resume == 1):
+        print("resume game..")
+        snake.set_state()
+        food.set_state()
+        resume = 0
+        print(data)
+        
+    else:
+        score = 0
+        
+    # Boolean value for End clause 
+    running = True
+    while(running):
+        clock.tick(10)
+        drawGrid(surface)
+        
+        snake.move(screen)
+        snake.key_handling()
+        
+        food.draw(surface)
+        snake.draw(surface)
+        
+        if snake.get_head() == food.position:
+            snake.length += 1
+            score += 1
+            snake.directions.append(snake.directions[-1])
+            food.randomize_position()
+        
+        data["score"] = score
+        data["positions"] = snake.positions
+        data["directions"] = snake.directions
+        data["food_position"] = food.position
+
+        screen.blit(surface, (0,0))
+        text = myfont.render("Score {0}".format(score), 1, (255,255,255))
+        screen.blit(text, (15,10))
+        
+        pygame.display.update()
+
 
 #main()
 mainmenu()

@@ -354,6 +354,8 @@ def resumegame():
         main()
     elif gameChoice == 2:
         dualgame()
+    elif gameChoice == 3:
+        autogame()
 
 # Food Class
 class Food(object):
@@ -509,6 +511,102 @@ class Snake(object):
         else:
             self.directions[0] = UDLR
     
+    def auto_x(self, now_food):
+        now_head = self.get_head()
+        if(now_food[0] - now_head[0] == 0):
+            if (now_food[1] == now_head[1]):
+                pass
+            self.auto_y(now_food)
+        # food in left
+        elif(now_food[0] - now_head[0] < 0):
+            self.turn(LEFT)
+        elif(now_food[0] - now_head[0] > 0):
+            self.turn(RIGHT)
+            
+    def auto_y(self, now_food):
+        now_head = self.get_head()
+        if(now_food[1] - now_head[1] == 0):
+            if (now_food[0] == now_head[0]):
+                pass
+            self.auto_x(now_food)
+        # food in left
+        elif(now_food[1] - now_head[1] < 0):
+            self.turn(UP)
+        elif(now_food[1] - now_head[1] > 0):
+            self.turn(DOWN)
+    
+    def find_turn(self):
+        for di in [UP, DOWN, LEFT, RIGHT]:
+            if(self.can_go(di)):
+                self.turn(di)
+                return
+            # it means end game - ring shaped snake
+            else:
+                pass
+                
+    def can_go(self, UDLR):
+        now_head = self.get_head()
+        tmp = (now_head[0]+20*UDLR[0], now_head[1]+20*UDLR[1])    
+        print("tmp : ", tmp)
+        
+        if(tmp in self.positions or (tmp[0] < 0 or tmp[0] > 800) or (tmp[1] < 0 or tmp[1] > 800)):
+            return 0
+        else:
+            return 1
+        
+    def move_auto(self, food_position): 
+        now_head = self.get_head()
+        now_food = food_position
+        
+        # print("now_direction: ",self.directions)
+        # print("now_position: ",self.positions)
+        # print("now_head: ",now_head)
+        # print("now_food: ",now_food)
+        
+        #self.auto_x(now_food)
+        # food in right
+        
+        
+        if(now_food[0] - now_head[0] == 0):
+            #turn right
+            if(now_food[1] - now_head[1] == 0):
+                #get food
+                pass
+            
+            elif(now_food[1] - now_head[1] > 0):
+                if(self.directions[0] == DOWN):
+                    pass
+                if(self.can_go(DOWN)):
+                    self.turn(DOWN)
+                else:
+                    self.find_turn()
+                    
+            elif(now_food[1] - now_head[1] < 0):
+                if(self.directions[0] == UP):
+                    pass
+                if(self.can_go(UP)):
+                    self.turn(UP)
+                else:
+                    self.find_turn()
+                
+            #go until now_food[0] == now_head[0]
+        # food in left
+        elif(now_food[0] - now_head[0] < 0):
+            if(self.directions[0] == LEFT):
+                pass
+            if(self.can_go(LEFT)):
+                self.turn(LEFT)
+            else:
+                self.find_turn()
+                
+        elif(now_food[0] - now_head[0] > 0):
+            if(self.directions[0] == RIGHT):
+                pass
+            if(self.can_go(RIGHT)):
+                self.turn(RIGHT)
+            else:
+                self.find_turn()
+        
     def key_handling(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT: # game exit
@@ -834,8 +932,8 @@ def autogame():
     global score
     global load
 
-    # single_player_mode
-    gameChoice = 1
+    # auto_mode
+    gameChoice = 3
     
     # surface == 2D object / 색이나 이미지를 가지는 빈 시트
     surface = pygame.Surface(screen.get_size())
@@ -883,7 +981,17 @@ def autogame():
         drawGrid(surface)
         
         snake.move(screen)
-        snake.key_handling()
+        #snake.key_handling()
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: # game exit
+                pygame.quit()
+                sys.exit()
+            elif event.type ==pygame.KEYDOWN: # key input
+                if event.key == pygame.K_ESCAPE:
+                    pausemenu()
+                    
+        snake.move_auto(food.position)
         
         food.draw(surface)
         snake.draw(surface)
@@ -892,7 +1000,8 @@ def autogame():
             snake.length += 1
             score += 1
             snake.directions.append(snake.directions[-1])
-            food.randomize_position()
+            food.randomize_position() 
+            snake.move_auto(food.position)
         
         data["score"] = score
         data["positions"] = snake.positions

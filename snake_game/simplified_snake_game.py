@@ -23,6 +23,7 @@ saveImg = pygame.image.load("snake_game/imgs/save.png")
 loadImg = pygame.image.load("snake_game/imgs/load.png")
 clicksaveImg = pygame.image.load("snake_game/imgs/clickedsave.png")
 clickloadImg = pygame.image.load("snake_game/imgs/clickedload.png")
+cantclickloadImg = pygame.image.load("snake_game/imgs/cantclickload.png")
 gameOverImg = pygame.image.load("snake_game/imgs/gameover.png")
 goMenuImg = pygame.image.load("snake_game/imgs/gomenu.png")
 clickgoMenuImg = pygame.image.load("snake_game/imgs/clickedgomenu.png")
@@ -340,7 +341,7 @@ def mainmenu():
         if(is_it_save()):
             loadButton = Button(loadImg,325,520,Button_width,Button_height,clickloadImg,325,518,loadgame)
         else:
-            loadButton = Button(clickloadImg,325,520,Button_width,Button_height,clickloadImg,325,518,None)
+            loadButton = Button(cantclickloadImg,325,520,Button_width,Button_height,cantclickloadImg,325,518,None)
         
         quitButton = Button(quitImg,525,520,Button_width,Button_height,clickQuitImg,525,518,quitgame)
         
@@ -547,7 +548,7 @@ class Snake(object):
     def can_go(self, UDLR):
         now_head = self.get_head()
         tmp = (now_head[0]+20*UDLR[0], now_head[1]+20*UDLR[1])    
-        print("tmp : ", tmp)
+        # print("tmp : ", tmp)
         
         if(tmp in self.positions or (tmp[0] < 0 or tmp[0] > 800) or (tmp[1] < 0 or tmp[1] > 800)):
             return 0
@@ -740,6 +741,8 @@ clock = pygame.time.Clock()
 screen = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE), 0, 32)
     
 def main():
+    speed = 5
+    speedGrowth = 2
     global gameChoice 
     global resume
     global score
@@ -776,6 +779,7 @@ def main():
         snake.set_state()
         food.set_state()
         load = 0
+        speed = 5 + int(score/speedGrowth)
         
     elif (resume == 1):
         print("resume game..")
@@ -783,6 +787,7 @@ def main():
         food.set_state()
         resume = 0
         print(data)
+        speed = 5 + int(score/speedGrowth)
         
     else:
         score = 0
@@ -790,7 +795,7 @@ def main():
     # Boolean value for End clause 
     running = True
     while(running):
-        clock.tick(10)
+        clock.tick(speed)
         drawGrid(surface)
         
         snake.move(screen)
@@ -804,6 +809,8 @@ def main():
             score += 1
             snake.directions.append(snake.directions[-1])
             food.randomize_position()
+            if score % speedGrowth == 0:
+                speed += 1
         
         data["score"] = score
         data["positions"] = snake.positions

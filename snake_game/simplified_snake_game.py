@@ -270,16 +270,15 @@ def pausemenu():
         
         pausetitletext = gameDisplay.blit(pausetitleImg, (400-(pausetitleImg.get_width()/2),220))
         
+        resumeButton  = Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
+        quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
         if gameChoice == 1:
-            resumeButton  = Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
             restartButton = Button(restartImg,260,420,Button_width,Button_height,clickrestartImg,260,418,main)
             saveButton = Button(saveImg,415,420,Button_width,Button_height,clicksaveImg,415,418,savegame)
-            quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
-        
-        else:
-            resumeButton  = Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
+        elif gameChoice == 2:
             restartButton = Button(restartImg,330,420,Button_width,Button_height,clickrestartImg,330,418,dualgame)
-            quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
+        else:
+            restartButton = Button(restartImg,330,420,Button_width,Button_height,clickrestartImg,330,418,autogame)
 
         pygame.display.update()
         clock.tick(15)

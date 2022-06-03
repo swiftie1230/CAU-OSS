@@ -1,6 +1,6 @@
 # WELCOME TO CAU_OSS repository for TEAM 3 !
 
-## I. Simple Version(MVP) of Snake Game 🐍 : "SANKE GAME"
+## I. Simple Version(MVP) of Snake Game 🐍 : "SNAKE GAME"
 
 ### 👀 Details about our implementation
 

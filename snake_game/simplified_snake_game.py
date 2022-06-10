@@ -142,7 +142,7 @@ def gameover_dual(screen, player):
         gameDisplay.fill(white)
     
         # show GAME OVER !!!
-        titletext = gameDisplay.blit(gameOverImg, (400 - (gameOverImg.get_width()/2),300))
+        gameDisplay.blit(gameOverImg, (400 - (gameOverImg.get_width()/2),300))
         
         # show Enter name
         myfont = pygame.font.SysFont("arial", 23, True, True)
@@ -150,7 +150,7 @@ def gameover_dual(screen, player):
         screen.blit(text, (400 - (text.get_width()/2),400))
         
         # show Go menu Button
-        menuButton = Button(goMenuImg, 400 - (goMenuImg.get_width()/2),510, goMenuImg.get_width(),goMenuImg.get_height(), clickgoMenuImg, (400 - clickgoMenuImg.get_width()/2),508, mainmenu)      
+        Button(goMenuImg, 400 - (goMenuImg.get_width()/2),510, goMenuImg.get_width(),goMenuImg.get_height(), clickgoMenuImg, (400 - clickgoMenuImg.get_width()/2),508, mainmenu)
         
         pygame.display.update()
         clock.tick(15)
@@ -180,7 +180,7 @@ def gameover(screen):
         gameDisplay.fill(white)
     
         # show GAME OVER !!!
-        titletext = gameDisplay.blit(gameOverImg, (400 - (gameOverImg.get_width()/2),300))
+        gameDisplay.blit(gameOverImg, (400 - (gameOverImg.get_width()/2),300))
         
         # show Enter name
         myfont = pygame.font.SysFont("arial", 23, True, True)
@@ -188,13 +188,11 @@ def gameover(screen):
         screen.blit(text, (400 - (text.get_width()/2),400))
         
         # show Go menu Button
-        menuButton = Button(goMenuImg,
-                            400 - (goMenuImg.get_width()/2),510,
-                            goMenuImg.get_width(),goMenuImg.get_height(),
-                            clickgoMenuImg,
-                            (400 - clickgoMenuImg.get_width()/2),508,
-                            mainmenu
-                            )      
+        Button(goMenuImg,
+               400 - (goMenuImg.get_width()/2),510,
+               goMenuImg.get_width(),
+               goMenuImg.get_height(), clickgoMenuImg, (400 - clickgoMenuImg.get_width()/2),508,
+               mainmenu)
         
         pygame.display.update()
         clock.tick(15)
@@ -228,7 +226,7 @@ def showrank():
         Button_height = startImg.get_height()
         
         if(is_it_rank()):
-            quitButton = Button(quitImg,600,400-Button_height/2,Button_width,Button_height,clickQuitImg,598,400-Button_height/2,mainmenu)
+            Button(quitImg,600,400-Button_height/2,Button_width,Button_height,clickQuitImg,598,400-Button_height/2,mainmenu)
             tmp = 0
             for name, sc in ranking.items():
                 rank = myfont.render(str(tmp+1) + ". " + name+ " : " + str(sc), 1, (0,0,0))
@@ -240,7 +238,7 @@ def showrank():
         else:
             text = Nofont.render("There is No Rank", 1, (0,0,0))
             screen.blit(text, (400-(text.get_width()/2),300))
-            quitButton = Button(quitImg,400-Button_width/2,600,Button_width,Button_height,clickQuitImg,400-Button_width/2,600,mainmenu)
+            Button(quitImg,400-Button_width/2,600,Button_width,Button_height,clickQuitImg,400-Button_width/2,600,mainmenu)
             
         pygame.display.update()
         clock.tick(15)
@@ -268,18 +266,18 @@ def pausemenu():
         Button_height = startImg.get_height()
         
         
-        pausetitletext = gameDisplay.blit(pausetitleImg, (400-(pausetitleImg.get_width()/2),220))
+        gameDisplay.blit(pausetitleImg, (400-(pausetitleImg.get_width()/2),220))
         
         if gameChoice == 1:
-            resumeButton  = Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
-            restartButton = Button(restartImg,260,420,Button_width,Button_height,clickrestartImg,260,418,main)
-            saveButton = Button(saveImg,415,420,Button_width,Button_height,clicksaveImg,415,418,savegame)
-            quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
+            Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
+            Button(restartImg,260,420,Button_width,Button_height,clickrestartImg,260,418,main)
+            Button(saveImg,415,420,Button_width,Button_height,clicksaveImg,415,418,savegame)
+            Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
         
         else:
-            resumeButton  = Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
-            restartButton = Button(restartImg,330,420,Button_width,Button_height,clickrestartImg,330,418,dualgame)
-            quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
+            Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
+            Button(restartImg,330,420,Button_width,Button_height,clickrestartImg,330,418,dualgame)
+            Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
 
         pygame.display.update()
         clock.tick(15)
@@ -301,11 +299,11 @@ def pausemenu_dual():
         Button_height = startImg.get_height()
         
         
-        pausetitletext = gameDisplay.blit(pausetitleImg, (400-(pausetitleImg.get_width()/2),220))
+        gameDisplay.blit(pausetitleImg, (400-(pausetitleImg.get_width()/2),220))
         
-        resumeButton  = Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
-        restartButton = Button(restartImg,330,420,Button_width,Button_height,clickrestartImg,330,418,dualgame)
-        quitButton = Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
+        Button(resumeImg,100,420,Button_width,Button_height,clickresumeImg,100,418,resumegame)
+        Button(restartImg,330,420,Button_width,Button_height,clickrestartImg,330,418,dualgame)
+        Button(quitImg,550,420,Button_width,Button_height,clickQuitImg,550,418,mainmenu)
 
         pygame.display.update()
         clock.tick(15)
@@ -326,23 +324,23 @@ def mainmenu():
 
         gameDisplay.fill(white)
         
-        titletext = gameDisplay.blit(titleImg, (400-(titleImg.get_width()/2),220))
+        gameDisplay.blit(titleImg, (400-(titleImg.get_width()/2),220))
         
         Button_width = startImg.get_width()
         Button_height = startImg.get_height()
         
-        singleButton = Button(startImg,125,420,Button_width,Button_height,clickStartImg,125,418, main)
-        dualButton = Button(dualImg,325,420,Button_width,Button_height,clickDualImg,325,418,dualgame)
-        autoButton = Button(autoImg,525,420,Button_width,Button_height,clickAutoImg,525,418,autogame)
+        Button(startImg,125,420,Button_width,Button_height,clickStartImg,125,418, main)
+        Button(dualImg,325,420,Button_width,Button_height,clickDualImg,325,418,dualgame)
+        Button(autoImg,525,420,Button_width,Button_height,clickAutoImg,525,418,autogame)
         
-        rankingButton = Button(rankingImg,125,520,Button_width,Button_height,clickrankingImg,125,518,showrank)
+        Button(rankingImg,125,520,Button_width,Button_height,clickrankingImg,125,518,showrank)
         
         if(is_it_save()):
-            loadButton = Button(loadImg,325,520,Button_width,Button_height,clickloadImg,325,518,loadgame)
+            Button(loadImg,325,520,Button_width,Button_height,clickloadImg,325,518,loadgame)
         else:
-            loadButton = Button(clickloadImg,325,520,Button_width,Button_height,clickloadImg,325,518,None)
+            Button(clickloadImg,325,520,Button_width,Button_height,clickloadImg,325,518,None)
         
-        quitButton = Button(quitImg,525,520,Button_width,Button_height,clickQuitImg,525,518,quitgame)
+        Button(quitImg,525,520,Button_width,Button_height,clickQuitImg,525,518,quitgame)
         
         pygame.display.update()
         clock.tick(15)

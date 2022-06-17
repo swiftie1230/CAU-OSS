@@ -392,6 +392,8 @@ class Snake(object):
         self.positions = [((SCREEN_SIZE / 2), (SCREEN_SIZE / 2))]
         self.color = (40,50,90)
         self.directions = [UP]
+        self.snake1_last_movement = None
+        self.snake2_last_movement = UP
         pass
 
     def set_snake1(self):
@@ -399,19 +401,23 @@ class Snake(object):
         # set start point to left-top
         self.positions = [(0, SCREEN_SIZE)]
         self.color = (40,50,90)
-        self.directions = [DOWN] 
+        self.directions = [DOWN]
+        self.snake1_last_movement = DOWN
 
     def set_snake2(self):
         self.length = 1
         # set start point to right-bottom
         self.positions = [(SCREEN_SIZE - GRID_SIZE, SCREEN_SIZE)]
         self.color = (40,50,90)
+        self.snake2_last_movement = UP
         self.directions = [UP]
     
     def reset(self):
         self.length = 1
         self.positions = [((SCREEN_SIZE / 2) , (SCREEN_SIZE / 2))]
         self.directions = [UP]
+        self.snake1_last_movement = None
+        self.snake2_last_movement = UP
         global score
         score = 0
 
@@ -419,6 +425,7 @@ class Snake(object):
         self.length = 1
         self.positions = [(0 , SCREEN_SIZE)]
         self.directions = [DOWN]
+        self.snake1_last_movement = DOWN
         # global score
         # score = 0
 
@@ -427,6 +434,7 @@ class Snake(object):
         self.positions = [(SCREEN_SIZE - GRID_SIZE, SCREEN_SIZE)]
         self.color = (40,50,90)
         self.directions = [UP]
+        self.snake2_last_movement = UP
 
 
     def set_state(self):
@@ -548,7 +556,7 @@ class Snake(object):
         now_head = self.get_head()
         tmp = (now_head[0]+20*UDLR[0], now_head[1]+20*UDLR[1])    
         print("tmp : ", tmp)
-        
+
         if(tmp in self.positions or (tmp[0] < 0 or tmp[0] > 800) or (tmp[1] < 0 or tmp[1] > 800)):
             return 0
         else:
@@ -565,7 +573,6 @@ class Snake(object):
         
         #self.auto_x(now_food)
         # food in right
-        
         
         if(now_food[0] - now_head[0] == 0):
             #turn right
@@ -607,22 +614,41 @@ class Snake(object):
             else:
                 self.find_turn()
         
-    def key_handling(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: # game exit
-                pygame.quit()
-                sys.exit()
-            elif event.type ==pygame.KEYDOWN: # key input
-                if event.key== pygame.K_UP:
-                    self.turn(UP)
-                elif event.key == pygame.K_DOWN:
-                    self.turn(DOWN)
-                elif event.key == pygame.K_LEFT:
-                    self.turn(LEFT)
-                elif event.key == pygame.K_RIGHT:
-                    self.turn(RIGHT)
-                elif event.key == pygame.K_ESCAPE:
-                    pausemenu()
+    def key_handling(self, menu, event):
+        if event.key== pygame.K_UP and self.snake2_last_movement != DOWN:
+            self.turn(UP)
+            self.snake2_last_movement = UP
+        elif event.key == pygame.K_DOWN and self.snake2_last_movement != UP:
+            self.turn(DOWN)
+            self.snake2_last_movement = DOWN
+        elif event.key == pygame.K_LEFT and self.snake2_last_movement != RIGHT:
+            self.turn(LEFT)
+            self.snake2_last_movement = LEFT
+        elif event.key == pygame.K_RIGHT and self.snake2_last_movement != LEFT:
+            self.turn(RIGHT)
+            self.snake2_last_movement = RIGHT
+        elif event.key == pygame.K_ESCAPE and menu == 1:
+            pausemenu()
+        elif event.key == pygame.K_ESCAPE:
+            pausemenu_dual()
+
+    def key_handling_second(self, menu, event):
+        if event.key == pygame.K_w and self.snake1_last_movement != DOWN:
+            self.turn(UP)
+            self.snake1_last_movement = UP
+        elif event.key == pygame.K_s and self.snake1_last_movement != UP:
+            self.turn(DOWN)
+            self.snake1_last_movement = DOWN
+        elif event.key == pygame.K_a and self.snake1_last_movement != RIGHT:
+            self.turn(LEFT)
+            self.snake1_last_movement = LEFT
+        elif event.key == pygame.K_d and self.snake1_last_movement != LEFT:
+            self.turn(RIGHT)
+            self.snake1_last_movement = RIGHT
+        elif event.key == pygame.K_ESCAPE and menu == 1:
+            pausemenu()
+        elif event.key == pygame.K_ESCAPE:
+            pausemenu_dual()
 
     def move(self, screen):
         now = self.get_head()
@@ -794,7 +820,12 @@ def main():
         drawGrid(surface)
         
         snake.move(screen)
-        snake.key_handling()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: # game exit
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN: # key input
+                snake.key_handling(1, event)
         
         food.draw(surface)
         snake.draw(surface)
@@ -815,6 +846,8 @@ def main():
         screen.blit(text, (15,10))
         
         pygame.display.update()
+
+
 
 # dual game mode
 def dualgame():
@@ -866,28 +899,9 @@ def dualgame():
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.KEYDOWN: # key input
-                if event.key == pygame.K_ESCAPE:
-                    running = False
-                    pausemenu_dual()
-                
-                else:
-                    if event.key== pygame.K_UP:
-                        snake2.turn(UP)
-                    elif event.key == pygame.K_DOWN:
-                        snake2.turn(DOWN)
-                    elif event.key == pygame.K_LEFT:
-                        snake2.turn(LEFT)
-                    elif event.key == pygame.K_RIGHT:
-                        snake2.turn(RIGHT)
-                    
-                    if event.key == pygame.K_a:
-                        snake1.turn(LEFT)
-                    elif event.key == pygame.K_d:
-                        snake1.turn(RIGHT)
-                    elif event.key == pygame.K_w:
-                        snake1.turn(UP)
-                    elif event.key == pygame.K_s:
-                        snake1.turn(DOWN)
+                snake2.key_handling(2, event)
+                snake1.key_handling_second(2, event)
+
 
         food1.draw(surface)
         food2.draw(surface)

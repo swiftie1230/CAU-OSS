@@ -4,6 +4,8 @@ import json
 import time
 import sys
 import os
+from pygame.locals import *
+from pygame import mixer
 
 # screen size
 SCREEN_SIZE = 800
@@ -759,7 +761,11 @@ def main():
     food = Food()
 
     myfont = pygame.font.SysFont("arial", 16, True, True)
-    
+
+    mixer.init()
+    mixer.music.load('snake_game/snake music.wav')
+    mixer.music.play()
+
     if (load == 1):
         print("load data")
         with open('save.txt') as save_file:
